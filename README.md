@@ -1,2 +1,3 @@
 # KBS-Magazijn
-de magazijn robot voor ons kbs
+This is our KBS project for Windesheim Zwolle 
+Group: WLD01-2
