@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bestelling>
+    <ordernummer>1415</ordernummer>
+    <klant>
+        <voornaam>Piet</voornaam>
+        <achternaam>Jansen</achternaam>
+        <adres>Kalverstraat 17</adres>
+        <postcode>1012NX</postcode>
+        <plaats>Amsterdam</plaats>
+    </klant>
+    <datum>2017-05-16</datum>
+    <artikelnr>1</artikelnr>
+    <artikelnr>3</artikelnr>
+    <artikelnr>2</artikelnr>
+    <artikelnr>6</artikelnr>
+    <artikelnr>5</artikelnr>
+</bestelling>
