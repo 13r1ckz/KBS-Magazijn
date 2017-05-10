@@ -9,10 +9,10 @@ public class MAIN {
         ArrayList<Product> producten = new ArrayList<>();
         Random rand = new Random();
         
-        for(int i = 0; i < 50; i++){
+        for(int i = 0; i < 1500; i++){
             int rx = rand.nextInt();
             int ry = rand.nextInt();
-            int rsize = rand.nextInt(14)+1;
+            int rsize = rand.nextInt(10)+1;
             producten.add(new Product(rx,ry,rsize));   
         }
         
@@ -45,7 +45,7 @@ public class MAIN {
         System.out.println("SIZE: " + dozen0.size());
         
         System.out.println("NEXT FIT############################################");
-        NextFit NFT = new NextFit();
+        FirstFullNFD NFT = new FirstFullNFD();
         ArrayList<Doos> dozen1 = NFT.berekenOplossing(producten);
         for(Doos d: dozen1){
             System.out.println();

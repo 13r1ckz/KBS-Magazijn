@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Doos {
 
-    private static final int length = 30;
+    private static final int length = 10;
     private final ArrayList<Product> producten;
     
     /* Constructor */
