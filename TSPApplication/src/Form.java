@@ -33,7 +33,21 @@ public class Form extends JFrame implements ActionListener {
             lampnumber = Integer.parseInt(lampstatuswaarde.getText());
             switch(lampnumber) {
                 case 1:
+                    ArduinoConnect.writeData("4");
+                    ArduinoConnect.writeData("2");
+                    ArduinoConnect.writeData("2");
+                    ArduinoConnect.writeData("8");
+                    ArduinoConnect.writeData("2");
+                    ArduinoConnect.writeData("3");
                     ArduinoConnect.writeData("1");
+                    //y
+                    ArduinoConnect.writeData("4");
+                    ArduinoConnect.writeData("2");
+                    ArduinoConnect.writeData("2");
+                    ArduinoConnect.writeData("-3");
+                    ArduinoConnect.writeData("4");
+                    ArduinoConnect.writeData("-1");
+                    ArduinoConnect.writeData("5");
                     arduinostatus.setText("De lamp staat nu aan");
                     break;
                 case 2:
