@@ -1,6 +1,10 @@
-int locatie;
-int doel = 1;
-boolean gehaalt = false;
+int locatiex;
+int locatiey;
+int doelx = 3;
+int doely = 3;
+boolean gehaaltx = false;
+boolean gehaalty = false;
+
 void setup() {
   pinMode(4, OUTPUT);
   pinMode(5, OUTPUT);
@@ -15,79 +19,65 @@ void setup() {
 void loop() {
   int x = analogRead (A0);
   int y = analogRead(A1);
-  Serial.println(y);
+  Serial.println(x);
 //  Serial.println(doel);
 //  Serial.println(locatie);
 //  Serial.println(gehaalt);
-  digitalWrite(13, HIGH);
 
- if(locatie == doel && gehaalt == false){
+digitalWrite(13, HIGH);
+ if(locatiex == doelx && gehaaltx == false){
     digitalWrite(4, LOW);
     analogWrite(5,0);
-    gehaalt = true;
-    doel = 0;
-    digitalWrite(7, LOW);
-    analogWrite(6,255);    
-    delay(1000);
+    gehaaltx = true;
+        
     
-    digitalWrite(7,LOW);
-    analogWrite(6,0);
-    digitalWrite(13,LOW);
-    digitalWrite(4, LOW);
-    analogWrite(5,200);    
-    delay(1000);
-
+  }else if(locatiex == doelx && gehaaltx == true){
     digitalWrite(4, LOW);
     analogWrite(5,0);
-    digitalWrite(7, LOW);
-    analogWrite(6,255);
-    delay(500);
-    
-    digitalWrite(7,LOW);
-    analogWrite(6,0); 
-    digitalWrite(4, HIGH);
-    digitalWrite(5,255);    
-    delay(1000);
-    
-    digitalWrite(13,HIGH);
-    digitalWrite(4, LOW);
-    analogWrite(5,0);
-    delay(1000);
-    
-    digitalWrite(7, HIGH);
-    analogWrite(6,255);    
-    delay(1000);
-
-    digitalWrite(7, HIGH);
-    analogWrite(6,0);
-
-    
-    
-  }else if(locatie == doel && gehaalt == true){
-    digitalWrite(4, LOW);
-    analogWrite(5,0);
-    gehaalt = false;
-    doel = 1;
+    gehaaltx = false;
+    doelx = 0;
     delay(1000);
   }
-  else if( x >=750 && gehaalt == false){
+  else if( x >=750 && gehaaltx == false){
   digitalWrite(4, LOW);
   analogWrite(5,255);
     }
-    else if ( x <= 751 && gehaalt == false){
-      locatie = locatie + 1;
-      delay(100);
+    else if ( x <= 751 && gehaaltx == false){
+      locatiex = locatiex + 1;
+      delay(500);
     }
-      else if(gehaalt == true && x>=750){
+      else if(gehaaltx == true && x>=750){
         digitalWrite(4,HIGH);
         analogWrite(5,255);
       }
-      else if(gehaalt == true && x<=751){
-        locatie = locatie - 1;
-        delay(100);
+      else if(gehaaltx== true && x<=751){
+        locatiex = locatiex - 1;
+        delay(500);
         
         }
-}
+
+    if(locatiey < doely && y >= 100){
+      digitalWrite(7, LOW);
+      analogWrite(6,255);
+      locatiey ++;
+      }else if(locatiey < doely && y <= 100){
+        digitalWrite(7, LOW);
+        analogWrite(6,255);
+        }else if(locatiey == doely){
+          digitalWrite(7, LOW);
+          analogWrite(6,0);
+          gehaalty = true;
+          }
+
+  
+  }
+
+
+  //LOW is up
+
+
+ 
+ 
 
 
 
