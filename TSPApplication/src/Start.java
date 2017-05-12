@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Start {
     public static void main(String[] ag) {
         try {
-
             ReadXML read = new ReadXML();
 
             ArduinoConnect obj = new ArduinoConnect();
