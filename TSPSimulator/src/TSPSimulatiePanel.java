@@ -1,24 +1,30 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Random;
 
-public class TSPSimulatiePanel extends JPanel{
+public class TSPSimulatiePanel extends JPanel {
     private int celX,celY;
     private int xcoordinate,ycoordinate;
-
-    public TSPSimulatiePanel() {
+    private TSPSimulatieFrame frame;
+    public TSPSimulatiePanel(TSPSimulatieFrame frame) {
+        this.frame = frame;
         this.setPreferredSize(new Dimension(600, 600));
     }
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        int aantalLocaties = 6;
-        //loop door aantal locaties
-        /**
-         * SORTEER HIER PER ALGORITME DE VOLGORDE
-         *
-         */
-        for(int z = 0; z <= 6; z++) {
+        int aantalLocaties;
+        if(frame.getAantalLocaties() <= 3) {
+            aantalLocaties = 3;
+        }
+        else {
+            aantalLocaties = frame.getAantalLocaties();
+        }
+        System.out.println(aantalLocaties);
+        int [][] locatieLijst = new int[aantalLocaties][1];
+        for(int z = 0; z <= aantalLocaties; z++) {
             int gridGetal = 10;
             Random rand = new Random();
 
@@ -53,6 +59,7 @@ public class TSPSimulatiePanel extends JPanel{
                     ycoordinate = yRand;
                 }
             }
+
             g.setColor(Color.RED);
             g.fillRect((xRand - 1) * celX,(yRand -1)* celX, celX,celX);
             g.setColor(Color.BLACK);
@@ -60,4 +67,9 @@ public class TSPSimulatiePanel extends JPanel{
             g.drawString(z + "",(xRand - 1) * celX + (celX / 2),(yRand -1)* celX + (celX / 2));
         }
     }
+
+//    public int getAantalLocaties() {
+//        return
+//    }
+
 }
