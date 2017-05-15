@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\Justin\Documents\School\Windesheim\KBS 2\KBS-Magazijn\TSPSimulator\Desktop.iml" filepath="C:\Users\Justin\Documents\School\Windesheim\KBS 2\KBS-Magazijn\TSPSimulator\Desktop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../../../../../../Justin/Documents/School/Windesheim/KBS 2/KBS-Magazijn/TSPSimulator/Desktop.iml" filepath="$PROJECT_DIR$/../../../../../../../../Justin/Documents/School/Windesheim/KBS 2/KBS-Magazijn/TSPSimulator/Desktop.iml" />
       <module fileurl="file://$PROJECT_DIR$/TSPSimulator.iml" filepath="$PROJECT_DIR$/TSPSimulator.iml" />
     </modules>
   </component>
