@@ -39,7 +39,6 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
         }
 
         public void start(){
-            tmr.start();
         }
         
         /* initialize the port */
@@ -109,14 +108,40 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
                         if(in == 82 || in == 76){
                             System.out.println("ARDUINO gave back " + (char) in);
                             System.out.println();
-                            this.shiftOut();
+                            cFrame.getImage().setImage("WAIT_FOR_INPUT");
+                            a++;
+                            if(a == list.length){
+                            x = (char) 'E';
+                            System.out.println("All blocks have been pushed! Writing "+ x +" TO OUTPUT...");
+                            try
+                            {
+                            output = serialPort.getOutputStream();
+                            output.write(x);
+                            System.out.println("Written to! Waiting for ARDUINO output...");
+                            }
+                            catch (IOException | NullPointerException nx){
+                            System.out.println("Could not find COM port / An error has occured.");
+                            cFrame.getImage().setImage("ERROR");
+                            }
+                            }
+                        }
+                        // X - event.
+                        if(in == 88){
+                           this.shiftOut();
+                        }
+                        // O - event.
+                        if(in == 79){
+                            System.out.println("All OK!");
+                            cFrame.getImage().setImage("OK");
                         }
                     } catch (IOException ex) {}
 		}
 	}
         
+        char x;
+        
         public void shiftOut(){
-            char x = (char) (list[a]+48);
+            x = (char) (list[a]+48);
             String dir = "null";
             if(x == '1'){
                 cFrame.getImage().setImage("RIGHT");
@@ -131,7 +156,6 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
             {
                 output = serialPort.getOutputStream();
                 output.write(x);
-                a++;
                 System.out.println("Written to! Waiting for ARDUINO output...");
             }
             catch (IOException | NullPointerException nx){

@@ -19,8 +19,7 @@ public class ControllerFrame extends JFrame{
         this.producten = producten;
         //2 panelen voor elke doos.
         DoosPaneel P_LEFT = new DoosPaneel(dozen.get(0));
-        add(P_LEFT);
-        add(iPaneel);
+        
         /* Let wel op, dat als het in 1 doos past, de tweede niet meegegeven wordt. */
         try{
             DoosPaneel P_RIGHT = new DoosPaneel(dozen.get(1));
@@ -30,7 +29,8 @@ public class ControllerFrame extends JFrame{
             DoosPaneel P_RIGHT = new DoosPaneel();
             add(P_RIGHT);
         }
-        
+        add(iPaneel);
+        add(P_LEFT);
         setLayout(new FlowLayout());
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setResizable(false);

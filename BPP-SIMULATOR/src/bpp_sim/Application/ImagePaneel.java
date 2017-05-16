@@ -1,6 +1,5 @@
 package bpp_sim.Application;
 
-import bpp_sim.ArduinoController;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,7 +12,7 @@ public class ImagePaneel extends JPanel{
     JLabel label;
     
     public ImagePaneel() throws IOException {
-        this.img = ImageIO.read(new File("src/bpp_sim/Application/images/panel_ERROR.png"));
+        this.img = ImageIO.read(new File("src/bpp_sim/Application/images/panel_WAIT_FOR_INPUT.png"));
         label = new JLabel(new ImageIcon(this.img));
         setPreferredSize(new Dimension(200,360));
         add(label);
