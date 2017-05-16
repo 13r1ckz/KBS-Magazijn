@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
 public class TSPNN implements TSPAlgoritme {
+    private ArrayList<Integer> sOrder = new ArrayList<Integer>();
     private ArrayList<ArrayList<Integer>> gesorteerd;
     public TSPNN(ArrayList<ArrayList<Integer>> ongesorteerd) {
         int arrayListSize = ongesorteerd.size();
@@ -41,6 +42,22 @@ public class TSPNN implements TSPAlgoritme {
             currentX = kortsteX;
             currentY = kortsteY;
             ongesorteerd.remove(kortste);
+            sOrder.add(kortsteX);
+            sOrder.add(kortsteY);
+            try {
+                gesorteerd.add(sOrder);
+                sOrder = new ArrayList<Integer>();
+            }
+            catch (Exception e) {
+                System.out.println("X" + kortsteX);
+                System.out.println("Y" +kortsteY);
+                System.out.println("order" + sOrder);
+                System.out.println("gesorteerd" + gesorteerd);
+                System.out.println(e);
+                sOrder = new ArrayList<Integer>();
+            }
+
+            //System.out.println(ongesorteerd);
         }
         currentX = startX - currentX;
         currentY = startY - currentY;

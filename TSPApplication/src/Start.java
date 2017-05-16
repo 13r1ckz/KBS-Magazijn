@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Start {
@@ -30,10 +31,9 @@ public class Start {
             //en in de buitenste arraylist worden de binnenste arraylists meegegeven, zodat er een duidelijk
             //overzicht van elk artikel waarbij de X, Y en artikelnummer mee wordt gegeven.
             ArrayList<ArrayList<Integer>> artikelsOngesorteerd = DBConnection.getLocaties();
-
             //Hij zet de ongesorteerde artikellijst gelijk aan de ongesorteerde artikelen in de artikelen.
             o.setOngesorteerd(artikelsOngesorteerd);
-
+            System.out.println("artikellengte " + o.getOngesorteerd().size());
             //Er wordt hier een nieuwe instantie van TSPNN aangemaakt waaraan de ongesorteerdelijst mee wordt gegeven.
 
 
@@ -41,9 +41,12 @@ public class Start {
             //HIER MOETEN DE GEGEVENS DIE MOMENTEEL GEPRPINT WORDEN NOG IN EEN GESORTEERDE LIJST GEZET WORDEN
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             TSPNN algoritme = new TSPNN(o.getOngesorteerd());
-
+            System.out.println("artikellengte " + o.getOngesorteerd().size());
             //De berekende route wordt gelijkgezet aan de route zodat deze hier ook te accessen is.
-            ArrayList<ArrayList<Integer>> route =  algoritme.berekenRoute();
+            ArrayList<ArrayList<Integer>> route = algoritme.berekenRoute();
+
+            TSPPanel Jpan = new TSPPanel(o.getOngesorteerd().size());
+            Jpan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             // IN TSPNN.JAVA WORDT ARRAYLIST GESORTEERD GERETURNED. GESORTEERD IS NOG LEEG EN MOET AAN ONGESORTEERDE ARRAYLIST DIE GESORTEERD MOETEN WORDEN GEZET.
             String inputLine = ArduinoConnect.input.readLine();
