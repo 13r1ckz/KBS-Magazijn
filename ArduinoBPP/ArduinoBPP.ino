@@ -5,15 +5,38 @@ boolean side = false;
 int loada;
 void setup() {
   Serial.begin(9600);
-  for (int x = 0; x < 13; x++) {    // port loop //i am lazy
+  /* Port loop */
+  for (int x = 0; x < 13; x++) {
     pinMode(x, OUTPUT);
   }
+}
+
+#define LEFT 0
+#define RIGHT 255
+#define SWITCH_MOTOR 5
+#define INPUT_MOTOR 6
+
+//Turns on the motor and sets the direction.
+void motorOn(int motor, int dir){
+  if(motor == 5){
+    digitalWrite(4,dir);
+    digitalWrite(5,255);
+  }
+  if(motor == 6){
+    digitalWrite(7,dir);
+    digitalWrite(6,255);
+  }
+}
+
+//Shuts down the motor.
+void motorOff(int motor){
+  digitalWrite(motor,0);
 }
 
 void loop() {
 //  Serial.println(val);
 //  Serial.println(load);
-//  Serial.println(analogRead(A0));
+Serial.println(val);
   if (val == "E") {           //e shutdonw
     digitalWrite(4, LOW);
     digitalWrite(5, 0);
@@ -45,8 +68,6 @@ void loop() {
     //Serial.println("pooll");
   }
   else if(val == "1" && load == true && analogRead(A0) <= 400 ){
-    digitalWrite(4, HIGH);
-    digitalWrite(5, 255);
     //Serial.println("lol");
     delay(2000);
     digitalWrite(4, LOW);
@@ -94,7 +115,7 @@ void loop() {
   }
   else if (val != 1 || val != 2 || val != "" || val != "E" || val != "C"){
     val = "";
-    }
+  }
 }
 void serialEvent() {            // single time updater
   while (Serial.available()) {
