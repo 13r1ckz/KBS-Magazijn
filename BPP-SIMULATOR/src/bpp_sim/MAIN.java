@@ -1,61 +1,60 @@
 package bpp_sim;
 
+import bpp_sim.Functions.FirstFitDecreasing;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 public class MAIN {
-
-    public static void main(String[] args) {
+    
+    public static void main(String[] args) throws IOException {
+        /* Create the list */
         ArrayList<Product> producten = new ArrayList<>();
         Random rand = new Random();
-        
-        for(int i = 0; i < 1500; i++){
+        /* Add a few products */
+        for(int i = 0; i < 3; i++){
             int rx = rand.nextInt();
             int ry = rand.nextInt();
-            int rsize = rand.nextInt(10)+1;
+            int rsize = rand.nextInt(9)+1;
             producten.add(new Product(rx,ry,rsize));   
         }
         
-        System.out.println("FIRST FIT###########################################");
-        FirstFit FF0 = new FirstFit();
-        ArrayList<Doos> dozen = FF0.berekenOplossing(producten);
-        for(Doos d: dozen){
-            System.out.println();
-            System.out.println("Box size: " + d.getLength());
-            System.out.println("_____________");
-            ArrayList<Product> product = d.getProducten();
-            for(Product p: product){
-                System.out.println(p.getSize());
-            }
+        for(Product p: producten){
+            System.out.println("Product " + p.getProductID() + " : " + p.getSize());
         }
-        System.out.println("SIZE: " + dozen.size());
         
-        System.out.println("FIRST FIT DECREASING################################");
+        /* Set the functions */
+        Direction dir = new Direction();
+        /* Create the function, and run it over the list */
         FirstFitDecreasing FFD = new FirstFitDecreasing();
-        ArrayList<Doos> dozen0 = FFD.berekenOplossing(producten);
-        for(Doos d: dozen0){
-            System.out.println();
-            System.out.println("Box size: " + d.getLength());
-            System.out.println("_____________");
-            ArrayList<Product> product = d.getProducten();
-            for(Product p: product){
-                System.out.println(p.getSize());
-            }
-        }
-        System.out.println("SIZE: " + dozen0.size());
+        ArrayList<Doos> dozen = FFD.berekenOplossing(producten);
+        /* Set the directions */
+        dir.setDir(dozen);
         
-        System.out.println("NEXT FIT############################################");
-        FirstFullNFD NFT = new FirstFullNFD();
-        ArrayList<Doos> dozen1 = NFT.berekenOplossing(producten);
-        for(Doos d: dozen1){
-            System.out.println();
-            System.out.println("Box size: " + d.getLength());
-            System.out.println("_____________");
-            ArrayList<Product> product = d.getProducten();
-            for(Product p: product){
-                System.out.println(p.getSize());
+        
+        /* Print everything */
+        for(Doos d: dozen){
+            System.out.println("Doos___________________ (grootte " + d.getLength() + ")");
+            for(Product p:  d.getProducten()){
+                System.out.println("Product " + p.getProductID() + " grootte: " + p.getSize());
             }
+            System.out.println();
         }
-        System.out.println("SIZE: " + dozen1.size());
+        /* Re-sort everything [Should be backwards-sorted] */
+        producten = dir.sortList(producten);
+        
+        for(Product p: producten){
+            System.out.println("Product " + p.getProductID() + " : " + p.getDirection());
+        }
+        
+        /* Set the data to an integer */
+        int[] a = new int[producten.size()];
+        for(int i = 0; i < producten.size(); i++){
+            a[i] = producten.get(i).getDirection();
+        }
+        
+        /* Shove it in a controller and let it run */
+        ArduinoController ac = new ArduinoController(a,producten,dozen);
+        ac.start();
     }
 }

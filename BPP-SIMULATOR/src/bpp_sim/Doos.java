@@ -5,12 +5,21 @@ import java.util.ArrayList;
 public class Doos {
 
     private static final int length = 10;
+    private static int global_direction = 1;
+    private final int direction;
     private final ArrayList<Product> producten;
     
     /* Constructor */
     public Doos()
     {
         producten = new ArrayList<>();
+        direction = global_direction;
+        global_direction++;
+    }
+    
+    public int getDirection()
+    {
+        return direction;
     }
     
     /* Get the length of the box */
@@ -40,4 +49,5 @@ public class Doos {
     {
         producten.add(p);
     }
+    
 }

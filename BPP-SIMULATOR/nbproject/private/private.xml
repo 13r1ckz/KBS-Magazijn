@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/jaspe/Documents/KBS%202/KBS-Magazijn/BPP-SIMULATOR/src/bpp_sim/MAIN.java</file>
-            <file>file:/C:/Users/jaspe/Documents/KBS%202/KBS-Magazijn/BPP-SIMULATOR/src/bpp_sim/FirstFitDecreasing.java</file>
-            <file>file:/C:/Users/jaspe/Documents/KBS%202/KBS-Magazijn/BPP-SIMULATOR/src/bpp_sim/FirstFullNFD.java</file>
-            <file>file:/C:/Users/jaspe/Documents/KBS%202/KBS-Magazijn/BPP-SIMULATOR/src/bpp_sim/FirstFit.java</file>
-            <file>file:/C:/Users/jaspe/Documents/KBS%202/KBS-Magazijn/BPP-SIMULATOR/src/bpp_sim/Doos.java</file>
+            <file>file:/C:/Users/jaspe/Documents/KBS%202/KBS-Magazijn/BPP-SIMULATOR/src/bpp_sim/Application/ControllerFrame.java</file>
+            <file>file:/C:/Users/jaspe/Documents/KBS%202/KBS-Magazijn/BPP-SIMULATOR/src/bpp_sim/ArduinoController.java</file>
+            <file>file:/C:/Users/jaspe/Documents/KBS%202/KBS-Magazijn/BPP-SIMULATOR/src/bpp_sim/Application/DoosPaneel.java</file>
         </group>
     </open-files>
 </project-private>

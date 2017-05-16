@@ -1,14 +1,31 @@
-package bpp_sim;
+package bpp_sim.Functions;
 
+import bpp_sim.Doos;
+import bpp_sim.Product;
 import java.util.ArrayList;
 
-public class FirstFit implements BPP{
+public class FirstFitDecreasing implements BPP{
 
     @Override
-    public ArrayList<Doos> berekenOplossing(ArrayList<Product> producten)
-    {
+    public ArrayList<Doos> berekenOplossing(ArrayList<Product> producten) {
+        
+        /**
+         * @author Jasper Fritse
+         * -- ARRAYLIST SORTING PROGRAM --
+         */
+        
+        for(int j = 0; j < producten.size(); j++){      
+            for(int i = 0; i < producten.size()-1 ; i++){
+                if(producten.get(i).getSize()< producten.get(i+1).getSize()){
+                    Product ACC = producten.get(i);
+                    producten.set(i, producten.get(i+1));
+                    producten.set(i+1, ACC);
+                }
+            }
+        }
         
         ArrayList<Doos> dozen = new ArrayList<>();
+        
         //Voor elk product...
         for(Product p: producten){
             boolean isPlaced = false;
@@ -30,4 +47,5 @@ public class FirstFit implements BPP{
         
         return dozen;
     }
+
 }

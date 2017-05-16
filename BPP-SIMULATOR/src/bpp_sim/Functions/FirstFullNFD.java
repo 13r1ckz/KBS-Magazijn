@@ -1,8 +1,10 @@
-package bpp_sim;
+package bpp_sim.Functions;
 
+import bpp_sim.Doos;
+import bpp_sim.Product;
 import java.util.ArrayList;
 
-public class FirstFitDecreasing implements BPP{
+public class FirstFullNFD implements BPP{
 
     @Override
     public ArrayList<Doos> berekenOplossing(ArrayList<Product> producten) {
@@ -21,6 +23,26 @@ public class FirstFitDecreasing implements BPP{
                 }
             }
         }
+        
+        //Switch each two items.
+        try{
+            for(int j = 0; j < producten.size()-1 ; j += 2){      
+                Product ACC = producten.get(j);
+                producten.set(j, producten.get(j+1));
+                producten.set(j+1, ACC);
+            }
+        }
+        catch(ArrayIndexOutOfBoundsException ns){}
+        
+        //Switch each three items.
+        try{
+            for(int j = 0; j < producten.size()-2 ; j += 3){      
+                Product ACC = producten.get(j);
+                producten.set(j, producten.get(j+2));
+                producten.set(j+2, ACC);
+            }
+        }
+        catch(ArrayIndexOutOfBoundsException ns){}
         
         ArrayList<Doos> dozen = new ArrayList<>();
         
