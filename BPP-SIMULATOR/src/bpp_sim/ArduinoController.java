@@ -32,7 +32,7 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
         public ArduinoController(int[] list, ArrayList<Product> producten, ArrayList<Doos> dozen) throws IOException
         {
             this.list = list;
-            tmr = new Timer(2000, this);
+            tmr = new Timer(5000, this);
             cFrame = new ControllerFrame(dozen,producten);
             cFrame.setVisible(true);
             this.initialize();
