@@ -2,8 +2,10 @@ import java.util.ArrayList;
 
 public class TSPNN implements TSPAlgoritme {
     private ArrayList<Integer> sOrder = new ArrayList<Integer>();
-    private ArrayList<ArrayList<Integer>> gesorteerd;
+    private ArrayList<ArrayList<Integer>> gesorteerd = new ArrayList<ArrayList<Integer>>();
+    private int antalOrder;
     public TSPNN(ArrayList<ArrayList<Integer>> ongesorteerd) {
+        System.out.println(ongesorteerd + "ongesorteerd");
         int arrayListSize = ongesorteerd.size();
         int currentX = 0;
         int currentY = 1;
@@ -15,6 +17,7 @@ public class TSPNN implements TSPAlgoritme {
             int kortste = 0;
 
             for (int i = 0; i < ongesorteerd.size(); i++) {
+                System.out.println(afstand + " afstand, " + DifCalc(currentX, ongesorteerd.get(i).get(1)) + DifCalc(currentY, ongesorteerd.get(i).get(2)));
                 if (afstand > DifCalc(currentX, ongesorteerd.get(i).get(1)) + DifCalc(currentY, ongesorteerd.get(i).get(2))) {
                     //Door deze formule wordt er bepaald welk punt het dichtsbij de current location ligt.
                     afstand = DifCalc(currentX, ongesorteerd.get(i).get(1)) + DifCalc(currentY, ongesorteerd.get(i).get(2));
@@ -31,32 +34,53 @@ public class TSPNN implements TSPAlgoritme {
                 System.out.println(startY-currentY);
                 currentX = startX;
                 currentY = startY;
+                sOrder.add(startX - currentX);
+                sOrder.add(startX - currentY);
+                try {
+                    gesorteerd.add(sOrder);
+                    sOrder = new ArrayList<Integer>();
+                    //System.out.println(gesorteerd);
+                    //System.out.println(gesorteerd.size());
+                }
+                catch (Exception e) {
+                    //System.out.println("X" + currentX);
+                    //System.out.println("Y" + currentY);
+                    System.out.println("order" + sOrder);
+                    System.out.println("gesorteerd" + gesorteerd);
+                    System.out.println(e);
+                    sOrder = new ArrayList<Integer>();
+                }
             }
             //System.out.println("kortste afstand " + afstand + ", x van kortste " + kortsteX + ", y van kortste " + kortsteY );
+            antalOrder++;
+            System.out.println("order " + antalOrder + ":");
             System.out.println("X naar:");
             //KortsteX - CurrentX en KortsteY - CurrentY zijn de formules om uit te rekenen waar de arduino relatief aan zen locatie
             //naartoe moet gaan.
             System.out.println(kortsteX - currentX);
             System.out.println("Y naar: ");
             System.out.println(kortsteY - currentY);
-            currentX = kortsteX;
-            currentY = kortsteY;
-            ongesorteerd.remove(kortste);
-            sOrder.add(kortsteX);
-            sOrder.add(kortsteY);
+            sOrder.add(kortsteX - currentX);
+            sOrder.add(kortsteY - currentY);
+            //sOrder.add(currentX);
+            //sOrder.add(currentY);
             try {
                 gesorteerd.add(sOrder);
                 sOrder = new ArrayList<Integer>();
+                //System.out.println(gesorteerd);
+                //System.out.println(gesorteerd.size());
             }
             catch (Exception e) {
-                System.out.println("X" + kortsteX);
-                System.out.println("Y" +kortsteY);
+                //System.out.println("X" + currentX);
+                //System.out.println("Y" + currentY);
                 System.out.println("order" + sOrder);
                 System.out.println("gesorteerd" + gesorteerd);
-                System.out.println(e);
+                //System.out.println(e);
                 sOrder = new ArrayList<Integer>();
             }
-
+            currentX = kortsteX;
+            currentY = kortsteY;
+            ongesorteerd.remove(kortste);
             //System.out.println(ongesorteerd);
         }
         currentX = startX - currentX;
@@ -65,6 +89,24 @@ public class TSPNN implements TSPAlgoritme {
         System.out.println(currentX);
         System.out.println("Y naar: ");
         System.out.println(currentY);
+        //sOrder.add(kortsteX - currentX);
+        //sOrder.add(kortsteY - currentY);
+        sOrder.add(currentX);
+        sOrder.add(currentY);
+        try {
+            gesorteerd.add(sOrder);
+            sOrder = new ArrayList<Integer>();
+            //System.out.println(gesorteerd);
+            //System.out.println(gesorteerd.size());
+        }
+        catch (Exception e) {
+            //System.out.println("X" + currentX);
+            //System.out.println("Y" + currentY);
+            System.out.println("order" + sOrder);
+            System.out.println("gesorteerd" + gesorteerd);
+            System.out.println(e);
+            sOrder = new ArrayList<Integer>();
+        }
     }
     public int DifCalc(int x, int y) {
         if (x != y) {
@@ -76,5 +118,9 @@ public class TSPNN implements TSPAlgoritme {
     @Override
     public ArrayList<ArrayList<Integer>> berekenRoute() {
         return gesorteerd;
+    }
+
+    public int getAntalOrder() {
+        return antalOrder;
     }
 }
