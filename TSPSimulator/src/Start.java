@@ -6,7 +6,7 @@ public class Start {
         //frame.createDisplay();
 
         BruteForce bruteforce = new BruteForce();
-        bruteforce.printCombinations(bruteforce.GenerateRoute(7));
+        bruteforce.printCombinations(bruteforce.GenerateRoute(3));
 
         //limitatie:
         // 7 locaties is insta

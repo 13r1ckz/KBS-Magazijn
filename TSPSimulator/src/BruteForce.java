@@ -4,11 +4,12 @@ import java.util.Random;
 public class BruteForce implements TSP {
     private ArrayList<ArrayList<Integer>> outer = new ArrayList<>();
     private ArrayList<Integer> inner = new ArrayList<>();
-
+    private int routeLength = 100;
+    private double temp;
+    private int path;
 
 
     public ArrayList<ArrayList<Integer>> GenerateRoute(int aantal) {
-        //start at zero
 
         Random r = new Random();
         for (int x = 0; x < aantal; x++) {
@@ -32,49 +33,62 @@ public class BruteForce implements TSP {
         return outer;
     }
 
-    public static void printCombinations(ArrayList<ArrayList<Integer>> a) {
-        String[] s = new String[a.size() ];
+    public void printCombinations(ArrayList<ArrayList<Integer>> a) {
+        String[] s = new String[a.size()];
         int count = 0;
-        for (int i =0; i < a.size() ; i++){
-            System.out.println("ree");
-            count+=1;
+        for (int i = 0; i < a.size(); i++) {
+            count += 1;
             String temp = String.valueOf(count);
-
             s[i] = temp;
         }
-
-
-        permutation(s, 0, s.length - 1);
+        permutation(s, 0, s.length - 1, a);
     }
 
-    private static void permutation(String[] s, int firstIndex, int lastIndex) {
-
+    private void permutation(String[] s, int firstIndex, int lastIndex, ArrayList<ArrayList<Integer>> a) {
         if (lastIndex - firstIndex == 1) {
             print(s);
+            selectShortest(s, a);
             swap(firstIndex, lastIndex, s);
             print(s);
-			/*restore the order in string array*/
+            selectShortest(s, a);
+            /*restore the order in string array*/
             swap(firstIndex, lastIndex, s);
-
-
         } else {
             for (int i = firstIndex, j = 0; i <= lastIndex; i++, j++) {
                 swap(firstIndex, firstIndex + j, s);
-				/*With current initial String(s) find combinations for rest of the strings */
-                permutation(s, firstIndex + 1, lastIndex);
-				/*restore the order in string array */
+                /*With current initial String(s) find combinations for rest of the strings */
+                permutation(s, firstIndex + 1, lastIndex, a);
+                /*restore the order in string array */
                 swap(firstIndex, firstIndex + j, s);
             }
         }
-
     }
 
-    private static void print(String[] s) {
+    private void print(String[] s) {
         for (int i = 0; i < s.length; i++) {
-            System.out.println(Integer.parseInt(s[i]) - 1);
+            System.out.println(Integer.parseInt(s[i]) - 1 + "REE");
         }
         System.out.println();
     }
+
+    private void selectShortest(String[] s, ArrayList<ArrayList<Integer>> a) {
+        for (int i = 0; i < a.size() - 1; i++) {
+            int index1 = Integer.parseInt(s[i]) - 1;
+            int index2 = Integer.parseInt(s[i + 1]) - 1;
+            System.out.println();
+            System.out.println(a.get(index1).get(1) + "^^");
+            System.out.println(a.get(index2).get(1) + "._.");
+            int locationX1 = a.get(index1).get(0);
+            int locationX2 = a.get(index2).get(0);
+            int locationY1 = a.get(index1).get(1);
+            int locationY2 = a.get(index2).get(1);
+            System.out.println(calcPyth(locationX1, locationY1, locationX2, locationY2) + "DEEZ SHIEET");
+
+        }
+        temp=0;
+        System.out.println();
+    }
+
 
     private static void swap(int firstIndex, int lastIndex, String[] s) {
         String temp = s[lastIndex];
@@ -94,19 +108,17 @@ public class BruteForce implements TSP {
         int verschilY;
         int overstaandeZijde = beginX - eindX;
         int aanliggendeZijde = beginY - eindY;
-        if (beginX != eindX){
+        if (beginX != eindX) {
             verschilX = Math.max(beginX, eindX) - Math.min(beginX, eindX);
-        }
-        else{
+        } else {
             verschilX = 0;
         }
-        if (beginY != eindY ){
+        if (beginY != eindY) {
             verschilY = Math.max(beginY, eindY) - Math.min(beginY, eindY);
-        }
-        else {
+        } else {
             verschilY = 0;
         }
-        double i = Math.pow(verschilX,2) + Math.pow(verschilY, 2);
+        double i = Math.pow(verschilX, 2) + Math.pow(verschilY, 2);
         double j = Math.sqrt(i);
         return j;
     }
