@@ -48,6 +48,7 @@ public class SimulatorPanel extends JPanel{
         /* Create the other label. */
         String label2Name = ("<html><h3 style=\"text-align:center\">Dozen: 0</h3></html>");
         jBoxAmount = new JLabel(label2Name,SwingConstants.CENTER);
+        jBoxAmount.setPreferredSize(new Dimension(100,100));
         add(jBoxAmount);
     }
     

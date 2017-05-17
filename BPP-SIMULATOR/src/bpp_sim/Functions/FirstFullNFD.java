@@ -9,40 +9,23 @@ public class FirstFullNFD implements BPP{
     @Override
     public ArrayList<Doos> berekenOplossing(ArrayList<Product> producten) {
         
-        /**
-         * @author Jasper Fritse
-         * -- ARRAYLIST SORTING PROGRAM --
-         */
-        
-        for(int j = 0; j < producten.size()-1 ; j++){      
-            for(int i = 0; i < producten.size()-1 ; i++){
-                if(producten.get(i).getSize()< producten.get(i+1).getSize()){
-                    Product ACC = producten.get(i);
-                    producten.set(i, producten.get(i+1));
-                    producten.set(i+1, ACC);
-                }
+        /* Voor elk product, gooi het in een EVEN of ONEVEN-lijst. */
+        ArrayList<Product> EVEN = new ArrayList<>();
+        ArrayList<Product> ODD = new ArrayList<>();
+        for(Product p: producten){
+            if(p.getSize() % 2 == 0){
+                EVEN.add(p);
+            }
+            else{
+                ODD.add(p);
             }
         }
-        
-        //Switch each two items.
-        try{
-            for(int j = 0; j < producten.size()-1 ; j += 2){      
-                Product ACC = producten.get(j);
-                producten.set(j, producten.get(j+1));
-                producten.set(j+1, ACC);
-            }
+        int j = producten.size();
+        producten.clear();
+        for(int i = 0; i < j; i++){
+            try{producten.add(EVEN.get(i));}catch(Exception ex){}
+            try{producten.add(ODD.get(i));}catch(Exception ex){}
         }
-        catch(ArrayIndexOutOfBoundsException ns){}
-        
-        //Switch each three items.
-        try{
-            for(int j = 0; j < producten.size()-2 ; j += 3){      
-                Product ACC = producten.get(j);
-                producten.set(j, producten.get(j+2));
-                producten.set(j+2, ACC);
-            }
-        }
-        catch(ArrayIndexOutOfBoundsException ns){}
         
         ArrayList<Doos> dozen = new ArrayList<>();
         
@@ -67,5 +50,4 @@ public class FirstFullNFD implements BPP{
         
         return dozen;
     }
-
 }
