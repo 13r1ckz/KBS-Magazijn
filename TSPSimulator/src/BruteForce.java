@@ -1,4 +1,7 @@
+
 import java.util.ArrayList;
+
+import java.util.Collections;
 import java.util.Random;
 
 public class BruteForce implements TSP {
@@ -7,6 +10,7 @@ public class BruteForce implements TSP {
     private int routeLength = 100;
     private double temp;
     private int path;
+
 
 
     public ArrayList<ArrayList<Integer>> GenerateRoute(int aantal) {
@@ -46,7 +50,9 @@ public class BruteForce implements TSP {
 
     private void permutation(String[] s, int firstIndex, int lastIndex, ArrayList<ArrayList<Integer>> a) {
         if (lastIndex - firstIndex == 1) {
+
             print(s);
+
             selectShortest(s, a);
             swap(firstIndex, lastIndex, s);
             print(s);
@@ -60,31 +66,52 @@ public class BruteForce implements TSP {
                 permutation(s, firstIndex + 1, lastIndex, a);
                 /*restore the order in string array */
                 swap(firstIndex, firstIndex + j, s);
+
             }
         }
     }
 
     private void print(String[] s) {
         for (int i = 0; i < s.length; i++) {
-            System.out.println(Integer.parseInt(s[i]) - 1 + "REE");
+            System.out.println(Integer.parseInt(s[i]) - 1 + " volgorde");
         }
         System.out.println();
     }
 
     private void selectShortest(String[] s, ArrayList<ArrayList<Integer>> a) {
+        ArrayList tijdelijkA = new ArrayList<Integer>();
+        for (int i =0 ; i <s.length ; i++){
+
+            tijdelijkA.add(s[i]);
+        }
+        tijdelijkA.add(0);
+        Collections.reverse(tijdelijkA);
+        tijdelijkA.add(0);
+        Collections.reverse(tijdelijkA);
+        String[] s2 = new String[a.size() + 2];
+        for (int i = 0 ; i < tijdelijkA.size(); i++){
+            s2[i] = String.valueOf(tijdelijkA.get(i));
+        }
+
+
+
+
+
         for (int i = 0; i < a.size() - 1; i++) {
+
             int index1 = Integer.parseInt(s[i]) - 1;
             int index2 = Integer.parseInt(s[i + 1]) - 1;
             System.out.println();
-            System.out.println(a.get(index1).get(1) + "^^");
-            System.out.println(a.get(index2).get(1) + "._.");
             int locationX1 = a.get(index1).get(0);
             int locationX2 = a.get(index2).get(0);
             int locationY1 = a.get(index1).get(1);
             int locationY2 = a.get(index2).get(1);
-            System.out.println(calcPyth(locationX1, locationY1, locationX2, locationY2) + "DEEZ SHIEET");
+            System.out.println(calcPyth(locationX1, locationY1, locationX2, locationY2) + " afstand tussen punten.");
+            temp += calcPyth(locationX1, locationY1, locationX2, locationY2);
 
         }
+
+        System.out.println(temp+ " totale lengte van de route.");
         temp=0;
         System.out.println();
     }
@@ -95,6 +122,7 @@ public class BruteForce implements TSP {
         s[lastIndex] = s[firstIndex];
         s[firstIndex] = temp;
     }
+
 
 
     @Override
