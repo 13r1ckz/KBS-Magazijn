@@ -34,8 +34,9 @@ class ImagePanel extends JPanel{
         }
         g.setColor(Color.BLACK);
     }
-
-    public void drawDozen(ArrayList<Doos> all) {
+    
+    public void drawDozen(ArrayList<Doos> all)
+    {
         dozen.clear();
         dozen.addAll(all);
         repaint();
