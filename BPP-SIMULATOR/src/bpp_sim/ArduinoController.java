@@ -1,7 +1,11 @@
 package bpp_sim;
 
 import bpp_sim.Application.ControllerFrame;
-import gnu.io.*;
+import gnu.io.CommPortIdentifier;
+import gnu.io.SerialPort;
+import gnu.io.SerialPortEvent;
+import gnu.io.SerialPortEventListener;
+
 import java.io.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +25,7 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
 			"/dev/tty.usbserial-A9007UX1", // Mac OS X
                         "/dev/ttyACM0", // Raspberry Pi
 			"/dev/ttyUSB0", // Linux
-			"COM5", // Windows
+			"COM11", // Windows
 	};
 	private BufferedReader input;
 	private OutputStream output;
@@ -44,7 +48,7 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
         /* initialize the port */
 	public void initialize()
         {
-                System.setProperty("gnu.io.rxtx.SerialPorts", "COM5");
+                System.setProperty("gnu.io.rxtx.SerialPorts", "COM11");
 
 		CommPortIdentifier portId = null;
 		Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
