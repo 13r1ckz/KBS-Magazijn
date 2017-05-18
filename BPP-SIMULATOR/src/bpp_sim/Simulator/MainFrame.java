@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class MainFrame extends JFrame implements ActionListener{
 
     private final JMenuBar menu = new JMenuBar();
-    JMenu settings = new JMenu("Simulator");
+    JMenu settings = new JMenu("Opties...");
     JMenuItem menu_single, menu_multi, menu_quit;
     
     private final GridBagConstraints c = new GridBagConstraints();
@@ -18,7 +18,7 @@ public class MainFrame extends JFrame implements ActionListener{
     private final JButton generate = new JButton("Bereken"),
                           multiple = new JButton("Bereken meerdere");
     private final JTextField jtext = new JTextField(5),
-                             jamount = new JTextField(5);
+                             jamount = new JTextField("0",5);
     private final ArrayList<SimulatorPanel> panelen = new ArrayList<>();
     
     private int currentFrame = 0;
