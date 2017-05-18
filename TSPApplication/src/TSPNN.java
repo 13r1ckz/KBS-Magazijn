@@ -5,7 +5,6 @@ public class TSPNN implements TSPAlgoritme {
     private ArrayList<ArrayList<Integer>> gesorteerd = new ArrayList<ArrayList<Integer>>();
     private int antalOrder;
     public TSPNN(ArrayList<ArrayList<Integer>> ongesorteerd) {
-        System.out.println(ongesorteerd + "ongesorteerd");
         int arrayListSize = ongesorteerd.size();
         int currentX = 0;
         int currentY = 1;
@@ -17,7 +16,7 @@ public class TSPNN implements TSPAlgoritme {
             int kortste = 0;
 
             for (int i = 0; i < ongesorteerd.size(); i++) {
-                System.out.println(afstand + " afstand, " + DifCalc(currentX, ongesorteerd.get(i).get(1)) + DifCalc(currentY, ongesorteerd.get(i).get(2)));
+                //System.out.println(afstand + " afstand, " + DifCalc(currentX, ongesorteerd.get(i).get(1)) + DifCalc(currentY, ongesorteerd.get(i).get(2)));
                 if (afstand > DifCalc(currentX, ongesorteerd.get(i).get(1)) + DifCalc(currentY, ongesorteerd.get(i).get(2))) {
                     //Door deze formule wordt er bepaald welk punt het dichtsbij de current location ligt.
                     afstand = DifCalc(currentX, ongesorteerd.get(i).get(1)) + DifCalc(currentY, ongesorteerd.get(i).get(2));
@@ -107,6 +106,7 @@ public class TSPNN implements TSPAlgoritme {
             System.out.println(e);
             sOrder = new ArrayList<Integer>();
         }
+        //System.out.println(sOrder);
     }
     public int DifCalc(int x, int y) {
         if (x != y) {

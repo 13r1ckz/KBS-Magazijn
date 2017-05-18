@@ -3,8 +3,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class TSPPanel extends JFrame {
-    public TSPPanel(int artikelCount) {
-        int artlist = artikelCount;
+    public TSPPanel(ArrayList<ArrayList<Integer>> artikelCount) {
+        ArrayList<ArrayList<Integer>> artlist = artikelCount;
         //System.out.println(artlist + "tsp panel");
         setTitle("TSPapp");
         setSize(1100, 800);

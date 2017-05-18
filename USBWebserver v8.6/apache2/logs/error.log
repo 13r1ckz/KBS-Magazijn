@@ -1,5 +1,5 @@
-[Wed May 17 08:47:24.766484 2017] [mpm_winnt:notice] [pid 17368:tid 776] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
-[Wed May 17 08:47:24.766985 2017] [mpm_winnt:notice] [pid 17368:tid 776] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
-[Wed May 17 08:47:24.766985 2017] [core:notice] [pid 17368:tid 776] AH00094: Command line: 'C:\\Users\\gerjo\\Desktop\\windesheim\\j1\\s2\\kbs\\KBS-Magazijn\\USBWebserver v8.6/apache2/bin/httpd_usbwv8.exe -d C:/Users/gerjo/Desktop/windesheim/j1/s2/kbs/KBS-Magazijn/USBWebserver v8.6/apache2'
-[Wed May 17 08:47:24.781995 2017] [mpm_winnt:notice] [pid 17368:tid 776] AH00418: Parent: Created child process 11364
-[Wed May 17 08:47:25.535847 2017] [mpm_winnt:notice] [pid 11364:tid 824] AH00354: Child: Starting 64 worker threads.
+[Thu May 18 11:45:02.830313 2017] [mpm_winnt:notice] [pid 13448:tid 768] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
+[Thu May 18 11:45:02.831313 2017] [mpm_winnt:notice] [pid 13448:tid 768] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
+[Thu May 18 11:45:02.831313 2017] [core:notice] [pid 13448:tid 768] AH00094: Command line: 'C:\\Users\\gerjo\\Desktop\\windesheim\\j1\\s2\\kbs\\KBS-Magazijn\\USBWebserver v8.6/apache2/bin/httpd_usbwv8.exe -d C:/Users/gerjo/Desktop/windesheim/j1/s2/kbs/KBS-Magazijn/USBWebserver v8.6/apache2'
+[Thu May 18 11:45:02.832313 2017] [mpm_winnt:notice] [pid 13448:tid 768] AH00418: Parent: Created child process 16228
+[Thu May 18 11:45:03.302258 2017] [mpm_winnt:notice] [pid 16228:tid 560] AH00354: Child: Starting 64 worker threads.

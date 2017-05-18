@@ -6,9 +6,11 @@ class TekenPanel extends Canvas {
     private int artCount;
     private int YW;
     private int XH;
+    private ArrayList<ArrayList<Integer>> aList;
 
-    TekenPanel(int w, int h, int r, int c, int aL) {
-        setArtCount(aL);
+    TekenPanel(int w, int h, int r, int c, ArrayList<ArrayList<Integer>> aL) {
+        setArtCount(aL.size());
+        setaList(aL);
         setSize(width = w, height = h);
         rows = r;
         columns = c;
@@ -18,7 +20,8 @@ class TekenPanel extends Canvas {
         int x;
         width = width;
         height = height;
-
+        YW = 140;
+        XH = 180;
 
         int htOfRow = height / (rows);
         for (k = 0; k <= rows; k++) {
@@ -30,9 +33,20 @@ class TekenPanel extends Canvas {
             g.drawLine(k * wdOfRow, 0, k * wdOfRow, height);
         }
 
-        g.setColor(Color.RED);
         for (x = 0; x < artCount ; x++) {
-            g.fillRect(1, 1, 179, 139);
+            g.setColor(Color.pink);
+            g.fillRect((aList.get(x).get(1) * XH) - XH, 560 - ((aList.get(x).get(2) * YW) - YW), 180, 140);
+            g.setColor(Color.BLACK);
+            g.drawString(String.valueOf(aList.get(x).get(0)), ((aList.get(x).get(1) * XH) - XH) + 85, 635 - ((aList.get(x).get(2) * YW) - YW));
+            g.setColor(Color.black);
+            g.drawRect((aList.get(x).get(1) * XH) - XH, 560 - ((aList.get(x).get(2) * YW) - YW), 180, 140);
+            System.out.println(aList.get(x));
+            System.out.println(aList.get(x).get(1));
+            System.out.println(aList.get(x).get(2));
+            System.out.println(x + ":X " + (aList.get(x).get(1) * XH));
+            System.out.println(x + ":Y " + (701 - (aList.get(x).get(2) * YW)));
+            //System.out.println((aList.get(x).get(2) * YW));
+            //System.out.println(XH * YW);
         }
     }
 
@@ -40,11 +54,12 @@ class TekenPanel extends Canvas {
         this.artCount = artCount;
     }
 
-    public void setXH(int XH) {
-        this.XH = 139;
+    public void setaList(ArrayList<ArrayList<Integer>> aL) {
+        this.aList = new ArrayList<>(aL);
     }
 
-    public void setYW(int YW) {
-        this.YW = 179;
+    public ArrayList<ArrayList<Integer>> getaList() {
+        return aList;
     }
+
 }

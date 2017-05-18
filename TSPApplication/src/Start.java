@@ -1,8 +1,13 @@
 import javax.swing.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Start {
     public static void main(String[] ag) {
+        ArrayList<String> oud = new ArrayList<>();
+        oud.add("Test 1");
+        ArrayList<String> nieuw = new ArrayList<>(oud);
+
         try {
             //In deze form is te zien hoe je precies data verstuurd naar Arduino. Dit is met de functie
             //ArduinoConnect.writeData(String); De form is uitgecomment omdat de form niet echt meer gebruikt wordt.
@@ -34,8 +39,8 @@ public class Start {
             //Hij zet de ongesorteerde artikellijst gelijk aan de ongesorteerde artikelen in de artikelen.
             o.setOngesorteerd(artikelsOngesorteerd);
             o.setoOrder(artikelsOngesorteerd);
-            System.out.println("artikellengte " + o.getOngesorteerd());
-            System.out.println("artikellengtea " + o.getoOrder());
+            System.out.println("\nartikel array " + o.getOngesorteerd() + "\n");
+            //System.out.println("artikellengtea " + o.getoOrder());
             //Er wordt hier een nieuwe instantie van TSPNN aangemaakt waaraan de ongesorteerdelijst mee wordt gegeven.
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //HIER MOETEN DE GEGEVENS DIE MOMENTEEL GEPRPINT WORDEN NOG IN EEN GESORTEERDE LIJST GEZET WORDEN
@@ -43,13 +48,13 @@ public class Start {
             TSPNN algoritme = new TSPNN(o.getOngesorteerd());
             //System.out.println("artikellengte " + o.getOngesorteerd().size());
             //De berekende route wordt gelijkgezet aan de route zodat deze hier ook te accessen is.
-            System.out.println(":" + o.getoOrder());
+            System.out.println("\nogetorder:" + o.getoOrder() + "\n");
 
 
             ArrayList<ArrayList<Integer>> route = algoritme.berekenRoute();
 
-            //TSPPanel Jpan = new TSPPanel(algoritme.getAntalOrder());
-            //Jpan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            TSPPanel Jpan = new TSPPanel(o.getoOrder());
+            Jpan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             // IN TSPNN.JAVA WORDT ARRAYLIST GESORTEERD GERETURNED. GESORTEERD IS NOG LEEG EN MOET AAN ONGESORTEERDE ARRAYLIST DIE GESORTEERD MOETEN WORDEN GEZET.
             String inputLine = ArduinoConnect.input.readLine();

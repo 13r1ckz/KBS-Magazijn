@@ -25,7 +25,7 @@ public class Order {
     }
 
     public void setOngesorteerd(ArrayList<ArrayList<Integer>> ongesorteerd) {
-        this.ongesorteerd = ongesorteerd;
+        this.ongesorteerd = new ArrayList<>(ongesorteerd);
     }
 
     public ArrayList<ArrayList<Integer>> getOngesorteerd() {
@@ -37,6 +37,6 @@ public class Order {
     }
 
     public void setoOrder(ArrayList<ArrayList<Integer>> oOrder) {
-        this.oOrder = oOrder;
+        this.oOrder = new ArrayList<>(oOrder);
     }
 }
