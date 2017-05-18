@@ -2,11 +2,11 @@ import java.util.ArrayList;
 
 public class Start {
     public static void main(String[] ag) {
-        TSPSimulatieFrame frame = new TSPSimulatieFrame(700, 1000);
-        //frame.createDisplay();
+//        TSPSimulatieFrame frame = new TSPSimulatieFrame(700, 1000);
+//        frame.createDisplay();
 
         BruteForce bruteforce = new BruteForce();
-        bruteforce.printCombinations(bruteforce.GenerateRoute(3));
+        bruteforce.printCombinations(bruteforce.GenerateRoute(6));
 
         //limitatie:
         // 7 locaties is insta
