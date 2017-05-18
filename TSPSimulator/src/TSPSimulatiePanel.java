@@ -22,7 +22,6 @@ public class TSPSimulatiePanel extends JPanel {
         else {
             aantalLocaties = frame.getAantalLocaties();
         }
-        System.out.println(aantalLocaties);
         int [][] locatieLijst = new int[aantalLocaties][1];
         for(int z = 0; z <= aantalLocaties; z++) {
             int gridGetal = 10;
@@ -49,13 +48,13 @@ public class TSPSimulatiePanel extends JPanel {
 
             for(int x = 0; x < gridGetal; x++) {
                 if(x == xRand) {
-                    System.out.println(z + "ste product, x positie " + xRand);
+                    //System.out.println(z + "ste product, x positie " + xRand);
                     xcoordinate = xRand;
                 }
             }
             for(int y = 0; y < gridGetal; y++) {
                 if (y == yRand) {
-                    System.out.println(z + "ste product, y positie " + yRand);
+                    //System.out.println(z + "ste product, y positie " + yRand);
                     ycoordinate = yRand;
                 }
             }
