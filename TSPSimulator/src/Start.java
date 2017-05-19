@@ -7,5 +7,6 @@ public class Start {
         System.out.println(nn.getTotalLength() + " = totale route nn");
         NearestNeighbourReversed nnreversed = new NearestNeighbourReversed();
         System.out.println("gesorteerd - " + nnreversed.generateRoute(5));
+        System.out.println(nnreversed.getTotalLength() + " = totale route nn");
     }
 }

@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -25,11 +26,9 @@ public class NearestNeighbour implements TSP{
             double oldLength = Integer.MAX_VALUE;
             for (int y = 0; y < coordinates.size(); y++) {
                 double length = calcPyth(currX[0], currY[0], coordinates.get("i" + y).get(0), coordinates.get("i" + y).get(1));
-
                 if ((oldLength > length) && (keys.indexOf("i" + y) == -1)) {
                     index = y;
                     oldLength = length;
-                    this.totalLength += oldLength;
                 }
             }
 
@@ -38,7 +37,18 @@ public class NearestNeighbour implements TSP{
 
             gesorteerdCoordinates.add(coordinates.get("i" + index));
             keys.add("i" + index);
+            this.totalLength += oldLength;
         });
+        aantal = aantal - 1;
+        this.totalLength += calcPyth(coordinates.get("i" + aantal).get(0), coordinates.get("i" + aantal).get(1), 0, 0);
+        //add 0,0 coordinates to beginning and end.
+        coordinate = new ArrayList<Integer>();
+        coordinate.add(0);
+        coordinate.add(0);
+        gesorteerdCoordinates.add(coordinate);
+        Collections.reverse(gesorteerdCoordinates);
+        gesorteerdCoordinates.add(coordinate);
+        Collections.reverse(gesorteerdCoordinates);
         return gesorteerdCoordinates;
     }
 
@@ -48,6 +58,7 @@ public class NearestNeighbour implements TSP{
     }
 
     private void generateRandomNumbers(int aantal) {
+        System.out.print("[[0, 0], ");
         for (int x = 0; x < aantal; x++) {
             int randX = 1 + r.nextInt(5);
             int randY = 1 + r.nextInt(5);
@@ -58,13 +69,13 @@ public class NearestNeighbour implements TSP{
                     y = -1;
                 }
             }
-
             System.out.print("[" + randX + ", " + randY + "], ");
             coordinate.add(randX);
             coordinate.add(randY);
             coordinates.put("i" + x, coordinate);
             coordinate = new ArrayList<Integer>();
         }
+        System.out.print("[0, 0]]");
     }
 
     public double calcPyth(int beginX, int beginY, int eindX, int eindY) {
