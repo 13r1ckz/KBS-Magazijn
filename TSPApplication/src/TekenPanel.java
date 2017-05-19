@@ -9,6 +9,8 @@ class TekenPanel extends Canvas {
     private ArrayList<ArrayList<Integer>> aList;
 
     TekenPanel(int w, int h, int r, int c, ArrayList<ArrayList<Integer>> aL) {
+        setPreferredSize(new Dimension(w,h));
+
         setArtCount(aL.size());
         setaList(aL);
         setSize(width = w, height = h);

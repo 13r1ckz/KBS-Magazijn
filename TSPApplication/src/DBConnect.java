@@ -3,6 +3,8 @@ import java.util.ArrayList;
 public class DBConnect {
     private ArrayList<ArrayList<Integer>> outer = new ArrayList<ArrayList<Integer>>();
     private ArrayList<Integer> inner = new ArrayList<Integer>();
+    private ArrayList<ArrayList<String>> productList = new ArrayList<>();
+    private ArrayList<String> product = new ArrayList<>();
     public DBConnect(int[] aListArray) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -28,13 +30,19 @@ public class DBConnect {
                 int productLocationX = rs.getInt("product_locationX");
                 int productLocationY = rs.getInt("product_locationY");
                 boolean productRetrieved = rs.getBoolean("product_retrieved");
-                System.out.format("%s, %s, %s, %s, %s\n", productID, productName, productLocationX, productLocationY, productRetrieved);
+                int productSize = rs.getInt("size");
+                System.out.format("%s, %s, %s, %s, %s, %s\n", productID, productName, productLocationX, productLocationY, productRetrieved, productSize);
 
                 inner.add(productID);
                 inner.add(productLocationX);
                 inner.add(productLocationY);
                 outer.add(inner);
                 inner = new ArrayList<Integer>();
+                product.add(String.valueOf(productID));
+                product.add(productName);
+                product.add(String.valueOf(productSize));
+                productList.add(product);
+                product = new ArrayList<>();
             }
             rs.close();
         } catch (Exception e) {
@@ -45,5 +53,12 @@ public class DBConnect {
     }
     public ArrayList<ArrayList<Integer>> getLocaties() {
         return outer;
+    }
+    public ArrayList<ArrayList<String>> getProductList() {
+        return productList;
+    }
+
+    public ArrayList<String> getProduct() {
+        return product;
     }
 }

@@ -27,7 +27,6 @@ public class Start {
             //Hier maak je een Order aan van de createOrder functie van ReadXML.
             Order o = read.createOrder("bestelling.xml");
 
-
             //Er wordt hier een database connectie gemaakt. de getter van ReadXML geeft de arraylijst met artikelen uit de XML mee.
             DBConnect DBConnection = new DBConnect(read.getArtikelLijst());
 
@@ -50,10 +49,9 @@ public class Start {
             //De berekende route wordt gelijkgezet aan de route zodat deze hier ook te accessen is.
             System.out.println("\nogetorder:" + o.getoOrder() + "\n");
 
-
             ArrayList<ArrayList<Integer>> route = algoritme.berekenRoute();
-
-            TSPPanel Jpan = new TSPPanel(o.getoOrder());
+            System.out.println("custumer info: " + read.getuData());
+            TSPPanel Jpan = new TSPPanel(o.getoOrder(), read.getuData(), DBConnection.getProductList());
             Jpan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             // IN TSPNN.JAVA WORDT ARRAYLIST GESORTEERD GERETURNED. GESORTEERD IS NOG LEEG EN MOET AAN ONGESORTEERDE ARRAYLIST DIE GESORTEERD MOETEN WORDEN GEZET.

@@ -1,58 +1,88 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Usbwebserver</title>
-	<meta name="keywords" content="" />
-	<meta name="description" content="" />
-	<link href="style.css" rel="stylesheet" type="text/css" media="screen" />
-</head>
-<body>
-	<div id="container">
-		<img id="header" src="images/header.png">
-		<ul id="menu">
-			<li>
-				<div id="menuleft"></div>
-				<a id="menua" href="http://www.usbwebserver.com">
-					USBWebserver.com
-				</a>
-				<div id="menuright"></div>
-			</li>
-			<li>
-				<div id="menuleft"></div>
-				<a id="menua" href="http://www.border-it.nl">
-					Border-IT
-				</a>
-				<div id="menuright"></div>
-			</li>
-		</ul>
-		<div id="topcontent"></div>
-		<div id="content">
-			<div id="contentleft">
+<?php
 
-			<h1>USBWebserver V8.6</h1>
-			<p>
-				<ul>
-					<li>14 different languages</li>
-					<li>DPI bug fixed</li>
-					<li>Php 5.4.17</li>
-					<li>Httpd 2.4.6</li>
-					<li>PhpMyAdmin 4.0.4.2</li>
-					<li>MySQL 5.6.13</li>
-				</ul>
-			</p>
-			<h1>PHP 5.4.17 info</h1>
-			<?php
-				ob_start();
-				phpinfo();
-				$i = ob_get_contents();
-				ob_end_clean();
-				
-				echo ( str_replace ( "module_Zend Optimizer", "module_Zend_Optimizer", preg_replace ( '%^.*<body>(.*)</body>.*$%ms', '$1', $i ) ) ) ;
+?>
+<html>
+    <head>
+        <title>test</title>
+        <?php
+        date_default_timezone_set('Europe/Amsterdam');
+        ?>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        
+    </head>
+    <body>
+        <form method="post">
+                First name:<br>
+            <input type="text" name="name" id="input1" class="input"/>
+            <br>
+            Last name:<br>
+            <input type="text" name="lastname" id="input2" class="input"/>
+            <br>    
+                Adres:<br>
+            <input type="text" name="adres" id="input3" class="input"/>
+            <br>
+                Postcode:<br>
+            <input type="text" name="Postcode" id="input4" class="input"/>
+            <br>
+                Plaats:<br>
+            <input type="text" name="Plaats" id="input5" class="input"/>
+            <br>    
+                Order:<br>
+            <input type="text" name="Plaats" id="input6"/>
 
-			?>
-			
-			</div>
-			<a href="#" id="banner"></a>
-			<br style="clear:both">
-		
+            <input type="button" id="addorder" value="+"/>       
+            <br>
+
+            <br>
+            <br>
+            <div id="preview">
+                <div id="xmlh">
+                    <span><</span>?xml version="1.0" encoding="UTF-8"?><br>
+                    <span><</span>bestelling><br>
+                        <span><</span>ordernummer><span><?php $digits = 4; echo rand(pow(10, $digits-1), pow(10, $digits)-1); ?></span><span><</span>/ordernummer><br>
+                        <span><</span>klant><br>
+                            <div><span><</span>voornaam><span class="input1" value=""></span><span><</span>/voornaam></div>
+                            <div><span><</span>achternaam><span class="input2"></span><span><</span>/achternaam></div>
+                            <div><span><</span>adres><span class="input3"></span><span><</span>/adres></div>
+                            <div><span><</span>postcode><span class="input4"></span><span><</span>/postcode></div>
+                            <div><span><</span>plaats><span class="input5"></span><span><</span>/plaats></div>
+                        <span><</span>/klant><br>
+                            <div><span><</span>datum><span><?php echo date('d-m-y'); ?></span><span><</span>/datum></div>
+                            <div id="Content"></div>
+                    <span><</span>/bestelling><br>
+                    <br>
+                    <br>
+            </div>
+            <span id="doc"></span>
+            <br>
+            <input type="button" id="doc" value="make doc"/> 
+        </form>
+        <script>      
+        $('.input').keyup(function(){
+            var $this = $(this);
+            $('.'+$this.attr('id')+'').html($this.val());
+        });
+        $('input#addorder').click(function() {
+            var text = $('#input6').val();
+            if(text == ""){
+                
+            }
+            else{
+                $('<span><</span><span>artikelnr>' + text +  '</span><<span>/artikelnr></span><br>').appendTo('#Content');
+                $('#input6').val('')
+            }
+        });
+        
+        $('input#doc').click(function(){
+            var blank = " ";
+            var xmlr = $('#xmlh').clone();
+            $(xmlr).appendTo('#doc');
+            window.location.href = "index.php?name=" + xmlr; 
+        });
+        </script>
+        
+        <?php
+            echo $_GET['name'];                        
+        ?>
+    </body>
+</html>
