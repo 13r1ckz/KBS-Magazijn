@@ -42,6 +42,11 @@ public class TSPSimulatiePanel extends JPanel {
             celX = this.getWidth() / gridGetal;
             celY = this.getHeight() / gridGetal;
 
+
+
+            g.setColor(Color.RED);
+            g.fillRect((xRand - 1) * celX,(yRand -1)* celX, celX,celX);
+
             for (int i =0 ;i<gridGetal; i++) {
                 g.setColor(Color.BLACK);
                 g.drawLine(0, celX * i, (gridGetal-1) * celY,  celY * i);
@@ -61,9 +66,7 @@ public class TSPSimulatiePanel extends JPanel {
                 }
             }
 
-            g.setColor(Color.RED);
-            g.fillRect((xRand - 1) * celX,(yRand -1)* celX, celX,celX);
-            g.setColor(Color.BLACK);
+
             g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
             g.drawString(z + "",(xRand - 1) * celX + (celX / 2),(yRand -1)* celX + (celX / 2));
         }

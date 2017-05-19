@@ -1,8 +1,4 @@
-
 import java.util.ArrayList;
-
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
 
 public class BruteForce implements TSP {
@@ -10,39 +6,43 @@ public class BruteForce implements TSP {
     private ArrayList<Integer> inner = new ArrayList<>();
     private int routeLength = 100;
     private double temp;
-    private int path;
     private double terugweg;
     private double heenweg;
     private String[] kortsteIndex;
-
-
-    double shortestRoute = Integer.MAX_VALUE;
+    private double shortestRoute = Integer.MAX_VALUE;
+    private int teller;
+    private ArrayList<ArrayList<Integer>> GesorteerdOuter = new ArrayList<>();
 
 
     public ArrayList<ArrayList<Integer>> GenerateRoute(int aantal) {
-
         Random r = new Random();
         for (int x = 0; x < aantal; x++) {
-            int randX = r.nextInt(5);
-            int randY = r.nextInt(5);
+            int randX = 1 + r.nextInt(5);
+            int randY = 1 + r.nextInt(5);
+            for (int i = 0; i < outer.size(); i++) {
+                if (outer.get(i).get(0) == randX && outer.get(i).get(1) == randY) {
+                    randX = 1 + r.nextInt(5);
+                    randY = 1 + r.nextInt(5);
+                    i = -1;
+                }
+            }
             inner.add(randX);
             inner.add(randY);
             outer.add(inner);
-            inner = new ArrayList<Integer>();
+            inner = new ArrayList<>();
         }
 
-
-
+        System.out.println("Random Locations:");
         for (int y = 0; y < outer.size(); y++) {
             System.out.println("x = " + outer.get(y).get(0) + ", y = " + outer.get(y).get(1));
-
             double length = calcPyth(outer.get(y).get(0), outer.get(y).get(1), 0, 0);
-
         }
+        System.out.println("_________________________________________________________________");
         return outer;
     }
 
     public void printCombinations(ArrayList<ArrayList<Integer>> a) {
+        System.out.println("Calculating shortest route...");
         String[] s = new String[a.size()];
         int count = 0;
         for (int i = 0; i < a.size(); i++) {
@@ -51,6 +51,7 @@ public class BruteForce implements TSP {
             s[i] = temp;
         }
         permutation(s, 0, s.length - 1, a);
+
     }
 
     private void permutation(String[] s, int firstIndex, int lastIndex, ArrayList<ArrayList<Integer>> a) {
@@ -60,7 +61,6 @@ public class BruteForce implements TSP {
             swap(firstIndex, lastIndex, s);
             print(s);
             selectShortest(s, a);
-            /*restore the order in string array*/
             swap(firstIndex, lastIndex, s);
         } else {
             for (int i = firstIndex, j = 0; i <= lastIndex; i++, j++) {
@@ -69,68 +69,73 @@ public class BruteForce implements TSP {
                 permutation(s, firstIndex + 1, lastIndex, a);
                 /*restore the order in string array */
                 swap(firstIndex, firstIndex + j, s);
-
             }
         }
     }
 
     private void print(String[] s) {
         for (int i = 0; i < s.length; i++) {
-            System.out.println(Integer.parseInt(s[i]) - 1 + "volgorde ");
-
-
+//            System.out.println(Integer.parseInt(s[i]) - 1 + "volgorde ");
         }
-        System.out.println();
+//        System.out.println();
     }
 
-    private void selectShortest(String[] s, ArrayList<ArrayList<Integer>> a) {
-
+    private ArrayList<ArrayList<Integer>> selectShortest(String[] s, ArrayList<ArrayList<Integer>> a) {
         terugweg = 0;
         heenweg = 0;
         int startIndex = Integer.parseInt(s[0]) - 1;
         int startX = a.get(startIndex).get(0);
         int startY = a.get(startIndex).get(1);
-        heenweg = calcPyth(startX, startY , 0, 0);
-        System.out.println("van punt 0.0 naar 1e locatie " + heenweg);
+        heenweg = calcPyth(startX, startY, 0, 0);
+//        System.out.println("van punt 0.0 naar 1e locatie " + heenweg);
         for (int i = 0; i < a.size() - 1; i++) {
             int index1 = Integer.parseInt(s[i]) - 1;
             int index2 = Integer.parseInt(s[i + 1]) - 1;
-            System.out.println();
+//            System.out.println();
             int locationX1 = a.get(index1).get(0);
             int locationX2 = a.get(index2).get(0);
             int locationY1 = a.get(index1).get(1);
             int locationY2 = a.get(index2).get(1);
-            System.out.println(calcPyth(locationX1, locationY1, locationX2, locationY2) + " afstand tussen punten : " + i + " en "+ Integer.valueOf(i + 1) );
-            if (i == a.size()-2 ){
+//            System.out.println(calcPyth(locationX1, locationY1, locationX2, locationY2) + " afstand tussen punten : " + i + " en "+ Integer.valueOf(i + 1) );
+            if (i == a.size() - 2) {
                 terugweg = calcPyth(locationX2, locationY2, 0, 0);
-                System.out.println(terugweg + " van punt laatste tot 0");
+//                System.out.println(terugweg + " van punt laatste tot 0");
             }
             temp += calcPyth(locationX1, locationY1, locationX2, locationY2);
         }
-
-        //System.out.println(temp + heenweg + terugweg +" totale lengte van de route.");
         temp = temp + heenweg + terugweg;
-        System.out.println(temp + " Dit is de totale lengte van de route.");
-        if (temp < shortestRoute){
+//        System.out.println(temp + " Dit is de totale lengte van de route.");
+        if (temp < shortestRoute) {
             shortestRoute = temp;
             kortsteIndex = new String[a.size()];
-            for (int i = 0; i < s.length; i++){
+            for (int i = 0; i < s.length; i++) {
                 kortsteIndex[i] = s[i];
             }
-
-
         }
-
-
-        for(int o= 0 ; o < kortsteIndex.length; o++){
-            System.out.println(Integer.parseInt(kortsteIndex[o] )-1 + " So far shortest route.");
+        for (int o = 0; o < kortsteIndex.length; o++) {
+//            System.out.println(Integer.parseInt(kortsteIndex[o] )-1 + " So far shortest route.");
         }
         temp = 0;
-        System.out.println(shortestRoute + " Dit is de kortste route");
+//        System.out.println(shortestRoute + " Dit is de kortste route");
+        teller += 1;
+        if (teller == calcFactorial(kortsteIndex.length)) {
+            GesorteerdOuter = new ArrayList<>();
+            ArrayList<Integer> GesorteerdInner = new ArrayList<>();
 
-        System.out.println("______________________________________________________");
+            for (int i = 0; i < kortsteIndex.length; i++) {
+                GesorteerdInner.add(a.get(Integer.parseInt(kortsteIndex[i]) - 1).get(0));
+                GesorteerdInner.add(a.get(Integer.parseInt(kortsteIndex[i]) - 1).get(1));
+                GesorteerdOuter.add(GesorteerdInner);
+                GesorteerdInner = new ArrayList<>();
+            }
+            //System.out.println(GesorteerdOuter);
+            return GesorteerdOuter;
+
+        }
+        return null;
+//        System.out.println("______________________________________________________");
+
     }
-
 
     private static void swap(int firstIndex, int lastIndex, String[] s) {
         String temp = s[lastIndex];
@@ -138,6 +143,17 @@ public class BruteForce implements TSP {
         s[firstIndex] = temp;
     }
 
+    private int calcFactorial(int nummer) {
+        int factorial = 1;
+        for (int i = 0; i < nummer; nummer--) {
+            factorial = factorial * nummer;
+        }
+        return factorial;
+    }
+
+    public ArrayList<ArrayList<Integer>> getGesorteerdOuter() {
+        return GesorteerdOuter;
+    }
 
     @Override
     public ArrayList<ArrayList<Integer>> berekenRoute() {
