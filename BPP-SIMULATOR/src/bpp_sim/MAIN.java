@@ -15,7 +15,7 @@ public class MAIN {
         for(int i = 0; i < 3; i++){
             int rx = rand.nextInt();
             int ry = rand.nextInt();
-            int rsize = rand.nextInt(5)+1;
+            int rsize = rand.nextInt(3)+3;
             producten.add(new Product(rx,ry,rsize));   
         }
         
