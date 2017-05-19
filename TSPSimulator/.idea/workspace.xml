@@ -19,8 +19,8 @@
       <file leaf-file-name="Start.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Start.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+            <state relative-caret-position="168">
+              <caret line="8" column="88" lean-forward="false" selection-start-line="8" selection-start-column="88" selection-end-line="8" selection-end-column="88" />
               <folding />
             </state>
           </provider>
@@ -29,12 +29,10 @@
       <file leaf-file-name="BruteForce.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/BruteForce.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="368">
-              <caret line="189" column="8" lean-forward="false" selection-start-line="189" selection-start-column="8" selection-end-line="189" selection-end-column="20" />
+            <state relative-caret-position="3108">
+              <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="method#GenerateRoute#0;class#BruteForce#0" expanded="false" />
-                <element signature="method#printCombinations#0;class#BruteForce#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -43,7 +41,7 @@
       <file leaf-file-name="TSPSimulatieFrame.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TSPSimulatieFrame.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-203">
+            <state relative-caret-position="-392">
               <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -94,6 +92,8 @@
       <find>System</find>
       <find>heenweg</find>
       <find>short</find>
+      <find>System.out</find>
+      <find>//</find>
     </findStrings>
   </component>
   <component name="GradleLocalSettings">
@@ -107,8 +107,8 @@
         <option value="$PROJECT_DIR$/src/TSPSimulatieFrame.java" />
         <option value="$PROJECT_DIR$/src/Route.java" />
         <option value="$PROJECT_DIR$/src/TSP.java" />
-        <option value="$PROJECT_DIR$/src/BruteForce.java" />
         <option value="$PROJECT_DIR$/src/TSPSimulatiePanel.java" />
+        <option value="$PROJECT_DIR$/src/BruteForce.java" />
         <option value="$PROJECT_DIR$/src/Start.java" />
       </list>
     </option>
@@ -374,7 +374,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -383,7 +382,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.398641" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46659118" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46659118" sideWeight="0.49791667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33727175" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -468,8 +467,6 @@
           <caret line="57" column="1" lean-forward="true" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GenerateRoute#0;class#BruteForce#0" expanded="false" />
-            <element signature="method#printCombinations#0;class#BruteForce#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -654,8 +651,6 @@
           <caret line="102" column="53" lean-forward="false" selection-start-line="102" selection-start-column="53" selection-end-line="102" selection-end-column="53" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GenerateRoute#0;class#BruteForce#0" expanded="false" />
-            <element signature="method#printCombinations#0;class#BruteForce#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -694,8 +689,6 @@
           <caret line="57" column="1" lean-forward="true" selection-start-line="57" selection-start-column="1" selection-end-line="57" selection-end-column="1" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#GenerateRoute#0;class#BruteForce#0" expanded="false" />
-            <element signature="method#printCombinations#0;class#BruteForce#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -846,28 +839,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/BruteForce.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="189" column="8" lean-forward="false" selection-start-line="189" selection-start-column="8" selection-end-line="189" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#GenerateRoute#0;class#BruteForce#0" expanded="false" />
-            <element signature="method#printCombinations#0;class#BruteForce#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TSPSimulatieFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-203">
-          <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TSPSimulatiePanel.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-903">
@@ -878,10 +849,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/BruteForce.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3108">
+          <caret line="148" column="0" lean-forward="false" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TSPSimulatieFrame.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-392">
+          <caret line="21" column="29" lean-forward="false" selection-start-line="21" selection-start-column="29" selection-end-line="21" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Start.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="5" lean-forward="true" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
+        <state relative-caret-position="168">
+          <caret line="8" column="88" lean-forward="false" selection-start-line="8" selection-start-column="88" selection-end-line="8" selection-end-column="88" />
           <folding />
         </state>
       </provider>

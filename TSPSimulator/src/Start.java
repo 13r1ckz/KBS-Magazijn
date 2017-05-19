@@ -6,14 +6,7 @@ public class Start {
         TSPSimulatieFrame frame = new TSPSimulatieFrame(700, 1000);
         frame.createDisplay();
         BruteForce bruteforce = new BruteForce();
-        ArrayList<ArrayList<Integer>> locatiesOngesorteerd = bruteforce.GenerateRoute(3);
-        bruteforce.permutation(locatiesOngesorteerd);
-        System.out.println();
-
-
-
-
+        ArrayList<ArrayList<Integer>> locatiesOngesorteerd = bruteforce.GenerateRoute(12);
+        System.out.println(bruteforce.permutation(locatiesOngesorteerd));
     }
-
-
 }
