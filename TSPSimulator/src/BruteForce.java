@@ -1,18 +1,22 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Random;
 
 public class BruteForce implements TSP {
     private ArrayList<ArrayList<Integer>> outer = new ArrayList<>();
     private ArrayList<Integer> inner = new ArrayList<>();
-    private int routeLength = 100;
+
     private double temp;
     private double terugweg;
     private double heenweg;
     private String[] kortsteIndex;
     private double shortestRoute = Integer.MAX_VALUE;
     private int teller;
+    private int teller2;
     private ArrayList<ArrayList<Integer>> GesorteerdOuter = new ArrayList<>();
-
+    private String[] s;
+    private int firstIndex;
+    private int lastIndex;
 
     public ArrayList<ArrayList<Integer>> GenerateRoute(int aantal) {
         Random r = new Random();
@@ -41,7 +45,7 @@ public class BruteForce implements TSP {
         return outer;
     }
 
-    public void printCombinations(ArrayList<ArrayList<Integer>> a) {
+    public String[] printCombinations(ArrayList<ArrayList<Integer>> a) {
         System.out.println("Calculating shortest route...");
         String[] s = new String[a.size()];
         int count = 0;
@@ -50,11 +54,26 @@ public class BruteForce implements TSP {
             String temp = String.valueOf(count);
             s[i] = temp;
         }
-        permutation(s, 0, s.length - 1, a);
-
+        return s;
     }
 
-    private void permutation(String[] s, int firstIndex, int lastIndex, ArrayList<ArrayList<Integer>> a) {
+    public void permutation( ArrayList<ArrayList<Integer>> a) {
+
+        if (teller2 == 0){
+            teller2+=1;
+            firstIndex = 0;
+
+             s = new String[a.size()];
+            int count = 0;
+            for (int i = 0; i < a.size(); i++) {
+                count += 1;
+                String temp = String.valueOf(count);
+                s[i] = temp;
+            }
+
+            lastIndex = s.length-1;
+        }
+
         if (lastIndex - firstIndex == 1) {
             print(s);
             selectShortest(s, a);
@@ -62,12 +81,16 @@ public class BruteForce implements TSP {
             print(s);
             selectShortest(s, a);
             swap(firstIndex, lastIndex, s);
+            teller2+=1;
+
         } else {
             for (int i = firstIndex, j = 0; i <= lastIndex; i++, j++) {
                 swap(firstIndex, firstIndex + j, s);
                 /*With current initial String(s) find combinations for rest of the strings */
-                permutation(s, firstIndex + 1, lastIndex, a);
+                firstIndex+=1;
+                permutation( a);
                 /*restore the order in string array */
+                firstIndex-=1;
                 swap(firstIndex, firstIndex + j, s);
             }
         }
@@ -75,12 +98,12 @@ public class BruteForce implements TSP {
 
     private void print(String[] s) {
         for (int i = 0; i < s.length; i++) {
-//            System.out.println(Integer.parseInt(s[i]) - 1 + "volgorde ");
+//           System.out.println(Integer.parseInt(s[i]) - 1 + "volgorde ");
         }
 //        System.out.println();
     }
 
-    private ArrayList<ArrayList<Integer>> selectShortest(String[] s, ArrayList<ArrayList<Integer>> a) {
+    private void selectShortest(String[] s, ArrayList<ArrayList<Integer>> a) {
         terugweg = 0;
         heenweg = 0;
         int startIndex = Integer.parseInt(s[0]) - 1;
@@ -129,11 +152,9 @@ public class BruteForce implements TSP {
                 GesorteerdInner = new ArrayList<>();
             }
             //System.out.println(GesorteerdOuter);
-            return GesorteerdOuter;
+
 
         }
-        return null;
-//        System.out.println("______________________________________________________");
 
     }
 
@@ -152,11 +173,20 @@ public class BruteForce implements TSP {
     }
 
     public ArrayList<ArrayList<Integer>> getGesorteerdOuter() {
+        ArrayList<Integer> zeroList = new ArrayList<>();
+        zeroList.add(0);
+        zeroList.add(0);
+        GesorteerdOuter.add(zeroList);
+        Collections.reverse(GesorteerdOuter);
+        GesorteerdOuter.add(zeroList);
+        Collections.reverse(GesorteerdOuter);
+        System.out.println(shortestRoute + " Dit is de kortste route");
         return GesorteerdOuter;
     }
 
+
     @Override
-    public ArrayList<ArrayList<Integer>> berekenRoute() {
+    public ArrayList<ArrayList<Integer>> berekenRoute(ArrayList<ArrayList<Integer>> locatiesOngesorteerd) {
         return null;
     }
 
