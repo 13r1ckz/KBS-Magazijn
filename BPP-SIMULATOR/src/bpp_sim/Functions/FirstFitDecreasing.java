@@ -1,5 +1,7 @@
-package bpp_sim;
+package bpp_sim.Functions;
 
+import bpp_sim.Doos;
+import bpp_sim.Product;
 import java.util.ArrayList;
 
 public class FirstFitDecreasing implements BPP{
@@ -12,7 +14,7 @@ public class FirstFitDecreasing implements BPP{
          * -- ARRAYLIST SORTING PROGRAM --
          */
         
-        for(int j = 0; j < producten.size()-1 ; j++){      
+        for(int j = 0; j < producten.size(); j++){      
             for(int i = 0; i < producten.size()-1 ; i++){
                 if(producten.get(i).getSize()< producten.get(i+1).getSize()){
                     Product ACC = producten.get(i);

@@ -1,5 +1,7 @@
-package bpp_sim;
+package bpp_sim.Functions;
 
+import bpp_sim.Doos;
+import bpp_sim.Product;
 import java.util.ArrayList;
 
 public class NextFit implements BPP{
