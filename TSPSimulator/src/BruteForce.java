@@ -3,8 +3,7 @@ import java.util.Collections;
 import java.util.Random;
 
 public class BruteForce implements TSP {
-    private ArrayList<ArrayList<Integer>> outer = new ArrayList<>();
-    private ArrayList<Integer> inner = new ArrayList<>();
+
 
     private double temp;
     private double terugweg;
@@ -18,31 +17,7 @@ public class BruteForce implements TSP {
     private int firstIndex;
     private int lastIndex;
 
-    public ArrayList<ArrayList<Integer>> GenerateRoute(int aantal) {
-        Random r = new Random();
-        for (int x = 0; x < aantal; x++) {
-            int randX = 1 + r.nextInt(5);
-            int randY = 1 + r.nextInt(5);
-            for (int i = 0; i < outer.size(); i++) {
-                if (outer.get(i).get(0) == randX && outer.get(i).get(1) == randY) {
-                    randX = 1 + r.nextInt(5);
-                    randY = 1 + r.nextInt(5);
-                    i = -1;
-                }
-            }
-            inner.add(randX);
-            inner.add(randY);
-            outer.add(inner);
-            inner = new ArrayList<>();
-        }
 
-        System.out.println("Random Locations:");
-        for (int y = 0; y < outer.size(); y++) {
-            System.out.println("x = " + outer.get(y).get(0) + ", y = " + outer.get(y).get(1));
-        }
-        System.out.println("_________________________________________________________________");
-        return outer;
-    }
 
     public ArrayList<ArrayList<Integer>> permutation(ArrayList<ArrayList<Integer>> a) {
         if (teller2 == 0) {
