@@ -2,7 +2,8 @@ import java.util.ArrayList;
 
 public class TSPNN implements TSPAlgoritme {
     private ArrayList<Integer> sOrder = new ArrayList<Integer>();
-    private ArrayList<ArrayList<Integer>> gesorteerd = new ArrayList<ArrayList<Integer>>();
+    private ArrayList<ArrayList<Integer>> gesorteerdA = new ArrayList<ArrayList<Integer>>();
+    private ArrayList<ArrayList<Integer>> gesorteerdD = new ArrayList<ArrayList<Integer>>();
     private int antalOrder;
     public TSPNN(ArrayList<ArrayList<Integer>> ongesorteerd) {
         int arrayListSize = ongesorteerd.size();
@@ -36,16 +37,16 @@ public class TSPNN implements TSPAlgoritme {
                 sOrder.add(startX - currentX);
                 sOrder.add(startX - currentY);
                 try {
-                    gesorteerd.add(sOrder);
+                    gesorteerdA.add(sOrder);
                     sOrder = new ArrayList<Integer>();
-                    //System.out.println(gesorteerd);
-                    //System.out.println(gesorteerd.size());
+                    System.out.println("orderd" + gesorteerdA);
+                    //System.out.println(gesorteerdA.size());
                 }
                 catch (Exception e) {
                     //System.out.println("X" + currentX);
                     //System.out.println("Y" + currentY);
                     System.out.println("order" + sOrder);
-                    System.out.println("gesorteerd" + gesorteerd);
+                    System.out.println("gesorteerd" + gesorteerdA);
                     System.out.println(e);
                     sOrder = new ArrayList<Integer>();
                 }
@@ -64,7 +65,9 @@ public class TSPNN implements TSPAlgoritme {
             //sOrder.add(currentX);
             //sOrder.add(currentY);
             try {
-                gesorteerd.add(sOrder);
+                System.out.println(sOrder.get(0) + " x , " + sOrder.get(1) + " y");
+                gesorteerdA.add(sOrder);
+                System.out.println(gesorteerdA);
                 sOrder = new ArrayList<Integer>();
                 //System.out.println(gesorteerd);
                 //System.out.println(gesorteerd.size());
@@ -73,7 +76,7 @@ public class TSPNN implements TSPAlgoritme {
                 //System.out.println("X" + currentX);
                 //System.out.println("Y" + currentY);
                 System.out.println("order" + sOrder);
-                System.out.println("gesorteerd" + gesorteerd);
+                System.out.println("gesorteerd" + gesorteerdA);
                 //System.out.println(e);
                 sOrder = new ArrayList<Integer>();
             }
@@ -93,7 +96,7 @@ public class TSPNN implements TSPAlgoritme {
         sOrder.add(currentX);
         sOrder.add(currentY);
         try {
-            gesorteerd.add(sOrder);
+            gesorteerdA.add(sOrder);
             sOrder = new ArrayList<Integer>();
             //System.out.println(gesorteerd);
             //System.out.println(gesorteerd.size());
@@ -102,7 +105,7 @@ public class TSPNN implements TSPAlgoritme {
             //System.out.println("X" + currentX);
             //System.out.println("Y" + currentY);
             System.out.println("order" + sOrder);
-            System.out.println("gesorteerd" + gesorteerd);
+            System.out.println("gesorteerd" + gesorteerdA);
             System.out.println(e);
             sOrder = new ArrayList<Integer>();
         }
@@ -117,10 +120,26 @@ public class TSPNN implements TSPAlgoritme {
     }
     @Override
     public ArrayList<ArrayList<Integer>> berekenRoute() {
-        return gesorteerd;
+        return gesorteerdA;
     }
 
     public int getAntalOrder() {
         return antalOrder;
+    }
+
+    public ArrayList<ArrayList<Integer>> getGesorteerdA() {
+        return gesorteerdA;
+    }
+
+    public void setGesorteerdA(ArrayList<ArrayList<Integer>> gesorteerdA) {
+        this.gesorteerdA = gesorteerdA;
+    }
+
+    public ArrayList<ArrayList<Integer>> getGesorteerdD() {
+        return gesorteerdD;
+    }
+
+    public void setGesorteerdD(ArrayList<ArrayList<Integer>> gesorteerdD) {
+        this.gesorteerdD = gesorteerdD;
     }
 }

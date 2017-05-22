@@ -25,7 +25,7 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
 			"/dev/tty.usbserial-A9007UX1", // Mac OS X
                         "/dev/ttyACM0", // Raspberry Pi
 			"/dev/ttyUSB0", // Linux
-			"COM11", // Windows
+			"COM4", // Windows
 	};
 	private BufferedReader input;
 	private OutputStream output;
@@ -48,7 +48,7 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
         /* initialize the port */
 	public void initialize()
         {
-                System.setProperty("gnu.io.rxtx.SerialPorts", "COM11");
+                System.setProperty("gnu.io.rxtx.SerialPorts", "COM4");
 
 		CommPortIdentifier portId = null;
 		Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();

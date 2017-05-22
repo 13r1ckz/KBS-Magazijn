@@ -20,9 +20,6 @@ public class Start {
             //en de getter van artikellijst.
             ReadXML read = new ReadXML();
 
-            //arduinoconnect object aangemaakt.
-            ArduinoConnect obj = new ArduinoConnect();
-            obj.initialize();
 
             //Hier maak je een Order aan van de createOrder functie van ReadXML.
             Order o = read.createOrder("bestelling.xml");
@@ -47,12 +44,16 @@ public class Start {
             TSPNN algoritme = new TSPNN(o.getOngesorteerd());
             //System.out.println("artikellengte " + o.getOngesorteerd().size());
             //De berekende route wordt gelijkgezet aan de route zodat deze hier ook te accessen is.
-            System.out.println("\nogetorder:" + o.getoOrder() + "\n");
 
             ArrayList<ArrayList<Integer>> route = algoritme.berekenRoute();
-            System.out.println("custumer info: " + read.getuData());
-            TSPPanel Jpan = new TSPPanel(o.getoOrder(), read.getuData(), DBConnection.getProductList());
+            System.out.println("Route: " + route);
+           // System.out.println("orderd: " + algoritme.getGesorteerd());
+            TSPPanel Jpan = new TSPPanel(o.getoOrder(), read.getuData(), DBConnection.getProductList(), route);
             Jpan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+            //arduinoconnect object aangemaakt.
+            ArduinoConnect obj = new ArduinoConnect(o.getoOrder().size(), o.getoOrder());
+            obj.initialize();
 
             // IN TSPNN.JAVA WORDT ARRAYLIST GESORTEERD GERETURNED. GESORTEERD IS NOG LEEG EN MOET AAN ONGESORTEERDE ARRAYLIST DIE GESORTEERD MOETEN WORDEN GEZET.
             String inputLine = ArduinoConnect.input.readLine();

@@ -1,12 +1,5 @@
-[Fri May 19 10:42:05.290296 2017] [mpm_winnt:notice] [pid 4536:tid 760] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
-[Fri May 19 10:42:05.290797 2017] [mpm_winnt:notice] [pid 4536:tid 760] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
-[Fri May 19 10:42:05.290797 2017] [core:notice] [pid 4536:tid 760] AH00094: Command line: 'C:\\Users\\gerjo\\Desktop\\windesheim\\j1\\s2\\kbs\\KBS-Magazijn\\USBWebserver v8.6/apache2/bin/httpd_usbwv8.exe -d C:/Users/gerjo/Desktop/windesheim/j1/s2/kbs/KBS-Magazijn/USBWebserver v8.6/apache2'
-[Fri May 19 10:42:05.291798 2017] [mpm_winnt:notice] [pid 4536:tid 760] AH00418: Parent: Created child process 4004
-[Fri May 19 10:42:05.657457 2017] [mpm_winnt:notice] [pid 4004:tid 568] AH00354: Child: Starting 64 worker threads.
-[Fri May 19 11:15:49.213844 2017] [:error] [pid 4004:tid 1300] [client ::1:22454] PHP Notice:  Undefined index: name in C:\\Users\\gerjo\\Desktop\\windesheim\\j1\\s2\\kbs\\KBS-Magazijn\\USBWebserver v8.6\\root\\index.php on line 85
-[Fri May 19 12:37:49.485601 2017] [:error] [pid 4004:tid 1288] [client ::1:22858] PHP Notice:  Undefined index: name in C:\\Users\\gerjo\\Desktop\\windesheim\\j1\\s2\\kbs\\KBS-Magazijn\\USBWebserver v8.6\\root\\index.php on line 85
-[Fri May 19 12:39:38.012340 2017] [:error] [pid 4004:tid 1300] [client ::1:22873] PHP Notice:  Undefined index: name in C:\\Users\\gerjo\\Desktop\\windesheim\\j1\\s2\\kbs\\KBS-Magazijn\\USBWebserver v8.6\\root\\index.php on line 85
-[Fri May 19 14:40:49.504615 2017] [:error] [pid 4004:tid 1288] [client ::1:23862] PHP Notice:  Undefined index: name in C:\\Users\\gerjo\\Desktop\\windesheim\\j1\\s2\\kbs\\KBS-Magazijn\\USBWebserver v8.6\\root\\index.php on line 85
-[Fri May 19 14:41:16.946539 2017] [:error] [pid 4004:tid 1292] [client ::1:23869] PHP Notice:  Undefined index: name in C:\\Users\\gerjo\\Desktop\\windesheim\\j1\\s2\\kbs\\KBS-Magazijn\\USBWebserver v8.6\\root\\index.php on line 85
-[Fri May 19 14:41:19.082206 2017] [:error] [pid 4004:tid 1292] [client ::1:23869] PHP Notice:  Undefined index: name in C:\\Users\\gerjo\\Desktop\\windesheim\\j1\\s2\\kbs\\KBS-Magazijn\\USBWebserver v8.6\\root\\index.php on line 85
-[Fri May 19 14:41:20.753918 2017] [:error] [pid 4004:tid 1292] [client ::1:23869] PHP Notice:  Undefined index: name in C:\\Users\\gerjo\\Desktop\\windesheim\\j1\\s2\\kbs\\KBS-Magazijn\\USBWebserver v8.6\\root\\index.php on line 85
+[Mon May 22 12:03:08.448075 2017] [mpm_winnt:notice] [pid 14432:tid 796] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
+[Mon May 22 12:03:08.448075 2017] [mpm_winnt:notice] [pid 14432:tid 796] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
+[Mon May 22 12:03:08.448075 2017] [core:notice] [pid 14432:tid 796] AH00094: Command line: 'C:\\Users\\gerjo\\Desktop\\windesheim\\j1\\s2\\kbs\\KBS-Magazijn\\USBWebserver v8.6/apache2/bin/httpd_usbwv8.exe -d C:/Users/gerjo/Desktop/windesheim/j1/s2/kbs/KBS-Magazijn/USBWebserver v8.6/apache2'
+[Mon May 22 12:03:08.450060 2017] [mpm_winnt:notice] [pid 14432:tid 796] AH00418: Parent: Created child process 14948
+[Mon May 22 12:03:08.808904 2017] [mpm_winnt:notice] [pid 14948:tid 772] AH00354: Child: Starting 64 worker threads.

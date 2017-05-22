@@ -3,17 +3,17 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class TSPPanel extends JFrame {
-    public TSPPanel(ArrayList<ArrayList<Integer>> artikelCount, ArrayList<ArrayList<String>> ArticleList, ArrayList<ArrayList<String>> orderData) {
+    public TSPPanel(ArrayList<ArrayList<Integer>> artikelCount, ArrayList<ArrayList<String>> ArticleList, ArrayList<ArrayList<String>> orderData, ArrayList<ArrayList<Integer>> route ) {
         ArrayList<ArrayList<Integer>> artlist = artikelCount;
         ArrayList<ArrayList<String>> Ulist = ArticleList;
         ArrayList<ArrayList<String>> Olist = orderData;
-        //System.out.println(artlist + "tsp panel");
+        System.out.println(artlist + "tsp panel");
         setTitle("TSPapp");
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
 
         // grid panel
-        TekenPanel grid = new TekenPanel(901, 701, 5, 5, artlist);
+        TekenPanel grid = new TekenPanel(1081, 701, 5, 6, artlist, route);
         add(grid);
         // pakbon
         System.out.println("2" + Olist);
