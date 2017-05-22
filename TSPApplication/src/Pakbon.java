@@ -25,10 +25,10 @@ class Pakbon extends Canvas {
         for (int x = 1; x < user.size() + 1; x++) {
             if (x == 1) {
                 g.drawString(String.valueOf(user.get(x - 1)), 130, 20 * x);
-                System.out.println(user.get(x - 1));
+                //System.out.println(user.get(x - 1));
             } else {
                 g.drawString(String.valueOf(user.get(x - 1)), 130, 20 * x);
-                System.out.println(user.get(x - 1));
+                //System.out.println(user.get(x - 1));
             }
         }
         g.drawString("Product ID", 20, 180);
@@ -38,30 +38,30 @@ class Pakbon extends Canvas {
         for(int x = 1; x < orderL.size()+1; x++){
             if (x == 1) {
                 g.drawString(String.valueOf(orderL.get(x - 1).get(0)), 20, 190 + (20 * x));
-                System.out.println(orderL.get(x - 1));
+                //System.out.println(orderL.get(x - 1));
             } else {
                 g.drawString(String.valueOf(orderL.get(x - 1).get(0)), 20, 190 + (20 * x));
-                System.out.println(orderL.get(x - 1));
+                //System.out.println(orderL.get(x - 1));
             }
         }
 
         for(int x = 1; x < orderL.size()+1; x++){
             if (x == 1) {
                 g.drawString(String.valueOf(orderL.get(x - 1).get(1)), 130, 190 + (20 * x));
-                System.out.println(orderL.get(x - 1));
+                //System.out.println(orderL.get(x - 1));
             } else {
                 g.drawString(String.valueOf(orderL.get(x - 1).get(1)), 130, 190 + (20 * x));
-                System.out.println(orderL.get(x - 1));
+                //System.out.println(orderL.get(x - 1));
             }
         }
 
         for(int x = 1; x < orderL.size()+1; x++){
             if (x == 1) {
                 g.drawString(String.valueOf(orderL.get(x - 1).get(2)), 270, 190 + (20 * x));
-                System.out.println(orderL.get(x - 1));
+                //System.out.println(orderL.get(x - 1));
             } else {
                 g.drawString(String.valueOf(orderL.get(x - 1).get(2)), 270, 190 + (20 * x));
-                System.out.println(orderL.get(x - 1));
+                //System.out.println(orderL.get(x - 1));
             }
         }
     }

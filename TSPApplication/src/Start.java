@@ -35,20 +35,17 @@ public class Start {
             //Hij zet de ongesorteerde artikellijst gelijk aan de ongesorteerde artikelen in de artikelen.
             o.setOngesorteerd(artikelsOngesorteerd);
             o.setoOrder(artikelsOngesorteerd);
-            System.out.println("\nartikel array " + o.getOngesorteerd() + "\n");
-            //System.out.println("artikellengtea " + o.getoOrder());
             //Er wordt hier een nieuwe instantie van TSPNN aangemaakt waaraan de ongesorteerdelijst mee wordt gegeven.
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             //HIER MOETEN DE GEGEVENS DIE MOMENTEEL GEPRPINT WORDEN NOG IN EEN GESORTEERDE LIJST GEZET WORDEN
             //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             TSPNN algoritme = new TSPNN(o.getOngesorteerd());
-            //System.out.println("artikellengte " + o.getOngesorteerd().size());
             //De berekende route wordt gelijkgezet aan de route zodat deze hier ook te accessen is.
 
             ArrayList<ArrayList<Integer>> route = algoritme.berekenRoute();
-            System.out.println("Route: " + route);
-           // System.out.println("orderd: " + algoritme.getGesorteerd());
-            TSPPanel Jpan = new TSPPanel(o.getoOrder(), read.getuData(), DBConnection.getProductList(), route);
+
+
+            TSPPanel Jpan = new TSPPanel(o.getoOrder(), read.getuData(), DBConnection.getProductList(), algoritme.getGesorteerd());
             Jpan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             //arduinoconnect object aangemaakt.
@@ -57,11 +54,11 @@ public class Start {
 
             // IN TSPNN.JAVA WORDT ARRAYLIST GESORTEERD GERETURNED. GESORTEERD IS NOG LEEG EN MOET AAN ONGESORTEERDE ARRAYLIST DIE GESORTEERD MOETEN WORDEN GEZET.
             String inputLine = ArduinoConnect.input.readLine();
-            System.out.println(inputLine);
+            //System.out.println(inputLine);
             obj.close();
         }
         catch(Exception e) {
-
+            System.out.println(e);
         }
     }
 }

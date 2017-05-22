@@ -78,7 +78,6 @@ public class ArduinoConnect implements SerialPortEventListener {
                     a++;
                     if(a == list){
                         x = (char) 'E';
-                        System.out.println("derp");
                         System.out.println("All blocks have been pushed! Writing "+ x +" TO OUTPUT...");
                         try
                         {

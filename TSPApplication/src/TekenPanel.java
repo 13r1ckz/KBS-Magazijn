@@ -48,16 +48,8 @@ class TekenPanel extends Canvas {
             g.drawString(String.valueOf(aList.get(x).get(0)), (((aList.get(x).get(1) + 1) * XH) - XH) + 85, 635 - ((aList.get(x).get(2) * YW) - YW));
             g.setColor(Color.black);
             g.drawRect(((aList.get(x).get(1) + 1) * XH) - XH, 560 - ((aList.get(x).get(2) * YW) - YW), 180, 140);
-            System.out.println(aList.get(x));
-            System.out.println(aList.get(x).get(1));
-            System.out.println(aList.get(x).get(2));
-            System.out.println(x + ":X " + (aList.get(x).get(1) * XH));
-            System.out.println(x + ":Y " + (701 - (aList.get(x).get(2) * YW)));
-            //System.out.println((aList.get(x).get(2) * YW));
-            //System.out.println(XH * YW);
         }
         g.setColor(Color.BLACK);
-        System.out.println("rout in teken" + Route.get(0).get(0) + " " + Route.get(0).get(1));
         g.drawLine(90, 640,(((Route.get(0).get(0) + 1) * XH) - XH) + 85, 635 - ((Route.get(0).get(1) * YW) - YW));
     }
 

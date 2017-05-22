@@ -7,7 +7,6 @@ public class TSPPanel extends JFrame {
         ArrayList<ArrayList<Integer>> artlist = artikelCount;
         ArrayList<ArrayList<String>> Ulist = ArticleList;
         ArrayList<ArrayList<String>> Olist = orderData;
-        System.out.println(artlist + "tsp panel");
         setTitle("TSPapp");
         FlowLayout layout = new FlowLayout();
         setLayout(layout);
@@ -16,8 +15,6 @@ public class TSPPanel extends JFrame {
         TekenPanel grid = new TekenPanel(1081, 701, 5, 6, artlist, route);
         add(grid);
         // pakbon
-        System.out.println("2" + Olist);
-        System.out.println("2" + Ulist);
         Pakbon pak = new Pakbon(701, Ulist, Olist);
         add(pak);
         pak.repaint();
