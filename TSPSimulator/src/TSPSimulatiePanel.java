@@ -60,18 +60,6 @@ public class TSPSimulatiePanel extends JPanel {
         }
         g.drawRect(0, 0, (celX * gridGetal) - 1, (celX * gridGetal) - 1);
 
-            for(int x = 0; x < gridGetal; x++) {
-                if(x == xRand) {
-                    //System.out.println(z + "ste product, x positie " + xRand);
-                    xcoordinate = xRand;
-                }
-            }
-            for(int y = 0; y < gridGetal; y++) {
-                if (y == yRand) {
-                    //System.out.println(z + "ste product, y positie " + yRand);
-                    ycoordinate = yRand;
-                }
-            }
         //tekent lijnen
         //System.out.println(locaties + " hier worden locaties gesout");
         for (int z = 0; z <= this.locaties.size() - 1; z++) {
