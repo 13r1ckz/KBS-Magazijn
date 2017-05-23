@@ -66,7 +66,8 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
         btnBerekenRoute.addActionListener(this);
         btnNearestNeighbour = new JButton("Nearest neighbour");
         btnNearestNeighbour.addActionListener(this);
-        btnAntColony = new JButton("Ant colony");
+        btnNNReversed = new JButton("Reversed nearest neighbour");
+        btnNNReversed.addActionListener(this);
         btnUnwindNN = new JButton("Unwind NN");
         btnBruteForce = new JButton("Brute force");
         JLabel jLabelGridGrootte = new JLabel("Gridgrootte");
@@ -89,7 +90,7 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
         frame.add(jTextFieldAantalTesten);
         frame.add(btnBerekenRoute);
         frame.add(btnNearestNeighbour);
-        frame.add(btnAntColony);
+        frame.add(btnNNReversed);
         frame.add(btnUnwindNN);
         frame.add(btnBruteForce);
         btnBruteForce.addActionListener(this);
