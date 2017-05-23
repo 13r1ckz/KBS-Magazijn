@@ -5,19 +5,17 @@ public class Start {
     public static void main(String[] ag) {
         NearestNeighbour nn = new NearestNeighbour();
         NextFitUnwind nn = new NextFitUnwind();
-        System.out.println(nn.getTotalLength() + " = totale route nn");
-        System.out.println("gesorteerd - " + nn.generateRoute(5));
         NearestNeighbourReversed nnreversed = new NearestNeighbourReversed();
         BruteForce bruteforce = new BruteForce();
 
-        TSPSimulatieFrame frame = new TSPSimulatieFrame(620, 800, bruteforce);
 
-        ArrayList<ArrayList<Integer>> locatiesOngesorteerd = frame.GenerateRoute(4);
+        TSPSimulatieFrame frame = new TSPSimulatieFrame("TSP Simulator",620, 800);
+
+        ArrayList<ArrayList<Integer>> locatiesOngesorteerd = frame.GenerateRoute(5);
 
         frame.createDisplay(locatiesOngesorteerd);
-
-
-       // System.out.println(bruteforce.berekenRoute(locatiesOngesorteerd) + " KEkekekrk ");
-
+        System.out.println("________________________________________________");
+//        NearestNeighbourRework nn = new NearestNeighbourRework(frame.GenerateRoute(4));
+//        NearestNeighbourReversedRewrk  nnrev = new NearestNeighbourReversedRewrk(frame.GenerateRoute(4));
     }
 }
