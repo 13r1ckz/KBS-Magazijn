@@ -1,12 +1,14 @@
+
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class NearestNeighbourRework implements TSP {
-    private ArrayList<Integer> sOrder = new ArrayList<Integer>();
     private ArrayList<ArrayList<Integer>> gesorteerd = new ArrayList<ArrayList<Integer>>();
-    private int antalOrder;
 
-    public NearestNeighbourRework(ArrayList<ArrayList<Integer>> ongesorteerd) {
-        int arrayListSize = ongesorteerd.size();
+    @Override
+    public ArrayList<ArrayList<Integer>> berekenRoute(ArrayList<ArrayList<Integer>> locatiesOngesorteerd) {
+        ArrayList<ArrayList<Integer>> rekenRoute = new ArrayList<>(locatiesOngesorteerd);
+        int arrayListSize = rekenRoute.size();
         int currentX = 0;
         int currentY = 0;
         double totaleAfstand = 0;
@@ -24,10 +26,10 @@ public class NearestNeighbourRework implements TSP {
                 }
             }
             if (x == 0){
-                totaleAfstand += calcPyth(0,0,ongesorteerd.get(kortste).get(0), ongesorteerd.get(kortste).get(1));
+                totaleAfstand += calcPyth(0,0,rekenRoute.get(kortste).get(0), rekenRoute.get(kortste).get(1));
             }
             if (x == arrayListSize-1){
-                totaleAfstand += calcPyth(0,0,ongesorteerd.get(kortste).get(0), ongesorteerd.get(kortste).get(1));
+                totaleAfstand += calcPyth(0,0,rekenRoute.get(kortste).get(0), rekenRoute.get(kortste).get(1));
             }
             System.out.println(ongesorteerd.get(kortste).get(0) +" " + ongesorteerd.get(kortste).get(1));
             int kortsteX = ongesorteerd.get(kortste).get(0);
@@ -35,14 +37,16 @@ public class NearestNeighbourRework implements TSP {
             totaleAfstand += afstand;
             currentX = kortsteX;
             currentY = kortsteY;
-            ongesorteerd.remove(kortste);
+            rekenRoute.remove(kortste);
         }
+        ArrayList<Integer> zeroList = new ArrayList<>();
+        zeroList.add(0);
+        zeroList.add(0);
+        gesorteerd.add(zeroList);
+        Collections.reverse(gesorteerd);
+        gesorteerd.add(zeroList);
+        Collections.reverse(gesorteerd);
 
-    }
-
-    @Override
-    public ArrayList<ArrayList<Integer>> berekenRoute(ArrayList<ArrayList<Integer>> locatiesOngesorteerd) {
-        return null;
     }
 
     @Override
