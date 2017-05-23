@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TSPSimulator:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TSPSimulator_jar</output-path>
+    <root id="archive" name="TSPSimulator.jar">
+      <element id="module-output" name="TSPSimulator" />
+    </root>
+  </artifact>
+</component>
