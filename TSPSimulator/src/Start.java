@@ -4,6 +4,9 @@ public class Start {
 
     public static void main(String[] ag) {
         NearestNeighbour nn = new NearestNeighbour();
+        NextFitUnwind nn = new NextFitUnwind();
+        System.out.println(nn.getTotalLength() + " = totale route nn");
+        System.out.println("gesorteerd - " + nn.generateRoute(5));
         NearestNeighbourReversed nnreversed = new NearestNeighbourReversed();
         BruteForce bruteforce = new BruteForce();
 
