@@ -69,6 +69,7 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
         btnNNReversed = new JButton("Reversed nearest neighbour");
         btnNNReversed.addActionListener(this);
         btnUnwindNN = new JButton("Unwind NN");
+        btnUnwindNN.addActionListener(this);
         btnBruteForce = new JButton("Brute force");
         JLabel jLabelGridGrootte = new JLabel("Gridgrootte");
         JLabel jLabelAantalLocaties = new JLabel("Aantal locaties ");
@@ -131,6 +132,13 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
             NearestNeighbourReversedRewrk nnReversed = new NearestNeighbourReversedRewrk();
             this.revalidate();
             ArrayList<ArrayList<Integer>> gesorteerdeLijst = nnReversed.berekenRoute(panel.getLocaties());
+            panel.setRoute(gesorteerdeLijst);
+            panel.repaintPanel();
+        }
+        if (actionEvent.getSource() == btnUnwindNN){
+            NextFitUnwind unwindThis = new NextFitUnwind();
+            this.revalidate();
+            ArrayList<ArrayList<Integer>> gesorteerdeLijst = unwindThis.berekenRoute(panel.getLocaties());
             panel.setRoute(gesorteerdeLijst);
             panel.repaintPanel();
         }

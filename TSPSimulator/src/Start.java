@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class Start {
 
     public static void main(String[] ag) {
-        NearestNeighbour nn = new NearestNeighbour();
-        NextFitUnwind nn = new NextFitUnwind();
-        NearestNeighbourReversed nnreversed = new NearestNeighbourReversed();
+        NearestNeighbourRework nn = new NearestNeighbourRework();
+        NextFitUnwind nnrwrk = new NextFitUnwind();
+        NearestNeighbourReversedRewrk nnreversed = new NearestNeighbourReversedRewrk();
         BruteForce bruteforce = new BruteForce();
 
 
