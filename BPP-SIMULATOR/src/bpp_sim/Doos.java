@@ -4,6 +4,12 @@ import java.util.ArrayList;
 
 public class Doos {
 
+    /**
+     * Globale variabelen.
+     * length is de lengte van de doos.
+     * Global_direction en direction zorgen voor de richting waarin de producten van de doos zich bewegen.
+     * ArrayList<Producten> is de lijst van producten.
+     */
     private static final int length = 10;
     private static int global_direction = 1;
     private final int direction;
@@ -13,10 +19,12 @@ public class Doos {
     public Doos()
     {
         producten = new ArrayList<>();
+        /* zet de richting */
         direction = global_direction;
         global_direction++;
     }
     
+    /* Get the direction */
     public int getDirection()
     {
         return direction;
