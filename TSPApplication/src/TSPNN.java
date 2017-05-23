@@ -7,7 +7,7 @@ public class TSPNN implements TSPAlgoritme {
     private ArrayList<ArrayList<Integer>> gesorteerd = new ArrayList<ArrayList<Integer>>();
     private ArrayList<Integer> sortInner = new ArrayList<Integer>();
     public TSPNN(ArrayList<ArrayList<Integer>> ongesorteerd) {
-        arrayListSize = ongesorteerd.size();
+            arrayListSize = ongesorteerd.size();
         //bereken verschil tussen de vorige en de huidige afstand in de loop, als verschil kleiner is overschrijft hij de kortste afstand.
         for (int x = 0; x < arrayListSize; x++) {
             int afstand = 100;
@@ -24,21 +24,37 @@ public class TSPNN implements TSPAlgoritme {
 
                 }
             }
-            //pak x, y en de afstand van het artikel met de korste afstand berekent in bovenstaande loop.
-            int kortsteX = ongesorteerd.get(kortste).get(1);
-            int kortsteY = ongesorteerd.get(kortste).get(2);
-            currentX = kortsteX;
-            currentY = kortsteY;
-            sortInner.add(currentX);
-            sortInner.add(currentY);
-            gesorteerd.add(sortInner);
-            sortInner = new ArrayList<Integer>();
-
-            ongesorteerd.remove(kortste);
-
-
-
+            for(int i = 0; i <= 3; i++) {
+                //pak x, y en de afstand van het artikel met de korste afstand berekent in bovenstaande loop.
+                if(i == 3){
+                    sortInner.add(0);
+                    sortInner.add(2);
+                    gesorteerd.add(sortInner);
+                    sortInner = new ArrayList<Integer>();
+                    //i = 0;
+                    System.out.println(gesorteerd);
+                    System.out.println("#run: " + i);
+                }
+                else {
+                    int kortsteX = ongesorteerd.get(kortste).get(1);
+                    int kortsteY = ongesorteerd.get(kortste).get(2);
+                    currentX = kortsteX;
+                    currentY = kortsteY;
+                    sortInner.add(currentX);
+                    sortInner.add(currentY);
+                    gesorteerd.add(sortInner);
+                    sortInner = new ArrayList<Integer>();
+                    ongesorteerd.remove(kortste);
+                    System.out.println(gesorteerd);
+                    System.out.println("run: " + i);
+                }
+            }
         }
+        sortInner.add(0);
+        sortInner.add(2);
+        gesorteerd.add(sortInner);
+        sortInner = new ArrayList<Integer>();
+        System.out.println("last: " + gesorteerd);
     }
     public int DifCalc(int x, int y) {
         if (x != y) {
