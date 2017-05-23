@@ -15,17 +15,19 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
     private ArrayList<Integer> inner = new ArrayList<>();
     private TSPSimulatiePanel panel;
     private BruteForce bruteForce;
+//    private NearestNeighbour nn;
 
 
     public TSPSimulatieFrame(int width, int height, BruteForce bruteforce) {
         this("TSP simulator", width, height, bruteforce);
     }
 
-    public TSPSimulatieFrame(String title, int width, int height , BruteForce bruteforce) {
+    public TSPSimulatieFrame(String title, int width, int height , BruteForce bruteforce ) {
         this.title = title;
         this.width = width;
         this.height = height;
         this.bruteForce = bruteforce;
+
 
     }
 
@@ -65,6 +67,7 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
         btnBerekenRoute = new JButton("Bereken punten");
         btnBerekenRoute.addActionListener(this);
         btnNearestNeighbour = new JButton("Nearest neighbour");
+        btnNearestNeighbour.addActionListener(this);
         btnAntColony = new JButton("Ant colony");
         btnUnwindNN = new JButton("Unwind NN");
         btnBruteForce = new JButton("Brute force");
@@ -112,8 +115,11 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
         if (actionEvent.getSource() == btnBruteForce){
             bruteForce= new BruteForce();
             System.out.println(bruteForce.berekenRoute(panel.getLocaties())+ " h e  y   i k  te s t  dit ");
-
         }
+//        if (actionEvent.getSource() == btnNearestNeighbour){
+//            nn = new NearestNeighbour();
+//            System.out.println(nn.berekenRoute(panel.getLocaties()) + " hier is een nn dingetje gesorteerd denk ik");
+//        }
     }
 
     private KeyListener keyListener = new KeyAdapter() {
