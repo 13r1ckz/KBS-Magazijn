@@ -45,14 +45,16 @@ public class Start {
             ArrayList<ArrayList<Integer>> route = algoritme.berekenRoute();
 
 
-            //TSPPanel Jpan = new TSPPanel(o.getoOrder(), read.getuData(), DBConnection.getProductList(), algoritme.getGesorteerd());
-            //Jpan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            TSPPanel Jpan = new TSPPanel(o.getoOrder(), read.getuData(), DBConnection.getProductList(), algoritme.getGesorteerd());
+            Jpan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             //arduinoconnect object aangemaakt.
             ArduinoConnect obj = new ArduinoConnect(o.getoOrder().size(), o.getoOrder());
             obj.initialize();
             System.out.println(algoritme.getGesorteerd());
             // IN TSPNN.JAVA WORDT ARRAYLIST GESORTEERD GERETURNED. GESORTEERD IS NOG LEEG EN MOET AAN ONGESORTEERDE ARRAYLIST DIE GESORTEERD MOETEN WORDEN GEZET.
+            FilterOrder ordersend = new FilterOrder(algoritme.getGesorteerd());
+            ordersend.ArduinoSend();
             String inputLine = ArduinoConnect.input.readLine();
             //System.out.println(inputLine);
             obj.close();
