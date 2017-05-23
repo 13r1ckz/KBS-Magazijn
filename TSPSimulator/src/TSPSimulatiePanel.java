@@ -27,6 +27,10 @@ public class TSPSimulatiePanel extends JPanel {
         this.locaties = locaties;
     }
 
+    public ArrayList<ArrayList<Integer>> getLocaties() {
+        return locaties;
+    }
+
     @Override
     protected void paintComponent(Graphics graphics) {
         this.g = graphics;
@@ -43,10 +47,10 @@ public class TSPSimulatiePanel extends JPanel {
             g.drawLine(celY * i, 0, celX * i, (gridGetal) * celX);
 
         }
-        g.drawRect(0, 0, (celX * gridGetal) - 2, (celX * gridGetal) - 2);
+        g.drawRect(0, 0, (celX * gridGetal) - 1, (celX * gridGetal) - 1);
 
         //tekent lijnen
-        System.out.println(locaties + " hier worden locaties gesout");
+        //System.out.println(locaties + " hier worden locaties gesout");
         for (int z = 0; z <= this.locaties.size() - 1; z++) {
             Random r = new Random();
             int xRand = locaties.get(z).get(0);

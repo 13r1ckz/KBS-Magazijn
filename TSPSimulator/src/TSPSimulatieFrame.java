@@ -14,28 +14,33 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
     private ArrayList<ArrayList<Integer>> outer = new ArrayList<>();
     private ArrayList<Integer> inner = new ArrayList<>();
     private TSPSimulatiePanel panel;
+    private BruteForce bruteForce;
 
 
-    public TSPSimulatieFrame(int width, int height) {
-        this("TSP simulator", width, height);
+    public TSPSimulatieFrame(int width, int height, BruteForce bruteforce) {
+        this("TSP simulator", width, height, bruteforce);
     }
 
-    public TSPSimulatieFrame(String title, int width, int height) {
+    public TSPSimulatieFrame(String title, int width, int height , BruteForce bruteforce) {
         this.title = title;
         this.width = width;
         this.height = height;
+        this.bruteForce = bruteforce;
+
     }
 
     public ArrayList<ArrayList<Integer>> GenerateRoute(int aantal) {
         if (aantal < 3) {
             aantal = 3;
         }
+        
+
         Random r = new Random();
         for (int x = 0; x < aantal; x++) {
             int randX = r.nextInt(5);
             int randY = r.nextInt(5);
             for (int i = 0; i < outer.size(); i++) {
-                if (outer.get(i).get(0) == randX && outer.get(i).get(1) == randY) {
+                if ((outer.get(i).get(0) == randX && outer.get(i).get(1) == randY) || (randX== 0 && randY ==0 )  ) {
                     randX = r.nextInt(5);
                     randY = r.nextInt(5);
                     i = -1;
@@ -81,6 +86,7 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
         frame.add(btnAntColony);
         frame.add(btnUnwindNN);
         frame.add(btnBruteForce);
+        btnBruteForce.addActionListener(this);
         frame.setLayout(new FlowLayout());
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setVisible(true);
@@ -102,7 +108,10 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
                 return;
             }
             panel.repaintPanel();
-
+        }
+        if (actionEvent.getSource() == btnBruteForce){
+            bruteForce= new BruteForce();
+            System.out.println(bruteForce.berekenRoute(panel.getLocaties())+ " h e  y   i k  te s t  dit ");
 
         }
     }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
+
 
 public class BruteForce implements TSP {
 
@@ -19,36 +19,36 @@ public class BruteForce implements TSP {
 
 
 
-    public ArrayList<ArrayList<Integer>> permutation(ArrayList<ArrayList<Integer>> a) {
-        if (teller2 == 0) {
-            teller2 += 1;
-            firstIndex = 0;
-            s = new String[a.size()];
-            int count = 0;
-            for (int i = 0; i < a.size(); i++) {
-                count += 1;
-                String temp = String.valueOf(count);
-                s[i] = temp;
-            }
-            lastIndex = s.length - 1;
-        }
-        if (lastIndex - firstIndex == 1) {
-            selectShortest(s, a);
-            swap(firstIndex, lastIndex, s);
-            selectShortest(s, a);
-            swap(firstIndex, lastIndex, s);
-            teller2 += 1;
-        } else {
-            for (int i = firstIndex, j = 0; i <= lastIndex; i++, j++) {
-                swap(firstIndex, firstIndex + j, s);
-                firstIndex += 1;
-                permutation(a);
-                firstIndex -= 1;
-                swap(firstIndex, firstIndex + j, s);
-            }
-        }
-        return GesorteerdOuter;
-    }
+//    public ArrayList<ArrayList<Integer>> permutation(ArrayList<ArrayList<Integer>> a) {
+//        if (teller2 == 0) {
+//            teller2 += 1;
+//            firstIndex = 0;
+//            s = new String[a.size()];
+//            int count = 0;
+//            for (int i = 0; i < a.size(); i++) {
+//                count += 1;
+//                String temp = String.valueOf(count);
+//                s[i] = temp;
+//            }
+//            lastIndex = s.length - 1;
+//        }
+//        if (lastIndex - firstIndex == 1) {
+//            selectShortest(s, a);
+//            swap(firstIndex, lastIndex, s);
+//            selectShortest(s, a);
+//            swap(firstIndex, lastIndex, s);
+//            teller2 += 1;
+//        } else {
+//            for (int i = firstIndex, j = 0; i <= lastIndex; i++, j++) {
+//                swap(firstIndex, firstIndex + j, s);
+//                firstIndex += 1;
+//                permutation(a);
+//                firstIndex -= 1;
+//                swap(firstIndex, firstIndex + j, s);
+//            }
+//        }
+//        return GesorteerdOuter;
+//    }
 
     private void selectShortest(String[] s, ArrayList<ArrayList<Integer>> a) {
         terugweg = 0;
@@ -99,7 +99,7 @@ public class BruteForce implements TSP {
             Collections.reverse(GesorteerdOuter);
             GesorteerdOuter.add(zeroList);
             Collections.reverse(GesorteerdOuter);
-            System.out.println(shortestRoute + " Dit is de kortste route");
+//            System.out.println(shortestRoute + " Dit is de kortste route");
         }
     }
 
@@ -124,8 +124,36 @@ public class BruteForce implements TSP {
 
     @Override
     public ArrayList<ArrayList<Integer>> berekenRoute(ArrayList<ArrayList<Integer>> locatiesOngesorteerd) {
-        return null;
+        if (teller2 == 0) {
+            teller2 += 1;
+            firstIndex = 0;
+            s = new String[locatiesOngesorteerd.size()];
+            int count = 0;
+            for (int i = 0; i < locatiesOngesorteerd.size(); i++) {
+                count += 1;
+                String temp = String.valueOf(count);
+                s[i] = temp;
+            }
+            lastIndex = s.length - 1;
+        }
+        if (lastIndex - firstIndex == 1) {
+            selectShortest(s, locatiesOngesorteerd);
+            swap(firstIndex, lastIndex, s);
+            selectShortest(s, locatiesOngesorteerd);
+            swap(firstIndex, lastIndex, s);
+            teller2 += 1;
+        } else {
+            for (int i = firstIndex, j = 0; i <= lastIndex; i++, j++) {
+                swap(firstIndex, firstIndex + j, s);
+                firstIndex += 1;
+                berekenRoute(locatiesOngesorteerd);
+                firstIndex -= 1;
+                swap(firstIndex, firstIndex + j, s);
+            }
+        }
+        return GesorteerdOuter;
     }
+
 
     @Override
     public double calcPyth(int beginX, int beginY, int eindX, int eindY) {
