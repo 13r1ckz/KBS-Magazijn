@@ -3,6 +3,10 @@ import java.util.ArrayList;
 public class Start {
 
     public static void main(String[] ag) {
+        NearestNeighbour nn = new NearestNeighbour();
+        NextFitUnwind nn = new NextFitUnwind();
+        NearestNeighbourReversed nnreversed = new NearestNeighbourReversed();
+        BruteForce bruteforce = new BruteForce();
 
 
         TSPSimulatieFrame frame = new TSPSimulatieFrame("TSP Simulator",620, 800);
