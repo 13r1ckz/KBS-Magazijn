@@ -7,18 +7,13 @@ public class Start {
 
 //       NearestNeighbourReversed nnreversed = new NearestNeighbourReversed();
 
+        TSPSimulatieFrame frame = new TSPSimulatieFrame("TSP Simulator",620, 800);
 
-        BruteForce bruteforce = new BruteForce();
-
-        TSPSimulatieFrame frame = new TSPSimulatieFrame(620, 800, bruteforce);
-
-        ArrayList<ArrayList<Integer>> locatiesOngesorteerd = frame.GenerateRoute(4);
+        ArrayList<ArrayList<Integer>> locatiesOngesorteerd = frame.GenerateRoute(5);
 
         frame.createDisplay(locatiesOngesorteerd);
         System.out.println("________________________________________________");
 //        NearestNeighbourRework nn = new NearestNeighbourRework(frame.GenerateRoute(4));
         NearestNeighbourReversedRewrk  nnrev = new NearestNeighbourReversedRewrk(frame.GenerateRoute(4));
-
-
     }
 }

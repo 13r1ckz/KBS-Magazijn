@@ -9,20 +9,14 @@ public class NearestNeighbourRework implements TSP {
         int arrayListSize = ongesorteerd.size();
         int currentX = 0;
         int currentY = 0;
-        double totaleAfstand= 0;
+        double totaleAfstand = 0;
         int startX = 0;
         int startY = 0;
-
 
         for (int x = 0; x < arrayListSize; x++) {
             double afstand = 100;
             int kortste = 0;
-
             for (int i = 0; i < ongesorteerd.size(); i++) {
-
-
-
-
                 if (afstand > calcPyth(currentX, currentY , ongesorteerd.get(i).get(0), ongesorteerd.get(i).get(1))){
                     afstand = calcPyth(currentX, currentY , ongesorteerd.get(i).get(0), ongesorteerd.get(i).get(1));
 
@@ -35,10 +29,7 @@ public class NearestNeighbourRework implements TSP {
             if (x == arrayListSize-1){
                 totaleAfstand += calcPyth(0,0,ongesorteerd.get(kortste).get(0), ongesorteerd.get(kortste).get(1));
             }
-
-
             System.out.println(ongesorteerd.get(kortste).get(0) +" " + ongesorteerd.get(kortste).get(1));
-
             int kortsteX = ongesorteerd.get(kortste).get(0);
             int kortsteY = ongesorteerd.get(kortste).get(1);
             totaleAfstand += afstand;
@@ -47,19 +38,7 @@ public class NearestNeighbourRework implements TSP {
             ongesorteerd.remove(kortste);
         }
 
-
-
-
     }
-
-
-
-//    @Override
-//    public ArrayList<ArrayList<Integer>> berekenRoute() {
-//        return gesorteerd;
-//    }
-
-
 
     @Override
     public ArrayList<ArrayList<Integer>> berekenRoute(ArrayList<ArrayList<Integer>> locatiesOngesorteerd) {

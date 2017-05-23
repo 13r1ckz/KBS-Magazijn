@@ -11,6 +11,7 @@ public class TSPSimulatiePanel extends JPanel {
     private TSPSimulatieFrame frame;
     private int gridGetal;
     private Graphics g;
+    private ArrayList<ArrayList<Integer>> locatiesGesorteerd;
 
     public TSPSimulatiePanel(TSPSimulatieFrame frame, ArrayList<ArrayList<Integer>> locatiesOngesorteerd) {
         this.frame = frame;
@@ -19,8 +20,11 @@ public class TSPSimulatiePanel extends JPanel {
     }
 
     protected void repaintPanel() {
-        System.out.println("oeirheoir sf");
+        System.out.println("repainted");
         repaint();
+    }
+    public void setGridGetal(int aantal) {
+        this.gridGetal = aantal;
     }
 
     public void setLocaties(ArrayList<ArrayList<Integer>> locaties) {
@@ -31,25 +35,19 @@ public class TSPSimulatiePanel extends JPanel {
         return locaties;
     }
 
+    public void setRoute(ArrayList<ArrayList<Integer>> locatiesGesorteerd) {
+        this.locatiesGesorteerd = locatiesGesorteerd;
+    }
+
     @Override
     protected void paintComponent(Graphics graphics) {
         this.g = graphics;
-
         super.paintComponent(g);
-        int aantalLocaties;
-        if (frame.getAantalLocaties() <= 3) {
-            aantalLocaties = 3;
-        } else {
-            aantalLocaties = frame.getAantalLocaties();
-        }
+        int aantalLocaties = frame.getAantalLocaties();
         int[][] locatieLijst = new int[aantalLocaties][1];
         for (int z = 0; z <= aantalLocaties; z++) {
-            int gridGetal = 10;
-            Random rand = new Random();
-            gridGetal = 5;
             celX = this.getWidth() / gridGetal;
             celY = this.getHeight() / gridGetal;
-
 
             g.setColor(Color.BLACK);
             for (int i = 0; i < gridGetal; i++) {
@@ -60,23 +58,33 @@ public class TSPSimulatiePanel extends JPanel {
             g.drawRect(0, 0, (celX * gridGetal) - 1, (celX * gridGetal) - 1);
 
             //tekent lijnen
-            //System.out.println(locaties + " hier worden locaties gesout");
             for (int x = 0; x <= this.locaties.size() - 1; x++) {
                 Random r = new Random();
                 int xRand = locaties.get(x).get(0);
                 int yRand = locaties.get(x).get(1);
 
-
                 g.setColor(Color.RED);
-                g.fillRect((xRand) * celX, (yRand) * celX, celX, celX);
-
-                g.setColor(Color.CYAN);
-                g.drawLine(celX / 2, celX / 2, (xRand * celX) + celX / 2, (yRand * celX) + celX / 2);
-
+                g.fillOval((xRand) * celX, (yRand) * celX, celX, celX);
 
                 g.setColor(Color.black);
                 g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
                 g.drawString(x + "", (xRand) * celX + (celX / 2), (yRand) * celX + (celX / 2));
+            }
+        }
+        if(this.locatiesGesorteerd != null) {
+            Graphics2D g2 = (Graphics2D) g;
+            g2.setStroke(new BasicStroke(3));
+            int currentX = 0;
+            int currentY = 0;
+            for(int x = 0; x < this.locatiesGesorteerd.size(); x++) {
+                if(x <= 1) {
+                    g2.setColor(Color.GRAY);
+                } else {
+                    g2.setColor(Color.BLACK);
+                }
+                g2.drawLine((celX * currentX) + celX / 2, (celY * currentY) + celY / 2, (this.locatiesGesorteerd.get(x).get(0) * celX) + celX / 2, (this.locatiesGesorteerd.get(x).get(1) * celX) + celX / 2);
+                currentX = this.locatiesGesorteerd.get(x).get(0);
+                currentY = this.locatiesGesorteerd.get(x).get(1);
             }
         }
     }
