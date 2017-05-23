@@ -10,7 +10,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/vsl-1.1/vsl-app-1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../../../vsl-1.1/vsl-app-1.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -19,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/mfz-rxtx-2.2-20081207-win-x64/RXTXcomm.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../../../mfz-rxtx-2.2-20081207-win-x64/RXTXcomm.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -28,7 +28,34 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/Desktop/mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../../../../mysql-connector-java-5.1.42/mysql-connector-java-5.1.42-bin.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/deps/mysql-connector-java-5.1.42-bin.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/deps/RXTXcomm.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/deps/vsl-app-1.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

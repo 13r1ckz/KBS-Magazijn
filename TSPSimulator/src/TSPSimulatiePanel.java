@@ -36,6 +36,17 @@ public class TSPSimulatiePanel extends JPanel {
         this.g = graphics;
 
         super.paintComponent(g);
+        int aantalLocaties;
+        if(frame.getAantalLocaties() <= 3) {
+            aantalLocaties = 3;
+        }
+        else {
+            aantalLocaties = frame.getAantalLocaties();
+        }
+        int [][] locatieLijst = new int[aantalLocaties][1];
+        for(int z = 0; z <= aantalLocaties; z++) {
+            int gridGetal = 10;
+            Random rand = new Random();
         gridGetal = 5;
         celX = this.getWidth() / gridGetal;
         celY = this.getHeight() / gridGetal;
