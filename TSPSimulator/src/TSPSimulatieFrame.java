@@ -8,27 +8,25 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
     private JFrame frame;
     private String title;
     private int width, height;
-    private JButton btnBerekenRoute, btnNearestNeighbour, btnAntColony, btnUnwindNN, btnBruteForce;
+    private JButton btnBerekenRoute, btnNearestNeighbour, btnNNReversed, btnUnwindNN, btnBruteForce;
     private JTextField jTextFieldAantalLocaties, jTextFieldAantalTesten;
     private int aantalLocaties;
     private ArrayList<ArrayList<Integer>> outer = new ArrayList<>();
     private ArrayList<Integer> inner = new ArrayList<>();
     private TSPSimulatiePanel panel;
     private BruteForce bruteForce;
-//    private NearestNeighbour nn;
+    private NearestNeighbourRework nn;
+    private NearestNeighbourReversedRewrk nnr;
 
 
-    public TSPSimulatieFrame(int width, int height, BruteForce bruteforce) {
-        this("TSP simulator", width, height, bruteforce);
-    }
 
-    public TSPSimulatieFrame(String title, int width, int height , BruteForce bruteforce ) {
+    public TSPSimulatieFrame(String title, int width,int height , BruteForce bruteForce , NearestNeighbourRework nn, NearestNeighbourReversedRewrk nnr) {
         this.title = title;
         this.width = width;
         this.height = height;
-        this.bruteForce = bruteforce;
-
-
+        this.nn = nn;
+        this.bruteForce = bruteForce;
+        this.nnr = nnr;
     }
 
     public ArrayList<ArrayList<Integer>> GenerateRoute(int aantal) {
@@ -39,12 +37,12 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
 
         Random r = new Random();
         for (int x = 0; x < aantal; x++) {
-            int randX = r.nextInt(5);
-            int randY = r.nextInt(5);
+            int randX = r.nextInt(30);
+            int randY = r.nextInt(30);
             for (int i = 0; i < outer.size(); i++) {
                 if ((outer.get(i).get(0) == randX && outer.get(i).get(1) == randY) || (randX== 0 && randY ==0 )  ) {
-                    randX = r.nextInt(5);
-                    randY = r.nextInt(5);
+                    randX = r.nextInt(30);
+                    randY = r.nextInt(30);
                     i = -1;
                 }
             }
@@ -68,7 +66,8 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
         btnBerekenRoute.addActionListener(this);
         btnNearestNeighbour = new JButton("Nearest neighbour");
         btnNearestNeighbour.addActionListener(this);
-        btnAntColony = new JButton("Ant colony");
+        btnNNReversed = new JButton("Reversed nearest neighbour");
+        btnNNReversed.addActionListener(this);
         btnUnwindNN = new JButton("Unwind NN");
         btnBruteForce = new JButton("Brute force");
         JLabel jLabelAantalLocaties = new JLabel("Aantal locaties ");
@@ -86,7 +85,7 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
         frame.add(jTextFieldAantalTesten);
         frame.add(btnBerekenRoute);
         frame.add(btnNearestNeighbour);
-        frame.add(btnAntColony);
+        frame.add(btnNNReversed);
         frame.add(btnUnwindNN);
         frame.add(btnBruteForce);
         btnBruteForce.addActionListener(this);
@@ -114,12 +113,16 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
         }
         if (actionEvent.getSource() == btnBruteForce){
             bruteForce= new BruteForce();
-            System.out.println(bruteForce.berekenRoute(panel.getLocaties())+ " h e  y   i k  te s t  dit ");
+            System.out.println(bruteForce.berekenRoute(panel.getLocaties())+ " Bruteforce Gesorteerde lijst ");
         }
-//        if (actionEvent.getSource() == btnNearestNeighbour){
-//            nn = new NearestNeighbour();
-//            System.out.println(nn.berekenRoute(panel.getLocaties()) + " hier is een nn dingetje gesorteerd denk ik");
-//        }
+        if (actionEvent.getSource() == btnNearestNeighbour){
+            nn = new NearestNeighbourRework();
+            System.out.println(nn.berekenRoute(panel.getLocaties()) + " NearestNeighbour Gesorteerde lijst");
+        }
+        if (actionEvent.getSource() == btnNNReversed){
+            nnr = new NearestNeighbourReversedRewrk();
+            System.out.println(nnr.berekenRoute(panel.getLocaties()) + " NearestNeighbourReversed Gesorteerde lijst");
+        }
     }
 
     private KeyListener keyListener = new KeyAdapter() {

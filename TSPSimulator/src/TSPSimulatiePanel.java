@@ -46,7 +46,7 @@ public class TSPSimulatiePanel extends JPanel {
         for (int z = 0; z <= aantalLocaties; z++) {
             int gridGetal = 10;
             Random rand = new Random();
-            gridGetal = 5;
+            gridGetal = 30;
             celX = this.getWidth() / gridGetal;
             celY = this.getHeight() / gridGetal;
 
