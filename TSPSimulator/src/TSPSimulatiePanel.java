@@ -65,10 +65,6 @@ public class TSPSimulatiePanel extends JPanel {
 
                 g.setColor(Color.RED);
                 g.fillOval((xRand) * celX, (yRand) * celX, celX, celX);
-
-                g.setColor(Color.black);
-                g.setFont(new Font("TimesRoman", Font.PLAIN, 20));
-                g.drawString(x + "", (xRand) * celX + (celX / 2), (yRand) * celX + (celX / 2));
             }
         }
         if(this.locatiesGesorteerd != null) {

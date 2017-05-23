@@ -12,6 +12,6 @@ public class Start {
         frame.createDisplay(locatiesOngesorteerd);
         System.out.println("________________________________________________");
 //        NearestNeighbourRework nn = new NearestNeighbourRework(frame.GenerateRoute(4));
-        NearestNeighbourReversedRewrk  nnrev = new NearestNeighbourReversedRewrk(frame.GenerateRoute(4));
+//        NearestNeighbourReversedRewrk  nnrev = new NearestNeighbourReversedRewrk(frame.GenerateRoute(4));
     }
 }

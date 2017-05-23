@@ -8,7 +8,7 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
     private JFrame frame;
     private String title;
     private int width, height;
-    private JButton btnBerekenRoute, btnNearestNeighbour, btnAntColony, btnUnwindNN, btnBruteForce;
+    private JButton btnBerekenRoute, btnNearestNeighbour, btnAntColony, btnUnwindNN, btnBruteForce, btnNNReversed;
     private JTextField jTextFieldGridGrootte, jTextFieldAantalLocaties, jTextFieldAantalTesten;
     private int aantalLocaties;
     private ArrayList<ArrayList<Integer>> outer = new ArrayList<>();
@@ -118,6 +118,20 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
                 return;
             }
             panel.setRoute(null);
+            panel.repaintPanel();
+        }
+        if (actionEvent.getSource() == btnNearestNeighbour){
+            NearestNeighbourRework nearestNeighbour = new NearestNeighbourRework();
+            this.revalidate();
+            ArrayList<ArrayList<Integer>> gesorteerdeLijst = nearestNeighbour.berekenRoute(panel.getLocaties());
+            panel.setRoute(gesorteerdeLijst);
+            panel.repaintPanel();
+        }
+        if (actionEvent.getSource() == btnNNReversed){
+            NearestNeighbourReversedRewrk nnReversed = new NearestNeighbourReversedRewrk();
+            this.revalidate();
+            ArrayList<ArrayList<Integer>> gesorteerdeLijst = nnReversed.berekenRoute(panel.getLocaties());
+            panel.setRoute(gesorteerdeLijst);
             panel.repaintPanel();
         }
         if (actionEvent.getSource() == btnBruteForce){
