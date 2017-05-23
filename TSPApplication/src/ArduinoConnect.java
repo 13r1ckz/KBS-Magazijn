@@ -36,7 +36,10 @@ public class ArduinoConnect implements SerialPortEventListener {
             serialPort = (SerialPort) portId.open(this.getClass().getName(),TIME_OUT);
             serialPort.setSerialPortParams(DATA_RATE, SerialPort.DATABITS_8, SerialPort.STOPBITS_1, SerialPort.PARITY_NONE);
             input = new BufferedReader(new InputStreamReader(serialPort.getInputStream()));
+
+
             output = serialPort.getOutputStream();
+
 
             serialPort.addEventListener(this);
             serialPort.notifyOnDataAvailable(true);
