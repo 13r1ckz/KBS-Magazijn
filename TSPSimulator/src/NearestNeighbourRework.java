@@ -4,6 +4,7 @@ import java.util.Collections;
 
 public class NearestNeighbourRework implements TSP {
     private ArrayList<ArrayList<Integer>> gesorteerd = new ArrayList<ArrayList<Integer>>();
+    private double totaleAfstand = 0;
 
     @Override
     public ArrayList<ArrayList<Integer>> berekenRoute(ArrayList<ArrayList<Integer>> locatiesOngesorteerd) {
@@ -22,18 +23,19 @@ public class NearestNeighbourRework implements TSP {
                 }
             }
             if (x == 0){
-                calcPyth(0, 0, rekenRoute.get(kortste).get(0), rekenRoute.get(kortste).get(1));
+                totaleAfstand += calcPyth(0, 0, rekenRoute.get(kortste).get(0), rekenRoute.get(kortste).get(1));
             }
             if (x == arrayListSize-1){
-                calcPyth(0, 0, rekenRoute.get(kortste).get(0), rekenRoute.get(kortste).get(1));
+                totaleAfstand += calcPyth(0, 0, rekenRoute.get(kortste).get(0), rekenRoute.get(kortste).get(1));
             }
-            System.out.println(rekenRoute.get(kortste).get(0) +" " + rekenRoute.get(kortste).get(1));
+//            System.out.println(rekenRoute.get(kortste).get(0) +" " + rekenRoute.get(kortste).get(1));
             ArrayList<Integer> inner = new ArrayList<>();
             inner.add(rekenRoute.get(kortste).get(0));
             inner.add(rekenRoute.get(kortste).get(1));
             gesorteerd.add(inner);
             int kortsteX = rekenRoute.get(kortste).get(0);
             int kortsteY = rekenRoute.get(kortste).get(1);
+            totaleAfstand += afstand;
             currentX = kortsteX;
             currentY = kortsteY;
             rekenRoute.remove(kortste);
@@ -42,11 +44,16 @@ public class NearestNeighbourRework implements TSP {
         zeroList.add(0);
         zeroList.add(0);
         gesorteerd.add(zeroList);
-        System.out.println(gesorteerd);
+//        System.out.println(gesorteerd);
         Collections.reverse(gesorteerd);
         gesorteerd.add(zeroList);
         Collections.reverse(gesorteerd);
         return gesorteerd;
+    }
+
+    @Override
+    public double getTotaleAfstand() {
+        return this.totaleAfstand;
     }
 
     @Override

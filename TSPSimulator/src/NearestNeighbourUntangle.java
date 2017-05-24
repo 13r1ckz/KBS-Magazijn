@@ -2,12 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Random;
-
-/**
- * Created by jaspe on 19-5-2017.
- */
-public class NextFitUnwind implements TSP{
-
+public class NearestNeighbourUntangle implements TSP {
     private static HashMap<String, ArrayList<Integer>> coordinates = new HashMap<>();
     private static ArrayList<Integer> coordinate = new ArrayList<>();
     private ArrayList<ArrayList<Integer>> gesorteerd = new ArrayList<ArrayList<Integer>>();
@@ -96,7 +91,9 @@ public class NextFitUnwind implements TSP{
             }
             catch (Exception nx){}
         }
-
+        for(int i = 0; i < finalList.size()-1; i++){
+            totalLength += this.calcPyth(finalList.get(i).get(0),finalList.get(i).get(1), finalList.get(i+1).get(0),finalList.get(i+1).get(1));
+        }
         return finalList;
     }
 
@@ -117,5 +114,10 @@ public class NextFitUnwind implements TSP{
         }
         double i = Math.pow(verschilX, 2) + Math.pow(verschilY, 2);
         return Math.sqrt(i);
+    }
+
+    @Override
+    public double getTotaleAfstand() {
+        return this.totalLength;
     }
 }

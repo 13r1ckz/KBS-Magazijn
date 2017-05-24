@@ -3,7 +3,7 @@ import java.util.Collections;
 
 public class NearestNeighbourReversedRewrk implements TSP {
     private ArrayList<ArrayList<Integer>> gesorteerd = new ArrayList<ArrayList<Integer>>();
-
+    private double totaleAfstand = 0;
 
     @Override
     public ArrayList<ArrayList<Integer>> berekenRoute(ArrayList<ArrayList<Integer>> locatiesOngesorteerd) {
@@ -11,7 +11,6 @@ public class NearestNeighbourReversedRewrk implements TSP {
         int arrayListSize = rekenRoute.size();
         int currentX = 0;
         int currentY = 0;
-        double totaleAfstand= 0;
         int startX = 0;
         int startY = 0;
 
@@ -25,10 +24,8 @@ public class NearestNeighbourReversedRewrk implements TSP {
                 int kortste = 0;
 
                 for (int i = 0; i < rekenRoute.size(); i++) {
-
                     if (afstand > calcPyth(currentX, currentY, rekenRoute.get(i).get(0), rekenRoute.get(i).get(1))) {
                         afstand = calcPyth(currentX, currentY, rekenRoute.get(i).get(0), rekenRoute.get(i).get(1));
-
                         kortste = i;
                     }
                 }
@@ -40,7 +37,7 @@ public class NearestNeighbourReversedRewrk implements TSP {
                 }
 
 
-                System.out.println(rekenRoute.get(kortste).get(0) + " " + rekenRoute.get(kortste).get(1));
+//                System.out.println(rekenRoute.get(kortste).get(0) + " " + rekenRoute.get(kortste).get(1));
                 ArrayList<Integer> innerGesorteerd;
                 innerGesorteerd = new ArrayList<>();
                 innerGesorteerd.add(rekenRoute.get(kortste).get(0));
@@ -77,7 +74,7 @@ public class NearestNeighbourReversedRewrk implements TSP {
                 gesorteerd.add(innerGesorteerd);
 
 
-                System.out.println(rekenRoute.get(langste).get(0) + " " + rekenRoute.get(langste).get(1));
+//                System.out.println(rekenRoute.get(langste).get(0) + " " + rekenRoute.get(langste).get(1));
 
                 int kortsteX = rekenRoute.get(langste).get(0);
                 int kortsteY = rekenRoute.get(langste).get(1);
@@ -96,6 +93,10 @@ public class NearestNeighbourReversedRewrk implements TSP {
         gesorteerd.add(zeroList);
         Collections.reverse(gesorteerd);
         return gesorteerd;
+    }
+    @Override
+    public double getTotaleAfstand() {
+        return totaleAfstand;
     }
 
     @Override
