@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * Created by jaspe on 19-5-2017.
  */
-public class NextFitUnwind implements TSP{
+public class NextFitUnwind implements TSP {
 
     private static HashMap<String, ArrayList<Integer>> coordinates = new HashMap<>();
     private static ArrayList<Integer> coordinate = new ArrayList<>();
