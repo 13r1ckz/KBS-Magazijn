@@ -5,20 +5,13 @@ public class Start {
     public static void main(String[] ag) {
 
 
-//       NearestNeighbourReversed nnreversed = new NearestNeighbourReversed();
-        NearestNeighbourRework nn = new NearestNeighbourRework();
-        BruteForce bruteforce = new BruteForce();
-        NearestNeighbourReversedRewrk nnr = new NearestNeighbourReversedRewrk();
+        TSPSimulatieFrame frame = new TSPSimulatieFrame("TSP Simulator",620, 800);
 
-        TSPSimulatieFrame frame = new TSPSimulatieFrame("TSP Simulator" , 620, 800, bruteforce, nn, nnr);
-
-        ArrayList<ArrayList<Integer>> locatiesOngesorteerd = frame.GenerateRoute(4);
+        ArrayList<ArrayList<Integer>> locatiesOngesorteerd = frame.GenerateRoute(5);
 
         frame.createDisplay(locatiesOngesorteerd);
         System.out.println("________________________________________________");
-
-
-
-
+//        NearestNeighbourRework nn = new NearestNeighbourRework(frame.GenerateRoute(4));
+        NearestNeighbourReversedRewrk  nnrev = new NearestNeighbourReversedRewrk(frame.GenerateRoute(4));
     }
 }
