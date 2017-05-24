@@ -12,7 +12,7 @@ import java.util.Enumeration;
 public class ArduinoConnect implements SerialPortEventListener {
 
     public SerialPort serialPort;
-    private static final String PORT_NAMES[] = {"COM4"};
+    private static final String PORT_NAMES[] = {"COM6"};
     public static BufferedReader input;
     public static OutputStream output;
     public static final int TIME_OUT = 2000;
@@ -20,10 +20,12 @@ public class ArduinoConnect implements SerialPortEventListener {
     private int a = 0;
     private char x;
     private int list;
+    private TSPPanel paneel;
 
-    public ArduinoConnect(int list, ArrayList<ArrayList<Integer>> producten){
+
+    public ArduinoConnect(int list, ArrayList<ArrayList<Integer>> producten,TSPPanel paneel){
         this.list = list;
-
+        this.paneel = paneel;
     }
 
     public void initialize() {
@@ -70,6 +72,8 @@ public class ArduinoConnect implements SerialPortEventListener {
         if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
             try {
                 int in = input.read();
+                //Stuur data naar tekenpanel
+                paneel.grid.shiftOut(in);
                 //Check if ARDUINO gives P
                 if(in == 112){
                     System.out.println("ARDUINO gave back " + (char) in);

@@ -49,7 +49,7 @@ public class Start {
             Jpan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
             //arduinoconnect object aangemaakt.
-            ArduinoConnect obj = new ArduinoConnect(o.getoOrder().size(), o.getoOrder());
+            ArduinoConnect obj = new ArduinoConnect(o.getoOrder().size(), o.getoOrder(),Jpan);
             obj.initialize();
             System.out.println(algoritme.getGesorteerd());
             // IN TSPNN.JAVA WORDT ARRAYLIST GESORTEERD GERETURNED. GESORTEERD IS NOG LEEG EN MOET AAN ONGESORTEERDE ARRAYLIST DIE GESORTEERD MOETEN WORDEN GEZET.

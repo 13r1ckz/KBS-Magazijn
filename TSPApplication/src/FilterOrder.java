@@ -19,18 +19,21 @@ public class FilterOrder {
     public void ArduinoSend() throws IOException {
         int x = 0;
         int y = 0;
+        String coordinaten = "";
         ArduinoConnect.writeData(String.valueOf(xList.size()));
         for(int i = 0; i < (xList.size() * 2); i++) {
             while (i < xList.size()) {
-                ArduinoConnect.writeData(String.valueOf(xList.get(x)));
+                coordinaten += (String.valueOf(xList.get(x)));
+
                 x++;
                 i++;
             }
             while (i >= xList.size() && i <= (xList.size() * 2)- 1){
-                ArduinoConnect.writeData(String.valueOf(yList.get(y)));
+                coordinaten += (String.valueOf(yList.get(y)));
                 y++;
                 i++;
             }
+            ArduinoConnect.writeData(coordinaten);
         }
     }
 }

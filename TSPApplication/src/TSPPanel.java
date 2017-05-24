@@ -3,6 +3,9 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class TSPPanel extends JFrame {
+
+    protected TekenPanel grid;
+
     public TSPPanel(ArrayList<ArrayList<Integer>> artikelCount, ArrayList<ArrayList<String>> ArticleList, ArrayList<ArrayList<String>> orderData, ArrayList<ArrayList<Integer>> route ) {
         ArrayList<ArrayList<Integer>> artlist = artikelCount;
         ArrayList<ArrayList<String>> Ulist = ArticleList;
@@ -12,7 +15,7 @@ public class TSPPanel extends JFrame {
         setLayout(layout);
 
         // grid panel
-        TekenPanel grid = new TekenPanel(1081, 701, 5, 6, artlist, route);
+        grid = new TekenPanel(1081, 701, 5, 6, artlist, route);
         add(grid);
         // pakbon
         Pakbon pak = new Pakbon(701, Ulist, Olist);
