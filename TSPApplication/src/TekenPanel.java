@@ -64,6 +64,7 @@ class TekenPanel extends Canvas {
         g.fillRect(0, 0, 180, 560);
         g.setColor(Color.BLACK);
         g.drawString("BPP", 85, 635);
+
         //Draw location red
         for (x = 0; x < artCount; x++) {
             g.setColor(Color.RED);
@@ -82,10 +83,11 @@ class TekenPanel extends Canvas {
             g.setColor(Color.black);
             g.drawRect(((aList.get(x).get(1) + 1) * XH) - XH, 560 - ((aList.get(x).get(2) * YW) - YW), 180, 140);
         }
-
         //Draw travel route
         g.setColor(Color.BLUE);
         g.drawLine(90, 640, (((Route.get(0).get(0) + 1) * XH) - XH) + 85, 635 - ((Route.get(0).get(1) * YW) - YW));
+
+              
 
         for (x = 0; x < p; x++) {
             if (p < Route.size()) {
