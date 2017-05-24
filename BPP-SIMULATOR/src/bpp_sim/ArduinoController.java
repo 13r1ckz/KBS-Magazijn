@@ -10,7 +10,9 @@ import java.io.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
+import javax.swing.JOptionPane;
 import javax.swing.Timer;
 
 public class ArduinoController  implements SerialPortEventListener, ActionListener {
@@ -19,13 +21,17 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
         private final int[] list;
         private int a = 0;
         private final ControllerFrame cFrame;
+        private int size_of_input = 0;
+        private int current_box_list = 0;
+        private ArrayList<ArrayList<Doos>> allBoxes;
+        private ArrayList<ArrayList<Product>> allProducts;
         
         /** The port we're normally going to use. */
 	private static final String PORT_NAMES[] = { 
 			"/dev/tty.usbserial-A9007UX1", // Mac OS X
                         "/dev/ttyACM0", // Raspberry Pi
 			"/dev/ttyUSB0", // Linux
-			"COM11", // Windows
+			"COM5", // Windows
 	};
 	private BufferedReader input;
 	private OutputStream output;
@@ -33,22 +39,44 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
 	private static final int DATA_RATE = 9600;
         
         /* constructor */
-        public ArduinoController(int[] list, ArrayList<Product> producten, ArrayList<Doos> dozen) throws IOException
+        public ArduinoController(ArrayList<ArrayList<Doos>> allDozen, ArrayList<ArrayList<Product>> allProducten) throws IOException
         {
-            this.list = list;
+            allBoxes = allDozen;
+            allProducts = allProducten;
+            size_of_input = allProducten.size()-1;
             tmr = new Timer(5000, this);
-            cFrame = new ControllerFrame(dozen,producten);
+            cFrame = new ControllerFrame(allBoxes.get(0),allProducts.get(0));
             cFrame.setVisible(true);
+            list = new int[3];
+            this.writeList(allProducten.get(0));
             this.initialize();
         }
-
+        
+        private void newList(){
+            System.out.println("NEW LIST!" + current_box_list);
+            cFrame.newBox(allBoxes.get(current_box_list),allProducts.get(current_box_list));
+            this.writeList(allProducts.get(current_box_list));
+        }
+        
+        public void writeList(ArrayList<Product> producten){
+            for(int i = 0; i < 3; i++){
+                try{
+                    list[i] = producten.get(i).getDirection();
+                }
+                catch(Exception e){
+                    list[i] = 0;
+                }
+            }
+            System.out.println(Arrays.toString(list));
+        }
+        
         public void start(){
         }
         
         /* initialize the port */
 	public void initialize()
         {
-                System.setProperty("gnu.io.rxtx.SerialPorts", "COM11");
+                System.setProperty("gnu.io.rxtx.SerialPorts", "COM5");
 
 		CommPortIdentifier portId = null;
 		Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
@@ -102,6 +130,7 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
 	}
 
         /* serial event */
+        @Override
 	public synchronized void serialEvent(SerialPortEvent oEvent)
         {
             
@@ -114,19 +143,14 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
                             System.out.println();
                             cFrame.getImage().setImage("WAIT_FOR_INPUT");
                             a++;
+                            System.out.println("Package " + current_box_list + "/" + size_of_input);
+                            System.out.println("Product " + a + "/" + list.length + " delivered.");
+                            
                             if(a == list.length){
-                            x = (char) 'E';
-                            System.out.println("All blocks have been pushed! Writing "+ x +" TO OUTPUT...");
-                            try
-                            {
-                            output = serialPort.getOutputStream();
-                            output.write(x);
-                            System.out.println("Written to! Waiting for ARDUINO output...");
-                            }
-                            catch (IOException | NullPointerException nx){
-                            System.out.println("Could not find COM port / An error has occured.");
-                            cFrame.getImage().setImage("ERROR");
-                            }
+                                a = 0;
+                                current_box_list += 1;
+                                this.newList();
+                                JOptionPane.showMessageDialog(null, "Switch the boxes!");
                             }
                         }
                         // X - event.
@@ -135,8 +159,8 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
                         }
                         // O - event.
                         if(in == 79){
-                            System.out.println("All OK!");
                             cFrame.getImage().setImage("OK");
+                            System.out.println("All OK!");
                         }
                     } catch (IOException ex) {}
 		}
@@ -145,7 +169,17 @@ public class ArduinoController  implements SerialPortEventListener, ActionListen
         char x;
         
         public void shiftOut(){
-            x = (char) (list[a]+48);
+            /* Get the list and test if it is even or uneven. */
+            if(list[a] % 2 == 1){
+                x = '1';
+            }
+            else{
+                x = '2';
+            }
+            /* if the list is 0, STOP! */
+            if(list[a] == 0){
+                x = 'E';
+            }
             String dir = "null";
             if(x == '1'){
                 cFrame.getImage().setImage("RIGHT");
