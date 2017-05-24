@@ -3,3 +3,10 @@
 [Wed May 24 10:16:58.656518 2017] [core:notice] [pid 11768:tid 760] AH00094: Command line: 'C:\\Users\\arend\\OneDrive - Windesheim Office365\\school\\KBS2A ROBOT\\KBS-Magazijn\\USBWebserver v8.6/apache2/bin/httpd_usbwv8.exe -d C:/Users/arend/OneDrive - Windesheim Office365/school/KBS2A ROBOT/KBS-Magazijn/USBWebserver v8.6/apache2'
 [Wed May 24 10:16:58.685599 2017] [mpm_winnt:notice] [pid 11768:tid 760] AH00418: Parent: Created child process 12972
 [Wed May 24 10:16:59.620996 2017] [mpm_winnt:notice] [pid 12972:tid 832] AH00354: Child: Starting 64 worker threads.
+[Wed May 24 13:50:30.370830 2017] [core:warn] [pid 6896:tid 604] AH00098: pid file C:/Users/arend/OneDrive - Windesheim Office365/school/KBS2A ROBOT/KBS-Magazijn/USBWebserver v8.6/apache2/logs/httpd.pid overwritten -- Unclean shutdown of previous Apache run?
+[Wed May 24 13:50:31.166094 2017] [mpm_winnt:notice] [pid 6896:tid 604] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
+[Wed May 24 13:50:31.166094 2017] [mpm_winnt:notice] [pid 6896:tid 604] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
+[Wed May 24 13:50:31.166094 2017] [core:notice] [pid 6896:tid 604] AH00094: Command line: 'C:\\Users\\arend\\OneDrive - Windesheim Office365\\school\\KBS2A ROBOT\\KBS-Magazijn\\USBWebserver v8.6/apache2/bin/httpd_usbwv8.exe -d C:/Users/arend/OneDrive - Windesheim Office365/school/KBS2A ROBOT/KBS-Magazijn/USBWebserver v8.6/apache2'
+[Wed May 24 13:50:31.170103 2017] [mpm_winnt:notice] [pid 6896:tid 604] AH00418: Parent: Created child process 15012
+[Wed May 24 13:50:32.293321 2017] [mpm_winnt:notice] [pid 15012:tid 784] AH00354: Child: Starting 64 worker threads.
+[Wed May 24 13:50:39.587360 2017] [:error] [pid 15012:tid 1300] [client ::1:52177] PHP Notice:  Undefined index: name in C:\\Users\\arend\\OneDrive - Windesheim Office365\\school\\KBS2A ROBOT\\KBS-Magazijn\\USBWebserver v8.6\\root\\index.php on line 85

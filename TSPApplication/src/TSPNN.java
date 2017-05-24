@@ -7,23 +7,32 @@ public class TSPNN implements TSPAlgoritme {
     private ArrayList<ArrayList<Integer>> gesorteerd = new ArrayList<ArrayList<Integer>>();
     private ArrayList<Integer> sortInner = new ArrayList<Integer>();
     public TSPNN(ArrayList<ArrayList<Integer>> ongesorteerd) {
+
+
+
             arrayListSize = ongesorteerd.size();
         //bereken verschil tussen de vorige en de huidige afstand in de loop, als verschil kleiner is overschrijft hij de kortste afstand.
         for (int x = 0; x < arrayListSize; x++) {
-            int afstand = 100;
+            double afstand = 100;
             int kortste = 0;
             //We gaan hier langs al onze producten en onthouden degene met de kortste afstand.
             int currentX = 1;
             int currentY = 0;
             for (i = 0; i < ongesorteerd.size(); i++) {
 
-                if (afstand > DifCalc(currentX, ongesorteerd.get(i).get(1)) + DifCalc(currentY, ongesorteerd.get(i).get(2))) {
-                    afstand = DifCalc(currentX, ongesorteerd.get(i).get(1)) + DifCalc(currentY, ongesorteerd.get(i).get(2));
+                if (afstand > calcPyth(currentX, currentY , ongesorteerd.get(i).get(1) , ongesorteerd.get(i).get(2))){
+
+                    afstand = calcPyth(currentX, currentY, ongesorteerd.get(i).get(1),  ongesorteerd.get(i).get(2));
+
                     kortste = i;
+
                     artikelnr = ongesorteerd.get(i).get(0);
 
                 }
             }
+
+
+
                 //pak x, y en de afstand van het artikel met de korste afstand berekent in bovenstaande loop.
                     int kortsteX = ongesorteerd.get(kortste).get(1);
                     int kortsteY = ongesorteerd.get(kortste).get(2);
@@ -35,6 +44,7 @@ public class TSPNN implements TSPAlgoritme {
                     sortInner = new ArrayList<Integer>();
                     ongesorteerd.remove(kortste);
                 }
+
         }
     public int DifCalc(int x, int y) {
         if (x != y) {
@@ -42,6 +52,22 @@ public class TSPNN implements TSPAlgoritme {
         } else {
             return 0;
         }
+    }
+    public double calcPyth(int beginX, int beginY, int eindX, int eindY) {
+        int verschilX;
+        int verschilY;
+        if (beginX != eindX) {
+            verschilX = Math.max(beginX, eindX) - Math.min(beginX, eindX);
+        } else {
+            verschilX = 0;
+        }
+        if (beginY != eindY) {
+            verschilY = Math.max(beginY, eindY) - Math.min(beginY, eindY);
+        } else {
+            verschilY = 0;
+        }
+        double i = Math.pow(verschilX, 2) + Math.pow(verschilY, 2);
+        return Math.sqrt(i);
     }
     @Override
     public ArrayList<ArrayList<Integer>> berekenRoute() {

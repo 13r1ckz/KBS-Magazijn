@@ -13,7 +13,6 @@ public class Start {
             //ArduinoConnect.writeData(String); De form is uitgecomment omdat de form niet echt meer gebruikt wordt.
             // Hij kan wel aangepast worden op een manier waarvan je de pannel erin maakt.
 
-//            Form f = new Form();
 
 
             //Hier wordt een ReadXML object aangemaakt, deze heeft de functie createOrder, hiermee lees je de XML in,
@@ -51,7 +50,7 @@ public class Start {
             //arduinoconnect object aangemaakt.
             ArduinoConnect obj = new ArduinoConnect(o.getoOrder().size(), o.getoOrder(),Jpan);
             obj.initialize();
-            System.out.println(algoritme.getGesorteerd());
+            System.out.println(algoritme.getGesorteerd() + " he test");
             // IN TSPNN.JAVA WORDT ARRAYLIST GESORTEERD GERETURNED. GESORTEERD IS NOG LEEG EN MOET AAN ONGESORTEERDE ARRAYLIST DIE GESORTEERD MOETEN WORDEN GEZET.
             FilterOrder ordersend = new FilterOrder(algoritme.getGesorteerd());
             ordersend.ArduinoSend();
