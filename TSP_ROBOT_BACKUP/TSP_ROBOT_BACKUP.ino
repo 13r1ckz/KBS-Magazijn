@@ -8,6 +8,8 @@ boolean heen = true;
 boolean first = true;
 int aantal;
 int x = 0;
+boolean eerste = true;
+boolean start = false;
 boolean complete = false;
 int snelheidv = 210;
 int snelheida = 220;
@@ -15,6 +17,8 @@ boolean gaterug = false;
 int aantalproducten;
 int firstloop = 0;
 int m = 0;
+int coorx[127];
+int coory[127];
 
 void setup() {
   pinMode(4, OUTPUT);
@@ -30,14 +34,14 @@ void loop() {
 
 
 
-  int ding[3] = {1, 3, 5,};
-  int dingy[3] = {2, 3, 4,};
+  //int ding[3] = {1, 3, 5,};
+  //int dingy[3] = {2, 3, 4,};
 
 
-  while (m < 3) {
+  while (m < aantal) {
     Serial.println(gaterug);
-    doelx = ding[m];
-    doely = dingy[m];
+    doelx = coorx[m];
+    doely = coory[m];
 
     if (locatiex <= doelx) {
       heen = true;
@@ -235,4 +239,44 @@ void loop() {
   }
 }
 
+void serialEvent() {
+  while (Serial.available()) {
+    if (eerste == true) {
+      aantal = Serial.read();
+      eerste = false;
+      Serial.println(aantal);
+    }
 
+    //Generate locations based on length
+    if (eerste == false) {
+      Serial.println("int the false");
+      Serial.println(aantal);
+      //wait for input;
+      while (Serial.available() == 0) { }
+
+      //make corect orders
+      for (int i = 0; i < aantal - 48; i++) {
+        coorx[i] = Serial.read() - 48;
+        delay(1);
+        Serial.print("X: ");
+        Serial.println(coorx[i]);
+        Serial.print("aantal: ");
+        Serial.println(aantal);
+        Serial.print("3 ");
+        Serial.println(Serial.available());
+      }
+
+      for (int i = 0; i < aantal - 48; i++) {
+        coory[i] = Serial.read() - 48;
+        delay(1);
+        Serial.print("Y: ");
+        Serial.println(coory[i]);
+        Serial.print("aantal: ");
+        Serial.println(aantal);
+        Serial.print("4 ");
+        Serial.println(Serial.available());
+      }
+      start = true;
+    }
+  }
+}
