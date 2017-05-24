@@ -11,6 +11,9 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
     private int width, height;
     private JButton btnMeerdereTesten,btnBerekenRouteSecondFrame,btnMindereTesten,btnBerekenRoute, btnNearestNeighbour, btnAntColony, btnUnwindNN, btnBruteForce, btnNNReversed;
     private JTextField jTextFieldGridGrootte, jTextFieldAantalLocaties, jTextFieldAantalTesten;
+    private JTextField jTF_multi_hoeveelheid, jTF_multi_locaties;
+    private JLabel jamtNN, jamtNNR, jamtBF, jamtNNU;
+    private JLabel jgemNN, jgemNNR, jgemBF, jgemNNU;
     private int aantalLocaties;
     private ArrayList<ArrayList<Integer>> outer = new ArrayList<>();
     private ArrayList<ArrayList<Integer>> locatiesOngesorteerd = new ArrayList<>();
@@ -19,6 +22,7 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
     private boolean showFirstFrame = true;
     private double totaleAfstandNNReversed, totaleAfstandNN, totaleAfstandBruteForce, totaleAfstandUntangle;
     private double gemiddeldeNNReversed, gemiddeldeNN, gemiddeldeBruteForce, gemiddeldeUntangle;
+    private GridBagConstraints c = new GridBagConstraints();
 
     public TSPSimulatieFrame(String title, int width, int height) {
         this.title = title;
@@ -80,23 +84,26 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
         frame.setJMenuBar(menuBar);
         //if first frame must be shown, initialize components
         if(showFirstFrame) {
+            /* Create buttons */
             btnBerekenRoute = new JButton("Bereken punten");
-            btnBerekenRoute.addActionListener(this);
             btnNearestNeighbour = new JButton("Nearest neighbour");
-            btnNearestNeighbour.addActionListener(this);
             btnNNReversed = new JButton("Reversed nearest neighbour");
-            btnNNReversed.addActionListener(this);
-            btnUnwindNN = new JButton("Unwind NN");
-            btnUnwindNN.addActionListener(this);
+            btnUnwindNN = new JButton("Untangle NN");
             btnBruteForce = new JButton("Brute force");
-
             JLabel jLabelAantalLocaties = new JLabel("Aantal locaties ");
             JLabel jLabelGridGrootte = new JLabel("Gridgrootte");
             jTextFieldAantalLocaties = new JTextField(10);
-            jTextFieldAantalLocaties.addKeyListener(keyListener);
             jTextFieldGridGrootte = new JTextField(10);
-            jTextFieldGridGrootte.addKeyListener(keyListener);
             panel = new TSPSimulatiePanel(this, locatiesOngesorteerd);
+            /* Add ActionListeners */
+            btnBerekenRoute.addActionListener(this);
+            btnNearestNeighbour.addActionListener(this);
+            btnNNReversed.addActionListener(this);
+            btnUnwindNN.addActionListener(this);
+            btnBruteForce.addActionListener(this);
+            jTextFieldAantalLocaties.addKeyListener(keyListener);
+            jTextFieldGridGrootte.addKeyListener(keyListener);
+            /* Set locations */
             panel.setLocaties(locatiesOngesorteerd);
             frame.add(panel);
             frame.add(jLabelAantalLocaties);
@@ -108,28 +115,63 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
             frame.add(btnNNReversed);
             frame.add(btnUnwindNN);
             frame.add(btnBruteForce);
-            btnBruteForce.addActionListener(this);
             panel.setGridGetal(5);
             frame.setLayout(new FlowLayout());
-
-        } else {
-            frame.setLayout(new FlowLayout());
-            JLabel jLabelAantalLocaties = new JLabel("Aantal locaties ");
-            jTextFieldAantalLocaties.addKeyListener(keyListener);
-
-            JLabel jLabelAantalTesten = new JLabel("Aantal testen");
-            jTextFieldAantalTesten = new JTextField(4);
-            jTextFieldAantalTesten.addKeyListener(keyListener);
-
-            btnBerekenRouteSecondFrame = new JButton("Bereken");
-            btnBerekenRouteSecondFrame.addActionListener(this);
-            frame.add(jLabelAantalLocaties);
-            frame.add(jTextFieldAantalLocaties);
-            frame.add(jLabelAantalTesten);
-            frame.add(jTextFieldAantalTesten);
-            frame.add(btnBerekenRouteSecondFrame);
+            frame.setSize(width, height);
         }
+        /* Second frame */
+        else {
+            GridBagLayout layout = new GridBagLayout();
+            layout.setConstraints(this,c);
+            frame.setLayout(layout);
 
+            /* Create components */
+            jTF_multi_hoeveelheid = new JTextField(5);
+            jTF_multi_locaties = new JTextField(5);
+            btnBerekenRouteSecondFrame = new JButton("Bereken");
+
+            jamtNN = new JLabel();
+            jamtNNR = new JLabel();
+            jamtNNU = new JLabel();
+            jamtBF = new JLabel();
+
+            jgemNN = new JLabel();
+            jgemNNR = new JLabel();
+            jgemNNU = new JLabel();
+            jgemBF = new JLabel();
+
+            /* Add key lsiteners */
+            jTF_multi_hoeveelheid.addKeyListener(keyListener);
+            jTF_multi_locaties.addKeyListener(keyListener);
+            btnBerekenRouteSecondFrame.addActionListener(this);
+
+            /* Add components to frame */
+            //Top row
+            this.addComp(new JLabel("Aantal locaties",SwingConstants.CENTER),150,35,0,0,1,1);
+            this.addComp(jTF_multi_locaties,150,35,1,0,1,1);
+            this.addComp(new JLabel("Aantal testen",SwingConstants.CENTER),150,35,2,0,1,1);
+            this.addComp(jTF_multi_hoeveelheid,150,35,3,0,1,1);
+            this.addComp(btnBerekenRouteSecondFrame,150,35,4,0,1,1);
+            //Bottom rows
+            this.addComp(new JLabel("<html><h3 style=\"text-align:center\">Nearest Neighbor</h3></html>",SwingConstants.CENTER),150,50,0,1,1,1);
+            this.addComp(jamtNN,300,50,1,1,2,1);
+            this.addComp(jgemNN,300,50,3,1,2,1);
+
+            this.addComp(new JLabel("<html><h3 style=\"text-align:center\">Nearest Neighbor Reversed</h3></html>",SwingConstants.CENTER),150,50,0,2,1,1);
+            this.addComp(jamtNNR,300,50,1,2,2,1);
+            this.addComp(jgemNNR,300,50,3,2,2,1);
+
+            this.addComp(new JLabel("<html><h3 style=\"text-align:center\">Nearest Neighbor Untangled</h3></html>",SwingConstants.CENTER),150,50,0,3,1,1);
+            this.addComp(jamtNNU,300,50,1,3,2,1);
+            this.addComp(jgemNNU,300,50,3,3,2,1);
+
+            this.addComp(new JLabel("<html><h3 style=\"text-align:center\">Brute Force</h3></html>",SwingConstants.CENTER),150,50,0,4,1,1);
+            this.addComp(jamtBF,300,50,1,4,2,1);
+            this.addComp(jgemBF,300,50,3,4,2,1);
+
+            frame.revalidate();
+            frame.pack();
+        }
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         frame.setVisible(true);
     }
@@ -168,19 +210,21 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
         }
         //Calculate route multiple times
         if (actionEvent.getSource() == btnBerekenRouteSecondFrame) {
-            int aantaltesten = 0;
-            try {
-                aantaltesten = Integer.parseInt(jTextFieldAantalTesten.getText());
-            }
-            catch(NumberFormatException e) {
 
-            }
+            /* Store the amount of tests into an integer */
+            int aantaltesten = 0;
+            try {aantaltesten = Integer.parseInt(jTF_multi_hoeveelheid.getText());}
+            catch(NumberFormatException e) {}
+
+            /* Doe dit zo veel keer. */
             for(int x = 0; x <= aantaltesten; x++) {
+                //Print waar hij is
                 System.out.println(x);
                 outer = new ArrayList<>();
                 try {
-                    panel.setGridGetal(aantaltesten);
-                    panel.setLocaties(GenerateRoute(aantaltesten));
+                    int locaties = Integer.parseInt(jTF_multi_locaties.getText());
+                    panel.setGridGetal(locaties);
+                    panel.setLocaties(GenerateRoute(locaties));
                     //NN REVERSED
                     NearestNeighbourReversedRewrk nnReversed = new NearestNeighbourReversedRewrk();
                     nnReversed.berekenRoute(panel.getLocaties());
@@ -217,6 +261,30 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
                 System.out.println(gemiddeldeBruteForce + " gemiddelde afstand Brute Force");
                 System.out.println(gemiddeldeUntangle + " gemiddelde afstand Untangle");
             }
+            //Zet JLabels naar variabelen
+
+            jamtNN.setText("Tot. afstand NN = " + Double.toString(totaleAfstandNN));
+            jgemNN.setText("Gem. afstand NN = " + Double.toString(gemiddeldeNN));
+
+            jamtNNR.setText("Tot. afstand NN Reversed = " + Double.toString(totaleAfstandNNReversed));
+            jgemNNR.setText("Gem. afstand NN Reversed = " + Double.toString(gemiddeldeNNReversed));
+
+            jamtNNU.setText("Tot. afstand NN Untangled = " + Double.toString(totaleAfstandUntangle));
+            jgemNNU.setText("Gem. afstand NN Untangled = " + Double.toString(gemiddeldeUntangle));
+
+            jamtBF.setText("Tot. afstand Brute Force = " + Double.toString(totaleAfstandBruteForce));
+            jgemBF.setText("Gem. afstand Brute Force = " + Double.toString(gemiddeldeBruteForce));
+
+            //Zet alles weer naar 0
+            totaleAfstandNNReversed = 0;
+            totaleAfstandNN = 0 ;
+            totaleAfstandBruteForce = 0;
+            totaleAfstandUntangle = 0;
+
+            gemiddeldeNNReversed = 0;
+            gemiddeldeNN = 0 ;
+            gemiddeldeBruteForce = 0;
+            gemiddeldeUntangle = 0;
         }
         if (actionEvent.getSource() == btnNearestNeighbour){
             NearestNeighbourRework nearestNeighbour = new NearestNeighbourRework();
@@ -246,6 +314,16 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
             panel.setRoute(gesorteerdeLijst);
             panel.repaintPanel();
         }
+    }
+
+    private void addComp(Component cp, int xsize, int ysize, int xpos, int ypos, int gridwidth, int gridheight)
+    {
+        c.gridx = xpos;
+        c.gridy = ypos;
+        c.gridwidth = gridwidth;
+        c.gridheight = gridheight;
+        cp.setPreferredSize(new Dimension(xsize,ysize));
+        frame.add(cp, c);
     }
 
     private KeyListener keyListener = new KeyAdapter() {
