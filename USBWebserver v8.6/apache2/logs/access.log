@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ::1 - - [24/May/2017:13:50:37 +0200] "GET / HTTP/1.1" 200 3466
 ::1 - - [24/May/2017:13:50:40 +0200] "GET /favicon.ico HTTP/1.1" 404 209
 ::1 - - [24/May/2017:13:50:43 +0200] "GET /phpmyadmin HTTP/1.1" 301 241
@@ -28,3 +29,5 @@
 ::1 - - [24/May/2017:13:51:01 +0200] "GET /phpmyadmin/themes/pmahomme/img/col_drop.png HTTP/1.1" 200 132
 ::1 - - [24/May/2017:13:51:01 +0200] "GET /phpmyadmin/index.php?ajax_request=1&recent_table=1&token=4512b4a184952a8432abb2d7c7a58894 HTTP/1.1" 200 224
 ::1 - - [24/May/2017:14:40:03 +0200] "GET /phpmyadmin/sql.php?db=magazijnrobot&table=product&sql_query=SELECT+%2A+FROM+%60product%60%0AORDER+BY+%60product%60.%60product_locationX%60+ASC&session_max_rows=30&token=4512b4a184952a8432abb2d7c7a58894&ajax_request=true&ajax_page_request=true&menuHashes=da950654-81ac7cfc&_nocache=1495629603188536941 HTTP/1.1" 200 292
+=======
+>>>>>>> TSPAplication
