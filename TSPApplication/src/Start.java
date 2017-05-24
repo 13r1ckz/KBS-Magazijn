@@ -11,10 +11,13 @@ public class Start {
         try {
             ReadXML read = new ReadXML();
             Order o = read.createOrder("bestelling.xml");
+
             DBConnect DBConnection = new DBConnect(read.getArtikelLijst());
+
             ArrayList<ArrayList<Integer>> artikelsOngesorteerd = DBConnection.getLocaties();
             o.setOngesorteerd(artikelsOngesorteerd);
             o.setoOrder(artikelsOngesorteerd);
+
             TSPNN algoritme = new TSPNN(o.getOngesorteerd());
             TSPPanel Jpan = new TSPPanel(o.getoOrder(), read.getuData(), DBConnection.getProductList(), algoritme.getGesorteerd());
             Jpan.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
