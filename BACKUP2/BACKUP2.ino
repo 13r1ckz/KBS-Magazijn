@@ -27,26 +27,28 @@ void setup() {
   Serial.begin(9600);
 }
 void loop() {
-
-
+//sets all coordinates
 
   int ding[3] = {1, 3, 5};
   int dingy[3] = {2, 3, 4};
-
-
+  
+//loops coordinates
   while (m < 3) {
     Serial.println(locatiex);
     doelx = ding[m];
     doely = dingy[m];
 
+//checks wich way to go
     if (locatiex <= doelx) {
       heen = true;
     } else if (locatiex >= doelx) {
       heen = false;
     }
 
-    //XAS motion
+    //XAS motion,
+    //safty check
     if (doely == 1 || gehaalty == true) {
+      //check if target is reached
       if (locatiex == doelx && heen == true) {
         if (analogRead(A0) <= 500) {
           gehaaltx = true;
@@ -68,6 +70,7 @@ void loop() {
           digitalWrite(4, HIGH);
           analogWrite(5, 150);
         }
+        //check is target is smaller than location
       } else if (locatiex <= doelx) {
         digitalWrite (13, HIGH);
         if (analogRead(A0) <= 700 && first == true) {
@@ -90,6 +93,7 @@ void loop() {
           digitalWrite(4, HIGH);
           analogWrite(5, snelheidv);
         }
+        //check is target is bigger than location
       } else if (locatiex > doelx) {
         digitalWrite (13, HIGH);
         if (analogRead(A0) <= 700 && first == true) {
@@ -150,6 +154,7 @@ void loop() {
     }
 
     //ZAS pick up
+    // pickes up a item
     if (gehaalty == true && gehaaltx == true && gaterug == false && locatiex != 0) {
       Serial.println("p");
       digitalWrite(13, LOW);
@@ -186,7 +191,7 @@ void loop() {
       m++;
     }
   }
-
+// set return to home action
   doelx = -1;
   doely = 2;
   gaterug = true;
@@ -244,6 +249,7 @@ void loop() {
     }
   }
   // drop
+  // drops items in soorter
   if (gehaalty == true && gehaaltx == true && locatiex <=0 && gaterug == true && complete == false) {
     digitalWrite(13 , LOW);
     digitalWrite(4, LOW);
