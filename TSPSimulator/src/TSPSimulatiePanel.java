@@ -54,14 +54,12 @@ public class TSPSimulatiePanel extends JPanel {
                 g.drawLine(0, celX * i, (gridGetal) * celY, celY * i);
                 g.drawLine(celY * i, 0, celX * i, (gridGetal) * celX);
 
-            }
-            g.drawRect(0, 0, (celX * gridGetal) - 1, (celX * gridGetal) - 1);
-
-            //tekent lijnen
-            for (int x = 0; x <= this.locaties.size() - 1; x++) {
-                Random r = new Random();
-                int xRand = locaties.get(x).get(0);
-                int yRand = locaties.get(x).get(1);
+        g.setColor(Color.BLACK);
+        for (int i = 0; i < gridGetal; i++) {
+            g.drawLine(0, celX * i, (gridGetal) * celY, celY * i);
+            g.drawLine(celY * i, 0, celX * i, (gridGetal) * celX);
+        }
+        g.drawRect(0, 0, (celX * gridGetal) - 1, (celX * gridGetal) - 1);
 
                 g.setColor(Color.RED);
                 g.fillOval((xRand) * celX, (yRand) * celX, celX, celX);

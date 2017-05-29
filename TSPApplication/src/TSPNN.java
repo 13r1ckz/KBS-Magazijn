@@ -1,126 +1,76 @@
 import java.util.ArrayList;
 
 public class TSPNN implements TSPAlgoritme {
-    private ArrayList<Integer> sOrder = new ArrayList<Integer>();
+    private int i;
+    private int artikelnr;
+    private int arrayListSize;
     private ArrayList<ArrayList<Integer>> gesorteerd = new ArrayList<ArrayList<Integer>>();
-    private int antalOrder;
+    private ArrayList<Integer> sortInner = new ArrayList<Integer>();
+    private int currentX = 1;
+    private int currentY = 0;
+
     public TSPNN(ArrayList<ArrayList<Integer>> ongesorteerd) {
-        int arrayListSize = ongesorteerd.size();
-        int currentX = 0;
-        int currentY = 1;
-        int startX = 0;
-        int startY = 1;
-        //bereken verschil tussen de vorige en de huidige afstand in de loop, als verschil kleiner is overschrijft hij de kortste afstand.
+
+
+        arrayListSize = ongesorteerd.size();
+        //this ArrayList loops through the different products.
         for (int x = 0; x < arrayListSize; x++) {
-            int afstand = 100;
+
+
+            double afstand = Integer.MAX_VALUE;
             int kortste = 0;
 
-            for (int i = 0; i < ongesorteerd.size(); i++) {
-                //System.out.println(afstand + " afstand, " + DifCalc(currentX, ongesorteerd.get(i).get(1)) + DifCalc(currentY, ongesorteerd.get(i).get(2)));
-                if (afstand > DifCalc(currentX, ongesorteerd.get(i).get(1)) + DifCalc(currentY, ongesorteerd.get(i).get(2))) {
-                    //Door deze formule wordt er bepaald welk punt het dichtsbij de current location ligt.
-                    afstand = DifCalc(currentX, ongesorteerd.get(i).get(1)) + DifCalc(currentY, ongesorteerd.get(i).get(2));
+
+            //This loop selects the shortest route between products.
+            for (i = 0; i < ongesorteerd.size(); i++) {
+
+
+                if (afstand > calcPyth(currentX, currentY, ongesorteerd.get(i).get(1), ongesorteerd.get(i).get(2))) {
+                    afstand = calcPyth(currentX, currentY, ongesorteerd.get(i).get(1), ongesorteerd.get(i).get(2));
                     kortste = i;
-                    int artikelnr = ongesorteerd.get(i).get(0);
+                    artikelnr = ongesorteerd.get(i).get(0);
                 }
             }
+            //adds the sorted products to an arraylist, and sets the current position to the position of the last retrieved product.
             int kortsteX = ongesorteerd.get(kortste).get(1);
             int kortsteY = ongesorteerd.get(kortste).get(2);
-            //als er 3 producten zijn opgehaald, reset naar start
-            if (x % 3 == 0 && x != 0 ) {
-                System.out.println(x+" item is opgehaald?");
-                System.out.println(startX-currentX);
-                System.out.println(startY-currentY);
-                currentX = startX;
-                currentY = startY;
-                sOrder.add(startX - currentX);
-                sOrder.add(startX - currentY);
-                try {
-                    gesorteerd.add(sOrder);
-                    sOrder = new ArrayList<Integer>();
-                    //System.out.println(gesorteerd);
-                    //System.out.println(gesorteerd.size());
-                }
-                catch (Exception e) {
-                    //System.out.println("X" + currentX);
-                    //System.out.println("Y" + currentY);
-                    System.out.println("order" + sOrder);
-                    System.out.println("gesorteerd" + gesorteerd);
-                    System.out.println(e);
-                    sOrder = new ArrayList<Integer>();
-                }
-            }
-            //System.out.println("kortste afstand " + afstand + ", x van kortste " + kortsteX + ", y van kortste " + kortsteY );
-            antalOrder++;
-            System.out.println("order " + antalOrder + ":");
-            System.out.println("X naar:");
-            //KortsteX - CurrentX en KortsteY - CurrentY zijn de formules om uit te rekenen waar de arduino relatief aan zen locatie
-            //naartoe moet gaan.
-            System.out.println(kortsteX - currentX);
-            System.out.println("Y naar: ");
-            System.out.println(kortsteY - currentY);
-            sOrder.add(kortsteX - currentX);
-            sOrder.add(kortsteY - currentY);
-            //sOrder.add(currentX);
-            //sOrder.add(currentY);
-            try {
-                gesorteerd.add(sOrder);
-                sOrder = new ArrayList<Integer>();
-                //System.out.println(gesorteerd);
-                //System.out.println(gesorteerd.size());
-            }
-            catch (Exception e) {
-                //System.out.println("X" + currentX);
-                //System.out.println("Y" + currentY);
-                System.out.println("order" + sOrder);
-                System.out.println("gesorteerd" + gesorteerd);
-                //System.out.println(e);
-                sOrder = new ArrayList<Integer>();
-            }
             currentX = kortsteX;
             currentY = kortsteY;
+            sortInner.add(currentX);
+            sortInner.add(currentY);
+            gesorteerd.add(sortInner);
+            sortInner = new ArrayList<Integer>();
             ongesorteerd.remove(kortste);
-            //System.out.println(ongesorteerd);
         }
-        currentX = startX - currentX;
-        currentY = startY - currentY;
-        System.out.println("X naar:");
-        System.out.println(currentX);
-        System.out.println("Y naar: ");
-        System.out.println(currentY);
-        //sOrder.add(kortsteX - currentX);
-        //sOrder.add(kortsteY - currentY);
-        sOrder.add(currentX);
-        sOrder.add(currentY);
-        try {
-            gesorteerd.add(sOrder);
-            sOrder = new ArrayList<Integer>();
-            //System.out.println(gesorteerd);
-            //System.out.println(gesorteerd.size());
-        }
-        catch (Exception e) {
-            //System.out.println("X" + currentX);
-            //System.out.println("Y" + currentY);
-            System.out.println("order" + sOrder);
-            System.out.println("gesorteerd" + gesorteerd);
-            System.out.println(e);
-            sOrder = new ArrayList<Integer>();
-        }
-        //System.out.println(sOrder);
     }
-    public int DifCalc(int x, int y) {
-        if (x != y) {
-            return Math.max(x, y) - Math.min(x, y);
+
+    //this function calculates the distance between two points on the raster, using pythagoras.
+    public double calcPyth(int beginX, int beginY, int eindX, int eindY) {
+        int verschilX;
+        int verschilY;
+        if (beginX != eindX) {
+            verschilX = Math.max(beginX, eindX) - Math.min(beginX, eindX);
         } else {
-            return 0;
+            verschilX = 0;
         }
+        if (beginY != eindY) {
+            verschilY = Math.max(beginY, eindY) - Math.min(beginY, eindY);
+        } else {
+            verschilY = 0;
+        }
+        double i = Math.pow(verschilX, 2) + Math.pow(verschilY, 2);
+        return Math.sqrt(i);
     }
+
+    //This function calculates the shortest route.
     @Override
     public ArrayList<ArrayList<Integer>> berekenRoute() {
         return gesorteerd;
     }
 
-    public int getAntalOrder() {
-        return antalOrder;
+
+    public ArrayList<ArrayList<Integer>> getGesorteerd() {
+        return gesorteerd;
     }
+
 }

@@ -1,20 +1,33 @@
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import gnu.io.CommPortIdentifier;
 import gnu.io.SerialPort;
 import gnu.io.SerialPortEvent;
 import gnu.io.SerialPortEventListener;
+
+import java.util.ArrayList;
 import java.util.Enumeration;
 public class ArduinoConnect implements SerialPortEventListener {
 
     public SerialPort serialPort;
-    private static final String PORT_NAMES[] = {"COM3"};
+    private static final String PORT_NAMES[] = {"COM4"};
     public static BufferedReader input;
     public static OutputStream output;
     public static final int TIME_OUT = 2000;
     public static final int DATA_RATE = 9600;
+    private int a = 0;
+    private char x;
+    private int list;
+    private TSPPanel paneel;
 
+
+    public ArduinoConnect(int list, ArrayList<ArrayList<Integer>> producten,TSPPanel paneel){
+        this.list = list;
+        this.paneel = paneel;
+    }
+    //prepares the arduino connect class to be used.
     public void initialize() {
         CommPortIdentifier portId = null;
         Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
@@ -58,8 +71,31 @@ public class ArduinoConnect implements SerialPortEventListener {
     public synchronized void serialEvent(SerialPortEvent oEvent) {
         if (oEvent.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
             try {
-                String inputLine = input.readLine();
-                System.out.println(inputLine);
+                int in = input.read();
+                //Stuur data naar tekenpanel
+                paneel.grid.shiftOut(in);
+                //Check if ARDUINO gives P
+                if(in == 112){
+
+                    System.out.println("ARDUINO gave back " + (char) in);
+
+                    a++;
+                    if(a == list){
+                        x = (char) 'E';
+                        System.out.println("All blocks have been pushed! Writing "+ x +" TO OUTPUT...");
+                        try
+                        {
+                            output = serialPort.getOutputStream();
+                            output.write(x);
+                            System.out.println("Written to! Waiting for ARDUINO output...");
+                        }
+                        catch (IOException | NullPointerException nx){
+                            System.out.println("Could not find COM port / An error has occured.");
+                            //cFrame.getImage().setImage("ERROR");
+                        }
+                    }
+                }
+
             } catch (Exception e) {
                 System.err.println(e.toString());
             }
