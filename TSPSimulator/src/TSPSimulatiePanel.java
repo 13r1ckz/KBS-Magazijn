@@ -56,7 +56,6 @@ public class TSPSimulatiePanel extends JPanel {
         for (int i = 0; i < gridGetal; i++) {
             g.drawLine(0, celX * i, (gridGetal) * celY, celY * i);
             g.drawLine(celY * i, 0, celX * i, (gridGetal) * celX);
-
         }
         g.drawRect(0, 0, (celX * gridGetal) - 1, (celX * gridGetal) - 1);
 

@@ -12,7 +12,7 @@ import java.util.Enumeration;
 public class ArduinoConnect implements SerialPortEventListener {
 
     public SerialPort serialPort;
-    private static final String PORT_NAMES[] = {"COM6"};
+    private static final String PORT_NAMES[] = {"COM4"};
     public static BufferedReader input;
     public static OutputStream output;
     public static final int TIME_OUT = 2000;
@@ -76,6 +76,7 @@ public class ArduinoConnect implements SerialPortEventListener {
                 paneel.grid.shiftOut(in);
                 //Check if ARDUINO gives P
                 if(in == 112){
+
                     System.out.println("ARDUINO gave back " + (char) in);
                     //System.out.println();
                     //cFrame.getImage().setImage("WAIT_FOR_INPUT");
@@ -95,16 +96,7 @@ public class ArduinoConnect implements SerialPortEventListener {
                         }
                     }
                 }
-                // D - event.
-                if(in == 100){
-                    //this.shiftOut();
-                    System.out.println("done ready for next");
-                }
-                //L
-                if(in == 108){
-                    //this.shiftOut();
-                    System.out.println("lading losing");
-                }
+
             } catch (Exception e) {
                 System.err.println(e.toString());
             }

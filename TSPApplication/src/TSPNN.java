@@ -42,16 +42,8 @@ public class TSPNN implements TSPAlgoritme {
                     sortInner = new ArrayList<Integer>();
                     ongesorteerd.remove(kortste);
                 }
-
-
         }
-    public int DifCalc(int x, int y) {
-        if (x != y) {
-            return Math.max(x, y) - Math.min(x, y);
-        } else {
-            return 0;
-        }
-    }
+
     public double calcPyth(int beginX, int beginY, int eindX, int eindY) {
         int verschilX;
         int verschilY;
