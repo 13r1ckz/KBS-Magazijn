@@ -8,17 +8,13 @@ boolean heen = true;
 boolean first = true;
 int aantal;
 int x = 0;
-boolean eerste = true;
-boolean start = false;
 boolean complete = false;
-int snelheidv = 210;
-int snelheida = 220;
+int snelheidv = 220;
+int snelheida = 235;
 boolean gaterug = false;
 int aantalproducten;
 int firstloop = 0;
 int m = 0;
-int coorx[127];
-int coory[127];
 
 void setup() {
   pinMode(4, OUTPUT);
@@ -31,26 +27,28 @@ void setup() {
   Serial.begin(9600);
 }
 void loop() {
+//sets all coordinates
 
+  int ding[3] = {1, 3, 5};
+  int dingy[3] = {2, 3, 4};
+  
+//loops coordinates
+  while (m < 3) {
+    Serial.println(locatiex);
+    doelx = ding[m];
+    doely = dingy[m];
 
-
-  //int ding[3] = {1, 3, 5,};
-  //int dingy[3] = {2, 3, 4,};
-
-
-  while (m < aantal) {
-    Serial.println(gaterug);
-    doelx = coorx[m];
-    doely = coory[m];
-
+//checks wich way to go
     if (locatiex <= doelx) {
       heen = true;
     } else if (locatiex >= doelx) {
       heen = false;
     }
 
-    //XAS motion
+    //XAS motion,
+    //safty check
     if (doely == 1 || gehaalty == true) {
+      //check if target is reached
       if (locatiex == doelx && heen == true) {
         if (analogRead(A0) <= 500) {
           gehaaltx = true;
@@ -59,7 +57,7 @@ void loop() {
 
         } else {
           digitalWrite(4, LOW);
-          analogWrite(5, 180);
+          analogWrite(5, 150);
         }
       } else if (locatiex == doelx && heen == false) {
         if (analogRead(A0) <= 500) {
@@ -72,6 +70,7 @@ void loop() {
           digitalWrite(4, HIGH);
           analogWrite(5, 150);
         }
+        //check is target is smaller than location
       } else if (locatiex <= doelx) {
         digitalWrite (13, HIGH);
         if (analogRead(A0) <= 700 && first == true) {
@@ -94,6 +93,7 @@ void loop() {
           digitalWrite(4, HIGH);
           analogWrite(5, snelheidv);
         }
+        //check is target is bigger than location
       } else if (locatiex > doelx) {
         digitalWrite (13, HIGH);
         if (analogRead(A0) <= 700 && first == true) {
@@ -154,12 +154,13 @@ void loop() {
     }
 
     //ZAS pick up
+    // pickes up a item
     if (gehaalty == true && gehaaltx == true && gaterug == false && locatiex != 0) {
       Serial.println("p");
       digitalWrite(13, LOW);
       digitalWrite(4, LOW);
       analogWrite(5, 200);
-      delay(180);
+      delay(210);
       digitalWrite(4, LOW);
       analogWrite(5, 0);
       delay(100);
@@ -173,7 +174,7 @@ void loop() {
 
       digitalWrite(4, HIGH);
       analogWrite(5, 200);
-      delay(190);
+      delay(200);
       digitalWrite(4, LOW);
       analogWrite(5, 0);
       delay(100);
@@ -184,99 +185,114 @@ void loop() {
       digitalWrite(7, HIGH);
       analogWrite(6, 0);
       delay(100);
-      Serial.println("p");
       gehaaltx = false;
       gehaalty = false;
+      first = true;
       m++;
     }
-
-    // drop
-    if (gehaalty == true && gehaaltx == true && locatiex == 0 && gaterug == true) {
-      digitalWrite(13 , LOW);
-      digitalWrite(4, LOW);
-      analogWrite(5, 200);
+  }
+// set return to home action
+  doelx = -1;
+  doely = 2;
+  gaterug = true;
+  digitalWrite(13, HIGH);
+  //xas
+  if (doely == 1 || gehaalty == true) {
+    if (locatiex == doelx) {
+      if (analogRead(A0) <= 500) {
+        gehaaltx = true;
+        digitalWrite(4, HIGH);
+        analogWrite(5, 0);
+      }
+    } else if (analogRead(A0) <= 200) {
+      digitalWrite(4, HIGH);
+      analogWrite(5, 0);
       delay(150);
       digitalWrite(4, LOW);
-      analogWrite(5, 0);
-
-      digitalWrite(7, HIGH);
-      analogWrite(6, 255);
-      delay(3100);
-      digitalWrite(7, LOW);
-      analogWrite(6, 0);
-      for (int i = 0; i <= 3; i++) {
-        digitalWrite(4, HIGH);
-        analogWrite(5, 200);
-        delay(100);
-        digitalWrite(4, LOW);
-        analogWrite(5, 0);
-        delay(1000);
-      }
-
+      analogWrite(5, snelheida);
+      delay(150);
+      locatiex --;
+    } else if (analogRead(A0) >= 201) {
       digitalWrite(4, LOW);
+      analogWrite(5, snelheida);
+    }
+  }
+  //yas
+  if (doely != 1 || gehaaltx == true) {
+    if (locatiey <= doely) {
+      if (analogRead (A1) <= 600 && gehaalty == false) {
+        digitalWrite(7, LOW);
+        analogWrite(6, 255);
+
+      } else if (analogRead (A1) >= 601 && gehaalty == false) {
+        digitalWrite(7, LOW);
+        analogWrite(6, 255);
+        delay(500);
+        locatiey ++;
+      }
+    } else if (locatiey >= doely) {
+
+      if (analogRead (A1) <= 600 && gehaalty == false) {
+        digitalWrite(7, HIGH);
+        analogWrite(6, 255);
+      } else if (analogRead (A1) >= 601 && gehaalty == false) {
+        digitalWrite(7, HIGH);
+        analogWrite(6, 255);
+        delay(500);
+        locatiey --;
+      }
+      if (locatiey == doely) {
+        digitalWrite(7, LOW);
+        analogWrite(6, 0);
+        gehaalty = true;
+      }
+    }
+  }
+  // drop
+  // drops items in soorter
+  if (gehaalty == true && gehaaltx == true && locatiex <=0 && gaterug == true && complete == false) {
+    digitalWrite(13 , LOW);
+    digitalWrite(4, LOW);
+    analogWrite(5, 200);
+    delay(150);
+    digitalWrite(4, LOW);
+    analogWrite(5, 0);
+
+    digitalWrite(7, HIGH);
+    analogWrite(6, 255);
+    delay(3100);
+    digitalWrite(7, LOW);
+    analogWrite(6, 0);
+    for (int i = 0; i <= 3; i++) {
+      digitalWrite(4, HIGH);
       analogWrite(5, 200);
-      delay(250);
+      delay(100);
       digitalWrite(4, LOW);
       analogWrite(5, 0);
-      delay(500);
-
-      digitalWrite(7, LOW);
-      analogWrite(6, 255);
-      delay(3500);
-      digitalWrite(7, HIGH);
-      analogWrite(6, 0);
-      complete = true;
-      gaterug = false;
+      delay(1000);
     }
 
+    digitalWrite(4, LOW);
+    analogWrite(5, 200);
+    delay(250);
+    digitalWrite(4, LOW);
+    analogWrite(5, 0);
+    delay(500);
 
-    if (complete == true) {
-      digitalWrite(4, LOW);
-      analogWrite(5, 0);
-      digitalWrite(7, HIGH);
-      analogWrite(6, 0);
-    }
+    digitalWrite(7, LOW);
+    analogWrite(6, 255);
+    delay(3500);
+    digitalWrite(7, HIGH);
+    analogWrite(6, 0);
+    complete = true;
+    gaterug = false;
+  } else if (complete == true) {
+    digitalWrite(4, LOW);
+    analogWrite(5, 0);
+    digitalWrite(7, HIGH);
+    analogWrite(6, 0);
   }
 }
 
-void serialEvent() {
-  while (Serial.available()) {
-    if (eerste == true) {
-      aantal = Serial.read();
-      eerste = false;
-      Serial.println(aantal);
-    }
 
-    //Generate locations based on length
-    if (eerste == false) {
-      Serial.println("int the false");
-      Serial.println(aantal);
-      //wait for input;
-      while (Serial.available() == 0) { }
 
-      //make corect orders
-      for (int i = 0; i < aantal - 48; i++) {
-        coorx[i] = Serial.read() - 48;
-        delay(1);
-        Serial.print("X: ");
-        Serial.println(coorx[i]);
-        Serial.print("aantal: ");
-        Serial.println(aantal);
-        Serial.print("3 ");
-        Serial.println(Serial.available());
-      }
-
-      for (int i = 0; i < aantal - 48; i++) {
-        coory[i] = Serial.read() - 48;
-        delay(1);
-        Serial.print("Y: ");
-        Serial.println(coory[i]);
-        Serial.print("aantal: ");
-        Serial.println(aantal);
-        Serial.print("4 ");
-        Serial.println(Serial.available());
-      }
-      start = true;
-    }
-  }
-}
