@@ -73,7 +73,7 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
     public void createDisplay(ArrayList<ArrayList<Integer>> locatiesOngesorteerd) {
         this.locatiesOngesorteerd = locatiesOngesorteerd;
         JMenuBar menuBar = new JMenuBar();
-        JMenu menu = new JMenu("A Menu");
+        JMenu menu = new JMenu("Opties...");
         menuBar.add(menu);
         menuItem = new JMenuItem("Single test", KeyEvent.VK_T);
         menuItem.addActionListener(this);
@@ -199,8 +199,10 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
         if (actionEvent.getSource() == btnBerekenRoute) {
             outer = new ArrayList<>();
             try {
-                panel.setGridGetal(Integer.parseInt(jTextFieldGridGrootte.getText()));
-                panel.setLocaties(GenerateRoute(Integer.parseInt(jTextFieldAantalLocaties.getText())));
+                int getal = Integer.parseInt(jTextFieldGridGrootte.getText());
+                int locaties = Integer.parseInt(jTextFieldAantalLocaties.getText());
+                panel.setGridGetal(getal);
+                panel.setLocaties(GenerateRoute(locaties));
             }
             catch(Exception e){
                 return;
@@ -217,12 +219,24 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
             catch(NumberFormatException e) {}
 
             /* Doe dit zo veel keer. */
+            int locaties = 0;
+            try {
+                locaties = Integer.parseInt(jTF_multi_locaties.getText());
+            }
+            catch(Exception exc){}
+
+            if(locaties > 12){
+                int dialogResult = JOptionPane.showConfirmDialog (null, "Weet u zeker dat u met " + locaties + " producten Brute Force wilt uitvoeren?","Waarschuwing",JOptionPane.YES_NO_OPTION);
+                if(dialogResult == JOptionPane.NO_OPTION){
+                    return;
+                }
+            }
+
             for(int x = 0; x <= aantaltesten; x++) {
                 //Print waar hij is
                 System.out.println(x);
                 outer = new ArrayList<>();
                 try {
-                    int locaties = Integer.parseInt(jTF_multi_locaties.getText());
                     panel.setGridGetal(locaties);
                     panel.setLocaties(GenerateRoute(locaties));
                     //NN REVERSED
@@ -308,9 +322,20 @@ public class TSPSimulatieFrame extends JFrame implements ActionListener {
             panel.repaintPanel();
         }
         if (actionEvent.getSource() == btnBruteForce){
+
+            ArrayList<ArrayList<Integer>> loca = panel.getLocaties();
+            System.out.println(loca.size());
+
+            if(loca.size() > 12){
+                int dialogResult = JOptionPane.showConfirmDialog (null, "Weet u zeker dat u met " + loca.size() + " producten Brute Force wilt uitvoeren?","Waarschuwing",JOptionPane.YES_NO_OPTION);
+                if(dialogResult == JOptionPane.NO_OPTION){
+                    return;
+                }
+            }
+
             BruteForce bruteForce = new BruteForce();
             this.revalidate();
-            ArrayList<ArrayList<Integer>> gesorteerdeLijst = bruteForce.berekenRoute(panel.getLocaties());
+            ArrayList<ArrayList<Integer>> gesorteerdeLijst = bruteForce.berekenRoute(loca);
             panel.setRoute(gesorteerdeLijst);
             panel.repaintPanel();
         }
