@@ -12,6 +12,9 @@ public class NearestNeighbourRework implements TSP {
         int arrayListSize = rekenRoute.size();
         int currentX = 0;
         int currentY = 0;
+        double totaleAfstand= 0;
+
+
 
         for (int x = 0; x < arrayListSize; x++) {
             double afstand = 100;
