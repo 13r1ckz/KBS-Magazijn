@@ -163,9 +163,11 @@ public class MainFrame extends JFrame implements ActionListener{
         }
         /* Menu items */
         if(e.getSource() == menu_quit){
+            //Quit
             System.exit(0);
         }
         if(e.getSource() == menu_single){
+            //Eén berekening
             for(SimulatorPanel p: panelen){
                 p.setFrameTo(0);
                 currentFrame = 0;
@@ -173,7 +175,8 @@ public class MainFrame extends JFrame implements ActionListener{
             }
         }
         if(e.getSource() == menu_multi){
-            for(SimulatorPanel p: panelen){
+            //Meerdere berekeningen
+            for(SimulatorPanel p: panelen){ 
                 p.setFrameTo(1);
                 currentFrame = 1;
                 jamount.setEnabled(true);

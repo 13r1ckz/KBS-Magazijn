@@ -4,6 +4,11 @@ import bpp_sim.Product;
 import java.util.ArrayList;
 import java.util.Random;
 
+/*
+    Een ORDERLIJST-klasse maakt een willekeurige lijst aan met producten.
+    Dit zal alleen gebruikt worden voor de simulator.
+*/
+
 public class OrderLijst {
 
     private final Random rand = new Random();

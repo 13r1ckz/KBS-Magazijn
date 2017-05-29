@@ -10,6 +10,12 @@ import java.math.RoundingMode;
 import java.util.ArrayList;
 import javax.swing.*;
 
+/*
+    4 panelen, voor de simulatoren.
+    Elk paneel beschikt over een enumeratie.
+    Deze enumeratie geeft aan welk van de functies de panel gaat gebruiken.
+*/
+
 public class SimulatorPanel extends JPanel{
     
     private JLabel  jName,
@@ -19,6 +25,7 @@ public class SimulatorPanel extends JPanel{
     private ImagePanel imgpanel;
     private final String labelName;
     
+    /* Constructor */
     public SimulatorPanel(int enumeration)
     {
         // The panels are 500 x 100.
@@ -41,9 +48,11 @@ public class SimulatorPanel extends JPanel{
         this.setFrameTo(0);
     }
     
+    /* Bereken één */
     public void calculateSingle(ArrayList<Product> producten)
     {
         ArrayList<Doos> dozen = new ArrayList<>();
+        // Welke functie? Gebruik hiervoor int functie.
         BPP func = null;
         switch(function){
             case 0: func = new FirstFit(); break;
@@ -52,6 +61,7 @@ public class SimulatorPanel extends JPanel{
             case 3: func = new FirstFullNFD(); break;
         }
         try{
+            //Bereken daarna de oplossing.
             dozen = func.berekenOplossing(producten);
             String labelName = Integer.toString(func.berekenOplossing(producten).size());
             jBoxAmount.setText("<html><h3 style=\"text-align:center\">Dozen: " + labelName + "</h3></html>");
@@ -60,6 +70,7 @@ public class SimulatorPanel extends JPanel{
         imgpanel.drawDozen(dozen);
     }
 
+    /* Bereken meerdere */
     public void calculateMulti(int aantalProducten,int amount)
     {
         double division = 00.00;
@@ -67,6 +78,7 @@ public class SimulatorPanel extends JPanel{
         for(int i = 0; i < amount; i++){
             OrderLijst o = new OrderLijst(aantalProducten,10);
             ArrayList<Doos> dozen = new ArrayList<>();
+            // Welke functie? Gebruik hiervoor int functie.
             BPP func = null;
             switch(function){
                 case 0: func = new FirstFit(); break;
@@ -93,6 +105,7 @@ public class SimulatorPanel extends JPanel{
     return bd.doubleValue();
     }
     
+    /* Zet het frame naar int i (single/multi) */
     void setFrameTo(int i)
     {
         /* Remove the components */

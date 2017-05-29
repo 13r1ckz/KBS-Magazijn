@@ -10,6 +10,10 @@ import javax.swing.JPanel;
 
 public class DoosPaneel extends JPanel{
     
+    /*
+        Een DoosPaneel is de tekensoftware voor één doos.
+        Dit is alleen nodig voor de applicatie.
+    */
     private Doos doos;
     private int width = 100;
     private int height;
@@ -19,12 +23,14 @@ public class DoosPaneel extends JPanel{
         this(new Doos());
     }
     
+    /* Constructor */
     public DoosPaneel(Doos doos){
         this.doos = doos;
         height = doos.getLength()*25;
         setPreferredSize(new Dimension(width,height));
     }
 
+    /* Teken functie */
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);

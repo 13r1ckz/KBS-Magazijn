@@ -2,13 +2,17 @@ package bpp_sim;
 
 public class Product {
 
+    /* Product ID */
     private static int global_product_id = 0;
     private final int product_id;
+    /* Positie in magazijn */
     private final int xpos;
     private final int ypos;
+    /* Product size */
     private final int size;
     private int direction;
     
+    /* constructor */
     public Product(int xpos, int ypos, int size)
     {
         product_id = global_product_id;
@@ -18,6 +22,7 @@ public class Product {
         this.size = size;
     }
     
+    /* get the product id */
     public int getProductID()
     {
         return product_id;

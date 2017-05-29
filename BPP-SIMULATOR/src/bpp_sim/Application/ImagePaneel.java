@@ -8,9 +8,15 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class ImagePaneel extends JPanel{
+    
+    /*
+        ImagePaneel zorgt er voor dat de dynamische afbeelding geladen wordt.
+    */
+    
     BufferedImage img;
     JLabel label;
     
+    /* Constructor */
     public ImagePaneel() throws IOException {
         this.img = ImageIO.read(new File("src/bpp_sim/Application/images/panel_WAIT_FOR_INPUT.png"));
         label = new JLabel(new ImageIcon(this.img));
@@ -18,6 +24,7 @@ public class ImagePaneel extends JPanel{
         add(label);
     }
     
+    /* Zet de afbeelding */
     public void setImage(String IMAGE_FILENAME)
     {
         try{
