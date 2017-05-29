@@ -2,8 +2,14 @@ package bpp_sim;
 
 import java.util.ArrayList;
 
+/*
+    Direction is een klasse om ArrayLists te sorteren.
+    Dit is behulpzaam voor de MAIN-klasse.
+*/
+
 public class Direction {
 
+    /* Zet de richting. */
     public void setDir(ArrayList<Doos> dozen)
     {
         for(Doos doos: dozen){
@@ -13,6 +19,7 @@ public class Direction {
         }
     }
     
+    /* Keer de lijst om. */
     public ArrayList<Product> reverseList(ArrayList<Product> producten)
     {
         ArrayList<Product> AList = new ArrayList<>();
@@ -24,6 +31,7 @@ public class Direction {
         return AList;
     }
     
+    /* Sorteer de lijst op grootte. */
     public ArrayList<Product> sortList(ArrayList<Product> producten)
     {
         ArrayList<Product> AList = new ArrayList<>();

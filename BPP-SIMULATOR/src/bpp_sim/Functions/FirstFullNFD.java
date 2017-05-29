@@ -4,6 +4,10 @@ import bpp_sim.Doos;
 import bpp_sim.Product;
 import java.util.ArrayList;
 
+/*
+    Onze eigen bedachte functie - FullNFD
+    Ofwel - Even/uneven-functie
+*/
 public class FirstFullNFD implements BPP{
 
     @Override
@@ -20,6 +24,11 @@ public class FirstFullNFD implements BPP{
                 ODD.add(p);
             }
         }
+        
+        /*
+            Gooi het in een nieuwe lijst:
+            EVEN-ONEVEN-EVEN-ONEVEN-EVEN-ONEVEN-EVEN-ONEVEN-EVEN-ONEVEN-EVEN-ONEVEN-EVEN-ONEVEN-EVEN.
+        */
         int j = producten.size();
         producten.clear();
         for(int i = 0; i < j; i++){

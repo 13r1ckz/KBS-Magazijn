@@ -13,6 +13,7 @@ class ImagePanel extends JPanel{
     private final ArrayList<Doos> dozen = new ArrayList<>();
     private final Random randColor = new Random();
     
+    /* Teken-functie */
     @Override
     public void paintComponent(Graphics g)
     {
@@ -24,6 +25,7 @@ class ImagePanel extends JPanel{
         for(Doos d: dozen){
             int ypos = 0;
             for(Product p: d.getProducten()){
+                //Willekeurige kleur
                 g.setColor(new Color(randColor.nextInt(255),randColor.nextInt(255),randColor.nextInt(255)));
                 g.fillRect(xpos, ypos*10, 15, p.getSize()*10);
                 g.setColor(Color.BLACK);

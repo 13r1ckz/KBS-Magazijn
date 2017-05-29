@@ -13,6 +13,7 @@ public class ControllerFrame extends JFrame{
     private ArrayList<Product> producten;
     private final ImagePaneel iPaneel = new ImagePaneel();
     
+    /* Constructor */
     public ControllerFrame(ArrayList<Doos> dozen,ArrayList<Product> producten) throws IOException
     {
         this.dozen = dozen;
@@ -36,8 +37,10 @@ public class ControllerFrame extends JFrame{
         this.pack();
     }
     
+    /* Nieuwe dozen */
     public void newBox(ArrayList<Doos> dozen,ArrayList<Product> producten)
     {
+        /* Verwijder componenten uit frame */
         this.getContentPane().removeAll();
         this.getContentPane().revalidate();
         this.getContentPane().repaint();
@@ -57,6 +60,7 @@ public class ControllerFrame extends JFrame{
         this.getContentPane().repaint();
     }
     
+    /* Getter */
     public ImagePaneel getImage()
     {
         return iPaneel;
