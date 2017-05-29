@@ -8,42 +8,43 @@ public class TSPNN implements TSPAlgoritme {
     private ArrayList<Integer> sortInner = new ArrayList<Integer>();
     private int currentX = 1;
     private int currentY = 0;
+
     public TSPNN(ArrayList<ArrayList<Integer>> ongesorteerd) {
 
 
-            arrayListSize = ongesorteerd.size();
-        //bereken verschil tussen de vorige en de huidige afstand in de loop, als verschil kleiner is overschrijft hij de kortste afstand.
+        arrayListSize = ongesorteerd.size();
+        //this ArrayList loops through the different products.
         for (int x = 0; x < arrayListSize; x++) {
 
 
             double afstand = Integer.MAX_VALUE;
             int kortste = 0;
-            //We gaan hier langs al onze producten en onthouden degene met de kortste afstand.
 
 
-
+            //This loop selects the shortest route between products.
             for (i = 0; i < ongesorteerd.size(); i++) {
 
 
-                if (afstand > calcPyth(currentX, currentY , ongesorteerd.get(i).get(1) , ongesorteerd.get(i).get(2))){
-                    afstand = calcPyth(currentX, currentY, ongesorteerd.get(i).get(1),  ongesorteerd.get(i).get(2));
+                if (afstand > calcPyth(currentX, currentY, ongesorteerd.get(i).get(1), ongesorteerd.get(i).get(2))) {
+                    afstand = calcPyth(currentX, currentY, ongesorteerd.get(i).get(1), ongesorteerd.get(i).get(2));
                     kortste = i;
                     artikelnr = ongesorteerd.get(i).get(0);
                 }
             }
-                //pak x, y en de afstand van het artikel met de korste afstand berekent in bovenstaande loop.
-                    int kortsteX = ongesorteerd.get(kortste).get(1);
-                    int kortsteY = ongesorteerd.get(kortste).get(2);
-                    currentX = kortsteX;
-                    currentY = kortsteY;
-                    sortInner.add(currentX);
-                    sortInner.add(currentY);
-                    gesorteerd.add(sortInner);
-                    sortInner = new ArrayList<Integer>();
-                    ongesorteerd.remove(kortste);
-                }
+            //adds the sorted products to an arraylist, and sets the current position to the position of the last retrieved product.
+            int kortsteX = ongesorteerd.get(kortste).get(1);
+            int kortsteY = ongesorteerd.get(kortste).get(2);
+            currentX = kortsteX;
+            currentY = kortsteY;
+            sortInner.add(currentX);
+            sortInner.add(currentY);
+            gesorteerd.add(sortInner);
+            sortInner = new ArrayList<Integer>();
+            ongesorteerd.remove(kortste);
         }
+    }
 
+    //this function calculates the distance between two points on the raster, using pythagoras.
     public double calcPyth(int beginX, int beginY, int eindX, int eindY) {
         int verschilX;
         int verschilY;
@@ -60,17 +61,16 @@ public class TSPNN implements TSPAlgoritme {
         double i = Math.pow(verschilX, 2) + Math.pow(verschilY, 2);
         return Math.sqrt(i);
     }
+
+    //This function calculates the shortest route.
     @Override
     public ArrayList<ArrayList<Integer>> berekenRoute() {
         return gesorteerd;
     }
 
+
     public ArrayList<ArrayList<Integer>> getGesorteerd() {
         return gesorteerd;
-    }
-
-    public void setGesorteerd(ArrayList<ArrayList<Integer>> gesorteerd) {
-        this.gesorteerd = gesorteerd;
     }
 
 }

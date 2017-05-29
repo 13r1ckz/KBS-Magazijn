@@ -27,7 +27,7 @@ public class ArduinoConnect implements SerialPortEventListener {
         this.list = list;
         this.paneel = paneel;
     }
-
+    //prepares the arduino connect class to be used.
     public void initialize() {
         CommPortIdentifier portId = null;
         Enumeration portEnum = CommPortIdentifier.getPortIdentifiers();
@@ -78,8 +78,7 @@ public class ArduinoConnect implements SerialPortEventListener {
                 if(in == 112){
 
                     System.out.println("ARDUINO gave back " + (char) in);
-                    //System.out.println();
-                    //cFrame.getImage().setImage("WAIT_FOR_INPUT");
+
                     a++;
                     if(a == list){
                         x = (char) 'E';

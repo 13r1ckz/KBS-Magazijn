@@ -31,6 +31,7 @@ class TekenPanel extends Canvas {
     }
 
     public void shiftOut(int data) {
+        //increases the value of p every time a button is pressed and repaints the panel.
         switch (data) {
 
             //P
@@ -52,6 +53,7 @@ class TekenPanel extends Canvas {
         ArrayList<Integer> startLocatie = new ArrayList<>();
         startLocatie.add(0);
         startLocatie.add(1);
+        //creates a new ArrayList that returns to the home location every 3rd product retrieved.
         if (p == 0) {
             for (l = 0; l < Route.size(); l++) {
                 int xTemp = Route.get(l).get(0);
@@ -130,7 +132,7 @@ class TekenPanel extends Canvas {
         }
 
 
-
+// draws the route that the arduino will move to next
         for (x = 0; x < p ; x++) {
             if (p < Route2.size()) {
                 g.setColor(Color.BLUE);
@@ -138,7 +140,7 @@ class TekenPanel extends Canvas {
                         (((Route2.get(x + 1).get(0) + 1) * XH) - XH) + 85, 635 - ((Route2.get(x + 1).get(1) * YW) - YW));
             }
         }
-
+//draws the article indexes on the corresponding
         for (x = 0; x < p ; x++) {
             if (x == 0) {
                 g.setColor(Color.BLACK);
